@@ -1,0 +1,16 @@
+[build]
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[context.production.environment]
+  NODE_VERSION = "20"
+
+[context.deploy-preview.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/favicon.ico"
+  to = "/favicon.svg"
+  status = 200

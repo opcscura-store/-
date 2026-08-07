@@ -1,0 +1,9 @@
+# extracted zip folder
+opscura-netlify-upload/
+
+# zip archive
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
