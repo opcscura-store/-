@@ -1047,7 +1047,7 @@ html[dir="rtl"] .checkout-summary__row {
 .whatsapp-float {
   position: fixed;
   left: 18px;
-  bottom: max(18px, env(safe-area-inset-bottom));
+  bottom: calc(var(--wa-base-bottom, 34px) + var(--wa-offset, 0px) + env(safe-area-inset-bottom));
   width: 54px;
   height: 54px;
   border-radius: 999px;
@@ -1061,10 +1061,29 @@ html[dir="rtl"] .checkout-summary__row {
   transition: bottom 180ms ease, transform 160ms ease;
 }
 body.has-cartbar .whatsapp-float {
-  bottom: calc(84px + env(safe-area-inset-bottom));
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
+.cartbar:not([hidden]) ~ .whatsapp-float {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
 }
 .whatsapp-float:hover {
   transform: translateY(-1px);
+}
+
+@media (max-width: 920px) {
+  .whatsapp-float {
+    --wa-base-bottom: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .whatsapp-float {
+    --wa-base-bottom: 26px;
+  }
 }
 
 .cartbar {

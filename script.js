@@ -863,11 +863,19 @@
           return Object.values(CATALOG).flat().find((item) => item.id === id);
         }
 
+        function syncWhatsAppOffset() {
+          const cartbar = document.getElementById("cartbar");
+          const isCartbarVisible = Boolean(cartbar && !cartbar.hidden);
+          const offset = isCartbarVisible ? (cartbar.offsetHeight + 16) : 0;
+          document.documentElement.style.setProperty("--wa-offset", `${offset}px`);
+        }
+
         function renderCart() {
           const count = state.cart.reduce((sum, item) => sum + item.qty, 0);
           const countEl = document.getElementById("cartCount");
           if (countEl) countEl.textContent = count;
           const cartbar = document.getElementById("cartbar");
+          const whatsappFloatBtn = document.getElementById("whatsappFloatBtn");
 
           const itemsRoot = document.getElementById("drawerItems");
           if (!itemsRoot) return;
@@ -875,10 +883,12 @@
           if (state.cart.length === 0) {
             itemsRoot.innerHTML = `<div class="empty"><strong>${t("cartEmpty")}</strong>${t("cartEmptyHint")}</div>`;
             if (cartbar) cartbar.hidden = true;
+            if (whatsappFloatBtn) whatsappFloatBtn.hidden = false;
             document.body.classList.remove("has-cartbar");
           } else {
             itemsRoot.innerHTML = state.cart.map(cartItemHTML).join("");
             if (cartbar) cartbar.hidden = false;
+            if (whatsappFloatBtn) whatsappFloatBtn.hidden = true;
             document.body.classList.add("has-cartbar");
             bindCartItemEvents();
           }
@@ -899,6 +909,8 @@
               ? t("cartbarUnlocked")
               : t("cartbarNeedMore", { amount: Math.max(0, 600 - total) });
           }
+
+          syncWhatsAppOffset();
         }
 
         function cartItemHTML(item) {
@@ -1202,6 +1214,8 @@
             const selected = event.target?.value;
             if (typeof selected === "string") setLanguage(selected);
           });
+
+          window.addEventListener("resize", syncWhatsAppOffset);
 
           document.querySelectorAll(".collection-card, .side-menu__panel a").forEach((element) => {
             element.addEventListener("click", () => {
