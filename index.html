@@ -55,9 +55,15 @@
   </div>
 
   <header class="nav">
-    <button class="nav__menu" id="navMenu" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="nav__left">
+      <button class="nav__menu" id="navMenu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <select class="nav__lang" id="langToggle" aria-label="Language selector">
+        <option value="en" selected>EN</option>
+        <option value="ar">AR</option>
+      </select>
+    </div>
     <a class="nav__logo" href="#top" aria-label="Opscura home">
       <span class="button nav__logo-mark">Opscura</span>
       <span class="nav__logo-sub">Custom framed art</span>
@@ -136,7 +142,7 @@
       </div>
       <div class="collections__grid">
         <button class="collection-card" type="button" data-section="sports">
-          <img src="sport1.jpg" alt="Sports collection" />
+          <img src="sport7.jpg" alt="Sports collection" />
           <div>
             <h3>Sports</h3>
             <p>Legendary players, iconic moments and club pride.</p>
@@ -206,7 +212,6 @@
           <ul>
             <li>Upload a personal photo or artwork.</li>
             <li>Select the exact frame size and finish.</li>
-            <li>Your selected image and product name go to Telegram with the order.</li>
           </ul>
         </div>
         <div class="customizer__form">
@@ -234,16 +239,8 @@
                 <option value="40x50">40 × 50 cm</option>
               </select>
             </label>
-            <label class="field">
-              <span>Finish</span>
-              <select id="customFinish">
-                <option value="Black oak">Black oak</option>
-                <option value="Matte walnut" selected>Matte walnut</option>
-                <option value="Gold luxury">Gold luxury</option>
-              </select>
-            </label>
           </div>
-          <div class="customizer__price">Starts at <strong id="customizerPrice">340 EGP</strong></div>
+          <div class="customizer__price"><span id="customizerPriceLabel">Starts at</span> <strong id="customizerPrice">340 EGP</strong></div>
           <button class="btn btn--solid btn--block" id="addCustomBtn" type="button">Add custom frame to cart</button>
         </div>
       </div>

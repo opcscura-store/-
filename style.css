@@ -258,12 +258,29 @@ button { cursor: pointer; border: 0; background: transparent; color: inherit; }
   background: rgba(12, 16, 20, 0.84);
   backdrop-filter: blur(18px);
 }
+.nav__left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .nav__menu, .nav__cart, .iconbtn {
   display: grid;
   place-items: center;
   border-radius: 999px;
   width: 44px;
   height: 44px;
+}
+.nav__lang {
+  height: 38px;
+  min-width: 64px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
 }
 .nav__menu span {
   display: block;
@@ -392,6 +409,42 @@ button { cursor: pointer; border: 0; background: transparent; color: inherit; }
   padding: 10px 0;
   border-bottom: 1px solid var(--line);
   font-weight: 600;
+}
+html[dir="rtl"] .nav {
+  flex-direction: row-reverse;
+}
+html[dir="rtl"] .nav__cart-count {
+  right: auto;
+  left: 2px;
+}
+html[dir="rtl"] .side-menu__panel {
+  inset: 0 0 0 auto;
+}
+html[dir="rtl"] body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+html[dir="rtl"] .eyebrow {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+html[dir="rtl"] .nav__logo-sub {
+  letter-spacing: 0.08em;
+}
+html[dir="rtl"] .hero h1,
+html[dir="rtl"] .section-head h2,
+html[dir="rtl"] .customizer__copy h3,
+html[dir="rtl"] .product__title {
+  line-height: 1.2;
+}
+html[dir="rtl"] .hero__copy,
+html[dir="rtl"] .section-head,
+html[dir="rtl"] .customizer__copy,
+html[dir="rtl"] .benefits article,
+html[dir="rtl"] .drawer__head,
+html[dir="rtl"] .drawer__row,
+html[dir="rtl"] .modal__head,
+html[dir="rtl"] .checkout-summary__row {
+  text-align: right;
 }
 .eyebrow {
   margin: 0 0 6px;
@@ -994,7 +1047,7 @@ button { cursor: pointer; border: 0; background: transparent; color: inherit; }
 .whatsapp-float {
   position: fixed;
   left: 18px;
-  bottom: 18px;
+  bottom: max(18px, env(safe-area-inset-bottom));
   width: 54px;
   height: 54px;
   border-radius: 999px;
@@ -1005,6 +1058,10 @@ button { cursor: pointer; border: 0; background: transparent; color: inherit; }
   box-shadow: 0 16px 26px rgba(37, 211, 102, 0.35);
   z-index: 140;
   animation: pulseSignal 2.8s ease-out infinite;
+  transition: bottom 180ms ease, transform 160ms ease;
+}
+body.has-cartbar .whatsapp-float {
+  bottom: calc(84px + env(safe-area-inset-bottom));
 }
 .whatsapp-float:hover {
   transform: translateY(-1px);
@@ -1255,6 +1312,26 @@ button { cursor: pointer; border: 0; background: transparent; color: inherit; }
 @media (max-width: 640px) {
   .hero { padding-top: 30px; }
   .hero__showcase { grid-template-columns: 1fr; }
+  html[dir="rtl"] .hero h1 {
+    font-size: 34px;
+    line-height: 1.22;
+  }
+  html[dir="rtl"] .nav {
+    gap: 8px;
+  }
+  html[dir="rtl"] .nav__logo-mark {
+    font-size: 22px;
+  }
+  html[dir="rtl"] .nav__logo-sub {
+    font-size: 9px;
+    letter-spacing: 0.04em;
+  }
+  html[dir="rtl"] .hero__actions {
+    gap: 8px;
+  }
+  html[dir="rtl"] .btn {
+    min-height: 44px;
+  }
   .glow-frame::after {
     filter: blur(10px);
   }

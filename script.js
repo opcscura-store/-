@@ -52,8 +52,8 @@
         const CART_KEY = "opscura_cart_v1";
         const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.3);
         const SIZE_OPTIONS = [
-          { id: "20x30", label: "20 × 30 cm", price: 340 },
-          { id: "30x40", label: "30 × 40 cm", price: 260 },
+          { id: "20x30", label: "20 × 30 cm", price: 260 },
+          { id: "30x40", label: "30 × 40 cm", price: 340 },
           { id: "40x50", label: "40 × 50 cm", price: 480 }
         ];
 
@@ -128,6 +128,275 @@
           ]
         };
 
+        const LANG_KEY = "opscura_lang_v1";
+        const SUPPORTED_LANGS = new Set(["en", "ar"]);
+        let currentLanguage = (() => {
+          const saved = (localStorage.getItem(LANG_KEY) || "en").toLowerCase();
+          return SUPPORTED_LANGS.has(saved) ? saved : "en";
+        })();
+
+        const I18N = {
+          en: {
+            promoBar: "Free shipping over 600 EGP · Custom framing in 3–4 days",
+            promoBanner: "<strong>This week only:</strong> 30% off your framed-print subtotal before shipping.",
+            navMenuAria: "Open menu",
+            navCartAria: "Open cart",
+            navLogoSub: "Custom framed art",
+            sideCollections: "Collections",
+            sideCloseAria: "Close menu",
+            sideAllCollections: "All collections",
+            sideSports: "Sports",
+            sideCars: "Cars",
+            sideGaming: "Gaming",
+            sideRap: "Rap scene",
+            sideQuotes: "Quotes",
+            sideMovies: "Movies & series",
+            sideGym: "Gym",
+            sideCustom: "Custom art frames",
+            sideContact: "Contact & socials",
+            heroMystery: "Obscura veil",
+            heroEyebrow: "Walls worth looking at",
+            heroTitle: "Bring your favorite moments to life with premium framed prints.",
+            heroDesc: "From football legends and car masterpieces to your own uploaded artwork, Opscura creates statement pieces you will love to display.",
+            heroShop: "Shop the gallery",
+            heroCustomize: "Customize your image",
+            collectionsEyebrow: "Collections",
+            collectionsTitle: "Explore the shelves.",
+            customEyebrow: "Customization",
+            customTitle: "Upload your image and build it like a normal product.",
+            customHeading: "Upload image, choose size, see the price instantly.",
+            customDesc: "The custom frame now follows the same flow as the normal products. Upload the image, pick your size and finish, then add it to the cart.",
+            customPoint1: "Upload a personal photo or artwork.",
+            customPoint2: "Select the exact frame size and finish.",
+            customChooseImage: "Choose your image",
+            customChooseImageSub: "Upload album art, portrait, car shot, or any photo you want framed.",
+            customUploadLabel: "Upload your image",
+            customWhatToFrame: "Tell us what you want framed",
+            customExamplePlaceholder: "Example: My favorite car photo, black frame, 40x50 cm",
+            sizeLabel: "Size",
+            finishLabel: "Finish",
+            startsAt: "Starts at",
+            addCustomBtn: "Add custom frame to cart",
+            sportsH2: "Football legends and athletic energy.",
+            carsH2: "Performance-inspired car prints and framed posters.",
+            gamingH2: "Immersive visuals built for your wall.",
+            rapH2: "Bold visuals and street-energy statement pieces.",
+            quotesH2: "Clean, motivational message art for your spaces.",
+            moviesH2: "Cinematic posters and iconic scenes, framed beautifully.",
+            gymH2: "Strength, discipline and energy in every print.",
+            benefitsFastTitle: "Fast delivery",
+            benefitsFastDesc: "2–4 working days across Egypt.",
+            benefitsReplaceTitle: "Free replacement",
+            benefitsReplaceDesc: "Damaged in transit? We replace it free within 7 days.",
+            benefitsTelegramTitle: "Telegram-confirmed orders",
+            benefitsTelegramDesc: "Your selected product name and image are sent directly to your Telegram bot.",
+            cartbarMsgDefault: "Add items to unlock free shipping",
+            cartbarViewCart: "View cart",
+            drawerTitle: "Your cart",
+            drawerCloseAria: "Close cart",
+            drawerSubtotal: "Subtotal",
+            drawerDiscount: "Discount 30%",
+            drawerTotal: "Total after discount",
+            checkoutNow: "Checkout now",
+            checkoutTitle: "Checkout",
+            checkoutCloseAria: "Close checkout",
+            fullName: "Full name *",
+            phone: "Phone *",
+            email: "Email (optional)",
+            governorate: "Governorate",
+            chooseGovernorate: "Choose your governorate",
+            address: "Delivery address *",
+            notes: "Notes",
+            confirmOrder: "Confirm order",
+            checkoutFine: "By confirming, you agree to be contacted on the phone number above. We will notify your order to the Opscura team.",
+            namePlaceholder: "Your name",
+            addressPlaceholder: "Street, building, area, city",
+            notesPlaceholder: "Anything we should know?",
+            customPlaceholderAlt: "Preview of custom upload",
+            whatsappAria: "WhatsApp",
+            productHelperCustom: "Upload your image above, then add this custom frame like any other product.",
+            productHelperNormal: "Premium framed print ready for your wall.",
+            addToCart: "Add to cart",
+            customAdded: "Custom frame added to cart",
+            addedToCart: "Added to cart · {title}",
+            cartEmpty: "Your cart is empty",
+            cartEmptyHint: "Pick a print or upload your own image to get started.",
+            cartbarUnlocked: "30% discount applied and free shipping unlocked",
+            cartbarNeedMore: "30% discount applied. Add {amount} EGP more for free shipping",
+            remove: "Remove",
+            summarySubtotal: "Subtotal",
+            summaryDiscount: "Discount 30%",
+            summaryAfterDiscount: "After discount",
+            summaryShipping: "Shipping",
+            summaryTotal: "Total",
+            emptyCartToast: "Your cart is empty",
+            validationToast: "Please fill in name, phone, and address",
+            orderSuccess: "Order {id} confirmed. Telegram has been notified.",
+            optionFramed: "Framed",
+            customPrefix: "Custom frame",
+            uploadedArtwork: "Uploaded artwork",
+            customUploadPrefix: "Custom upload"
+          },
+          ar: {
+            promoBar: "شحن مجاني للطلبات فوق 600 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
+            promoBanner: "<strong>الأسبوع ده بس:</strong> خصم 30% على إجمالي اللوحات قبل الشحن.",
+            navMenuAria: "فتح القائمة",
+            navCartAria: "فتح السلة",
+            navLogoSub: "لوحات مؤطرة مخصصة",
+            sideCollections: "الأقسام",
+            sideCloseAria: "إغلاق القائمة",
+            sideAllCollections: "كل الأقسام",
+            sideSports: "رياضة",
+            sideCars: "سيارات",
+            sideGaming: "جيمينج",
+            sideRap: "راب",
+            sideQuotes: "اقتباسات",
+            sideMovies: "أفلام ومسلسلات",
+            sideGym: "جيم",
+            sideCustom: "إطارات مخصصة",
+            sideContact: "تواصل وسوشيال",
+            heroMystery: "لمسة أوبسكورا",
+            heroEyebrow: "حوائط تستاهل تتشاف",
+            heroTitle: "حوّل لحظاتك المفضلة للوحات مؤطرة بجودة عالية.",
+            heroDesc: "من أساطير الكورة وروائع السيارات لحد صورك الخاصة، أوبسكورا بتقدملك قطع مميزة تزين بيها مكانك.",
+            heroShop: "تصفح المعرض",
+            heroCustomize: "خصص صورتك",
+            collectionsEyebrow: "الأقسام",
+            collectionsTitle: "اختار الستايل المناسب لك.",
+            customEyebrow: "التخصيص",
+            customTitle: "ارفع صورتك واطلبها بنفس طريقة أي منتج.",
+            customHeading: "ارفع الصورة، اختار المقاس، وشوف السعر فورًا.",
+            customDesc: "الإطار المخصص بقى بنفس خطوات المنتجات العادية: ارفع الصورة، اختار المقاس والتشطيب، وبعدها أضفه للسلة.",
+            customPoint1: "ارفع صورة شخصية أو أي تصميم تحبه.",
+            customPoint2: "حدد المقاس والتشطيب المناسبين بدقة.",
+            customChooseImage: "اختار صورتك",
+            customChooseImageSub: "ارفع غلاف ألبوم، بورتريه، صورة عربية، أو أي صورة تحبها.",
+            customUploadLabel: "ارفع صورتك",
+            customWhatToFrame: "اكتب لنا عايز تأطّر إيه",
+            customExamplePlaceholder: "مثال: صورتي المفضلة للعربية، إطار أسود، مقاس 40x50 سم",
+            sizeLabel: "المقاس",
+            finishLabel: "التشطيب",
+            startsAt: "يبدأ من",
+            addCustomBtn: "أضف الإطار المخصص للسلة",
+            sportsH2: "أساطير الكرة وطاقة الملاعب.",
+            carsH2: "لوحات سيارات بطابع أداء قوي وإحساس سباق.",
+            gamingH2: "فيجوالز غامرة مناسبة لحائطك.",
+            rapH2: "ستايل جريء وطاقة ستريت في كل لوحة.",
+            quotesH2: "اقتباسات ملهمة بتصميم نظيف ولمسة راقية.",
+            moviesH2: "بوسترات سينمائية ومشاهد أيقونية بإطار مميز.",
+            gymH2: "قوة وانضباط وطاقة في كل تصميم.",
+            benefitsFastTitle: "توصيل سريع",
+            benefitsFastDesc: "من 2 إلى 4 أيام عمل داخل مصر.",
+            benefitsReplaceTitle: "استبدال مجاني",
+            benefitsReplaceDesc: "لو المنتج اتضرر في الشحن بنستبدله مجانًا خلال 7 أيام.",
+            benefitsTelegramTitle: "تأكيد الطلب عبر تيليجرام",
+            benefitsTelegramDesc: "اسم المنتج والصورة المختارة بيتم إرسالهم مباشرة لبوت تيليجرام.",
+            cartbarMsgDefault: "أضف منتجات لفتح الشحن المجاني",
+            cartbarViewCart: "عرض السلة",
+            drawerTitle: "سلة مشترياتك",
+            drawerCloseAria: "إغلاق السلة",
+            drawerSubtotal: "الإجمالي",
+            drawerDiscount: "خصم 30%",
+            drawerTotal: "الإجمالي بعد الخصم",
+            checkoutNow: "إتمام الطلب",
+            checkoutTitle: "الدفع",
+            checkoutCloseAria: "إغلاق الدفع",
+            fullName: "الاسم بالكامل *",
+            phone: "رقم الموبايل *",
+            email: "البريد الإلكتروني (اختياري)",
+            governorate: "المحافظة",
+            chooseGovernorate: "اختر محافظتك",
+            address: "عنوان التوصيل *",
+            notes: "ملاحظات",
+            confirmOrder: "تأكيد الطلب",
+            checkoutFine: "بالتأكيد أنت موافق نتواصل معك على الرقم المسجل. فريق أوبسكورا هيستلم طلبك فورًا.",
+            namePlaceholder: "اسمك",
+            addressPlaceholder: "الشارع، العمارة، المنطقة، المدينة",
+            notesPlaceholder: "أي ملاحظات تحب تضيفها؟",
+            customPlaceholderAlt: "معاينة الصورة المرفوعة",
+            whatsappAria: "واتساب",
+            productHelperCustom: "ارفع صورتك من فوق وبعدها أضف الإطار المخصص للسلة مثل أي منتج.",
+            productHelperNormal: "لوحة مؤطرة بجودة عالية جاهزة لحائطك.",
+            addToCart: "أضف للسلة",
+            customAdded: "تمت إضافة الإطار المخصص للسلة",
+            addedToCart: "تمت الإضافة للسلة · {title}",
+            cartEmpty: "السلة فارغة",
+            cartEmptyHint: "اختار لوحة أو ارفع صورتك علشان تبدأ.",
+            cartbarUnlocked: "تم تطبيق خصم 30% وتفعيل الشحن المجاني",
+            cartbarNeedMore: "تم تطبيق خصم 30%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
+            remove: "حذف",
+            summarySubtotal: "الإجمالي",
+            summaryDiscount: "خصم 30%",
+            summaryAfterDiscount: "بعد الخصم",
+            summaryShipping: "الشحن",
+            summaryTotal: "الإجمالي النهائي",
+            emptyCartToast: "السلة فارغة",
+            validationToast: "من فضلك اكتب الاسم ورقم الموبايل والعنوان",
+            orderSuccess: "تم تأكيد الطلب {id}. تم إخطار تيليجرام.",
+            optionFramed: "بإطار",
+            customPrefix: "إطار مخصص",
+            uploadedArtwork: "صورة مرفوعة",
+            customUploadPrefix: "رفع مخصص"
+          }
+        };
+
+        const TITLE_AR = {
+          "CR7 Legacy": "إرث CR7",
+          "Gallery Heat": "وهج المعرض",
+          "Messi Moment": "لحظة ميسي",
+          "Salah Energy": "طاقة صلاح",
+          "Champion Spirit": "روح البطل",
+          "Stadium Night": "ليلة الملعب",
+          "Matchday Aura": "أجواء المباراة",
+          "Victory Frame": "إطار الانتصار",
+          "Turbo Night": "ليلة التيربو",
+          "Porsche 911": "بورشه 911",
+          "Ferrari Icons": "أيقونات فيراري",
+          "GT3 RS": "جي تي 3 آر إس",
+          "Mustang Fire": "لهيب موستانج",
+          "Speedline": "خط السرعة",
+          "Track Spec": "مواصفات الحلبة",
+          "Midnight Engine": "محرك منتصف الليل",
+          "Arcade Legends": "أساطير الأركيد",
+          "Neon Pulse": "نبض النيون",
+          "Console Glow": "توهج الكونسل",
+          "Game Night": "ليلة اللعب",
+          "Boss Fight": "معركة الزعيم",
+          "Level Up": "تقدم المستوى",
+          "Shadow Raid": "غارة الظلال",
+          "Final Round": "الجولة الأخيرة",
+          "Rap Energy": "طاقة الراب",
+          "Street Pulse": "نبض الشارع",
+          "Golden Bars": "قوافي ذهبية",
+          "Bassline Mood": "مود البيس لاين",
+          "Night Verse": "بيت الليل",
+          "Dark Flow": "فلو داكن",
+          "Mic Smoke": "دخان المايك",
+          "Backstage Gold": "ذهب الكواليس",
+          "Stay Focused": "خليك مركز",
+          "Mindset Frame": "إطار العقلية",
+          "Rise Again": "قوم من جديد",
+          "Daily Power": "قوة يومية",
+          "Cinematic Night": "ليلة سينمائية",
+          "Iconic Scene": "مشهد أيقوني",
+          "Series Mood": "مود المسلسلات",
+          "Golden Frame": "إطار ذهبي",
+          "Director Cut": "نسخة المخرج",
+          "Night Credits": "ختام الليل",
+          "Scene Shift": "تحول المشهد",
+          "Silver Screen": "الشاشة الفضية",
+          "Iron Focus": "تركيز حديدي",
+          "No Excuses": "بدون أعذار",
+          "Strength Daily": "قوة يومية",
+          "Train Hard": "تمرّن بقوة",
+          "Lift Mode": "وضع الرفع",
+          "Power Reps": "تكرارات القوة",
+          "Muscle Signal": "إشارة العضلة",
+          "Upload image": "ارفع صورة"
+        };
+
+        const TITLE_EN = Object.fromEntries(Object.entries(TITLE_AR).map(([en, ar]) => [ar, en]));
+
         const state = { cart: loadCart() };
         let toastTimer = null;
 
@@ -143,13 +412,318 @@
           "'": "&#39;"
         }[m]));
 
+        function t(key, vars = {}) {
+          const table = I18N[currentLanguage] || I18N.en;
+          const template = table[key] ?? I18N.en[key] ?? key;
+          return template.replace(/\{(\w+)\}/g, (_, token) => String(vars[token] ?? ""));
+        }
+
+        function localizeCatalogTitle(title) {
+          if (currentLanguage === "ar") return TITLE_AR[title] || title;
+          return TITLE_EN[title] || title;
+        }
+
+        function localizeItemTitle(raw) {
+          if (!raw) return "";
+          if (raw.startsWith("Custom frame · ")) {
+            const description = raw.slice("Custom frame · ".length);
+            return currentLanguage === "ar" ? `${t("customPrefix")} · ${description}` : raw;
+          }
+          if (raw.startsWith("إطار مخصص · ")) {
+            const description = raw.slice("إطار مخصص · ".length);
+            return currentLanguage === "en" ? `Custom frame · ${description}` : raw;
+          }
+          return localizeCatalogTitle(raw);
+        }
+
+        function localizeItemOption(raw) {
+          if (!raw) return "";
+          let value = raw;
+          if (currentLanguage === "ar") {
+            value = value.replace(" · Framed", ` · ${t("optionFramed")}`);
+            value = value.replace("Custom upload - ", `${t("customUploadPrefix")} - `);
+            return value;
+          }
+
+          value = value.replace(" · بإطار", " · Framed");
+          value = value.replace("رفع مخصص - ", "Custom upload - ");
+          return value;
+        }
+
+        function setText(selector, key) {
+          const node = document.querySelector(selector);
+          if (node) node.textContent = t(key);
+        }
+
+        function setAttr(selector, attr, key) {
+          const node = document.querySelector(selector);
+          if (node) node.setAttribute(attr, t(key));
+        }
+
+        function applyStaticTranslations() {
+          document.documentElement.lang = currentLanguage;
+          document.documentElement.dir = currentLanguage === "ar" ? "rtl" : "ltr";
+          document.title = currentLanguage === "ar" ? "Opscura — لوحات مؤطرة مخصصة" : "Opscura — Custom Framed Prints";
+          const desc = document.querySelector('meta[name="description"]');
+          if (desc) {
+            desc.setAttribute(
+              "content",
+              currentLanguage === "ar"
+                ? "أوبسكورا للوحات المؤطرة المخصصة، ديكور حائط فاخر، وبوسترات بطابع فريد."
+                : "Opscura custom framed prints, wall art, motorsport posters, and premium home decor."
+            );
+          }
+
+          const promoBanner = document.querySelector("#promoBanner > div");
+          if (promoBanner) promoBanner.innerHTML = t("promoBanner");
+
+          setText(".promo-bar", "promoBar");
+          const loaderSub = document.querySelector(".op-sub");
+          if (loaderSub) loaderSub.textContent = currentLanguage === "ar" ? "لوحات مؤطرة مخصصة" : "CUSTOM FRAMED ART";
+          const loaderCaption = document.querySelector(".op-caption");
+          if (loaderCaption) loaderCaption.textContent = currentLanguage === "ar" ? "الستار ينكشف" : "THE VEIL IS LIFTING";
+          const langToggle = document.getElementById("langToggle");
+          if (langToggle) {
+            langToggle.setAttribute("aria-label", currentLanguage === "ar" ? "اختيار اللغة" : "Language selector");
+          }
+          setAttr("#navMenu", "aria-label", "navMenuAria");
+          setAttr("#navCart", "aria-label", "navCartAria");
+          setText(".nav__logo-sub", "navLogoSub");
+
+          setText(".side-menu__header h3", "sideCollections");
+          setAttr("#sideMenuClose", "aria-label", "sideCloseAria");
+          setText('.side-menu__panel a[href="#collections"]', "sideAllCollections");
+          setText('.side-menu__panel a[data-section="sports"]', "sideSports");
+          setText('.side-menu__panel a[data-section="cars"]', "sideCars");
+          setText('.side-menu__panel a[data-section="gaming"]', "sideGaming");
+          setText('.side-menu__panel a[data-section="rap"]', "sideRap");
+          setText('.side-menu__panel a[data-section="quotes"]', "sideQuotes");
+          setText('.side-menu__panel a[data-section="movies"]', "sideMovies");
+          setText('.side-menu__panel a[data-section="gym"]', "sideGym");
+          setText('.side-menu__panel a[data-section="custom"]', "sideCustom");
+          setText('.side-menu__panel a[data-section="contact"]', "sideContact");
+
+          setText(".hero__mystery-label", "heroMystery");
+          setText(".hero__copy .eyebrow", "heroEyebrow");
+          setText(".hero__copy h1", "heroTitle");
+          setText(".hero__copy > p:not(.eyebrow)", "heroDesc");
+          setText('.hero__actions .btn--solid[href="#collections"]', "heroShop");
+          setText('.hero__actions .btn--ghost[href="#customizer"]', "heroCustomize");
+
+          setText("#collections .section-head .eyebrow", "collectionsEyebrow");
+          setText("#collections .section-head h2", "collectionsTitle");
+
+          setText('#collections .collection-card[data-section="sports"] h3', "sideSports");
+          const sportsCardDesc = document.querySelector('#collections .collection-card[data-section="sports"] p');
+          if (sportsCardDesc) {
+            sportsCardDesc.textContent = currentLanguage === "ar"
+              ? "نجوم أسطورية، لحظات خالدة، وفخر الكيان."
+              : "Legendary players, iconic moments and club pride.";
+          }
+          const carsCardDesc = document.querySelector('#collections .collection-card[data-section="cars"] p');
+          if (carsCardDesc) {
+            carsCardDesc.textContent = currentLanguage === "ar"
+              ? "تصاميم سيارات وسوبركار بطابع قوي ومميز."
+              : "High-impact motorsport and supercar artwork.";
+          }
+          const gamingCardDesc = document.querySelector('#collections .collection-card[data-section="gaming"] p');
+          if (gamingCardDesc) {
+            gamingCardDesc.textContent = currentLanguage === "ar"
+              ? "بوسترات جريئة وفن بصري غامر."
+              : "Bold posters and immersive reference art.";
+          }
+          const rapCardDesc = document.querySelector('#collections .collection-card[data-section="rap"] p');
+          if (rapCardDesc) {
+            rapCardDesc.textContent = currentLanguage === "ar"
+              ? "ثقافة ستريت جريئة وفن مستوحى من الكلمات."
+              : "Edgy street culture and bold lyric-inspired art.";
+          }
+          const quotesCardDesc = document.querySelector('#collections .collection-card[data-section="quotes"] p');
+          if (quotesCardDesc) {
+            quotesCardDesc.textContent = currentLanguage === "ar"
+              ? "اقتباسات مينيمال بإحساس فاخر."
+              : "Minimalist statement print ideas with a premium feel.";
+          }
+          const moviesCardDesc = document.querySelector('#collections .collection-card[data-section="movies"] p');
+          if (moviesCardDesc) {
+            moviesCardDesc.textContent = currentLanguage === "ar"
+              ? "مشاهد أيقونية وبوسترات بطابع سينمائي."
+              : "Iconic scenes, character posters, and cinematic moods.";
+          }
+          const gymCardDesc = document.querySelector('#collections .collection-card[data-section="gym"] p');
+          if (gymCardDesc) {
+            gymCardDesc.textContent = currentLanguage === "ar"
+              ? "فيجوالز تحفيزية وطاقة قوية للتمرين."
+              : "Motivational training visuals and strong energy pieces.";
+          }
+          const customCardDesc = document.querySelector('#collections .collection-card[data-section="custom"] p');
+          if (customCardDesc) {
+            customCardDesc.textContent = currentLanguage === "ar"
+              ? "ارفع أي صورة واحنا نجهزها بإطار احترافي."
+              : "Upload any image and we will frame it for you.";
+          }
+          setText('#collections .collection-card[data-section="cars"] h3', "sideCars");
+          setText('#collections .collection-card[data-section="gaming"] h3', "sideGaming");
+          setText('#collections .collection-card[data-section="rap"] h3', "sideRap");
+          setText('#collections .collection-card[data-section="quotes"] h3', "sideQuotes");
+          setText('#collections .collection-card[data-section="movies"] h3', "sideMovies");
+          setText('#collections .collection-card[data-section="gym"] h3', "sideGym");
+          setText('#collections .collection-card[data-section="custom"] h3', "sideCustom");
+
+          const sidePanel = document.querySelector(".side-menu__panel");
+          if (sidePanel) {
+            sidePanel.setAttribute("aria-label", currentLanguage === "ar" ? "القائمة الرئيسية" : "Primary navigation");
+          }
+          const drawerPanel = document.querySelector("#drawer .drawer__panel");
+          if (drawerPanel) {
+            drawerPanel.setAttribute("aria-label", currentLanguage === "ar" ? "سلة المشتريات" : "Shopping cart");
+          }
+          const checkoutPanel = document.querySelector("#checkoutModal .modal__panel");
+          if (checkoutPanel) {
+            checkoutPanel.setAttribute("aria-label", currentLanguage === "ar" ? "الدفع" : "Checkout");
+          }
+
+          const heroImages = document.querySelectorAll(".hero__showcase img");
+          if (heroImages[0]) heroImages[0].alt = currentLanguage === "ar" ? "لوحة مؤطرة مميزة" : "Featured framed print";
+          if (heroImages[1]) heroImages[1].alt = currentLanguage === "ar" ? "لوحة بطابع سيارات" : "Car themed print";
+          if (heroImages[2]) heroImages[2].alt = currentLanguage === "ar" ? "مجموعة لوحات مؤطرة" : "Multiple framed prints displayed together";
+          const collectionAlts = {
+            sports: ["مجموعة الرياضة", "Sports collection"],
+            cars: ["مجموعة السيارات", "Cars collection"],
+            gaming: ["مجموعة الجيمينج", "Gaming collection"],
+            rap: ["مجموعة الراب", "Rap scene collection"],
+            quotes: ["مجموعة الاقتباسات", "Quotes collection"],
+            movies: ["مجموعة الأفلام والمسلسلات", "Movies and series collection"],
+            gym: ["مجموعة الجيم", "Gym collection"],
+            custom: ["مجموعة الإطارات المخصصة", "Custom art collection"]
+          };
+          Object.entries(collectionAlts).forEach(([section, [arAlt, enAlt]]) => {
+            const img = document.querySelector(`#collections .collection-card[data-section="${section}"] img`);
+            if (img) img.alt = currentLanguage === "ar" ? arAlt : enAlt;
+          });
+
+          setText("#customizer .section-head .eyebrow", "customEyebrow");
+          setText("#customizer .section-head h2", "customTitle");
+          setText("#customizer .customizer__copy h3", "customHeading");
+          setText("#customizer .customizer__copy p", "customDesc");
+          const customList = document.querySelectorAll("#customizer .customizer__copy li");
+          if (customList[0]) customList[0].textContent = t("customPoint1");
+          if (customList[1]) customList[1].textContent = t("customPoint2");
+          setText("#customizer .customizer__preview-copy strong", "customChooseImage");
+          setText("#customizer .customizer__preview-copy span", "customChooseImageSub");
+          setAttr("#customizerPreview", "alt", "customPlaceholderAlt");
+          setText("#customizerPriceLabel", "startsAt");
+          setText("#addCustomBtn", "addCustomBtn");
+
+          const customUploadLabel = document.querySelector("#customImageInput")?.closest("label")?.querySelector("span");
+          if (customUploadLabel) customUploadLabel.textContent = t("customUploadLabel");
+          const customDescLabel = document.querySelector("#customDescription")?.closest("label")?.querySelector("span");
+          if (customDescLabel) customDescLabel.textContent = t("customWhatToFrame");
+          const customSizeLabel = document.querySelector("#customSize")?.closest("label")?.querySelector("span");
+          if (customSizeLabel) customSizeLabel.textContent = t("sizeLabel");
+          setAttr("#customDescription", "placeholder", "customExamplePlaceholder");
+
+          setText("#section-sports .section-head .eyebrow", "sideSports");
+          setText("#section-sports .section-head h2", "sportsH2");
+          setText("#section-cars .section-head .eyebrow", "sideCars");
+          setText("#section-cars .section-head h2", "carsH2");
+          setText("#section-gaming .section-head .eyebrow", "sideGaming");
+          setText("#section-gaming .section-head h2", "gamingH2");
+          setText("#section-rap .section-head .eyebrow", "sideRap");
+          setText("#section-rap .section-head h2", "rapH2");
+          setText("#section-quotes .section-head .eyebrow", "sideQuotes");
+          setText("#section-quotes .section-head h2", "quotesH2");
+          setText("#section-movies .section-head .eyebrow", "sideMovies");
+          setText("#section-movies .section-head h2", "moviesH2");
+          setText("#section-gym .section-head .eyebrow", "sideGym");
+          setText("#section-gym .section-head h2", "gymH2");
+
+          const benefits = document.querySelectorAll(".benefits article");
+          if (benefits[0]) {
+            benefits[0].querySelector("h3").textContent = t("benefitsFastTitle");
+            benefits[0].querySelector("p").textContent = t("benefitsFastDesc");
+          }
+          if (benefits[1]) {
+            benefits[1].querySelector("h3").textContent = t("benefitsReplaceTitle");
+            benefits[1].querySelector("p").textContent = t("benefitsReplaceDesc");
+          }
+          if (benefits[2]) {
+            benefits[2].querySelector("h3").textContent = t("benefitsTelegramTitle");
+            benefits[2].querySelector("p").textContent = t("benefitsTelegramDesc");
+          }
+
+          setText("#cartbarMsg", "cartbarMsgDefault");
+          setText("#cartbarOpen", "cartbarViewCart");
+          setAttr("#drawerClose", "aria-label", "drawerCloseAria");
+          setText(".drawer__head h3", "drawerTitle");
+          setText(".drawer__foot .drawer__row:nth-child(1) span", "drawerSubtotal");
+          setText(".drawer__foot .drawer__row:nth-child(2) span", "drawerDiscount");
+          setText(".drawer__foot .drawer__row:nth-child(3) span", "drawerTotal");
+          setText("#checkoutBtn", "checkoutNow");
+
+          setText("#checkoutModal .modal__head h3", "checkoutTitle");
+          setAttr("#checkoutClose", "aria-label", "checkoutCloseAria");
+          setAttr("#whatsappFloatBtn", "aria-label", "whatsappAria");
+
+          const nameLabel = document.querySelector("#checkoutForm input[name='name']")?.closest("label")?.querySelector("span");
+          if (nameLabel) nameLabel.textContent = t("fullName");
+          const phoneLabel = document.querySelector("#checkoutForm input[name='phone']")?.closest("label")?.querySelector("span");
+          if (phoneLabel) phoneLabel.textContent = t("phone");
+          const emailLabel = document.querySelector("#checkoutForm input[name='email']")?.closest("label")?.querySelector("span");
+          if (emailLabel) emailLabel.textContent = t("email");
+          const governorateLabel = document.querySelector("label[for='shipping-zone']");
+          if (governorateLabel) governorateLabel.textContent = t("governorate");
+          const addressLabel = document.querySelector("#checkoutForm input[name='address']")?.closest("label")?.querySelector("span");
+          if (addressLabel) addressLabel.textContent = t("address");
+          const notesLabel = document.querySelector("#checkoutForm textarea[name='notes']")?.closest("label")?.querySelector("span");
+          if (notesLabel) notesLabel.textContent = t("notes");
+
+          const shippingFirstOption = document.querySelector("#shipping-zone option[value='']");
+          if (shippingFirstOption) shippingFirstOption.textContent = t("chooseGovernorate");
+
+          setAttr("#checkoutForm input[name='name']", "placeholder", "namePlaceholder");
+          setAttr("#checkoutForm input[name='address']", "placeholder", "addressPlaceholder");
+          setAttr("#checkoutForm textarea[name='notes']", "placeholder", "notesPlaceholder");
+          setText("#checkoutForm button[type='submit']", "confirmOrder");
+          setText(".checkout-fine", "checkoutFine");
+
+          const footerBrand = document.querySelector(".footer__brand p");
+          if (footerBrand) {
+            footerBrand.textContent = currentLanguage === "ar"
+              ? "براند لوحات وإطارات مطبوعة بجودة عالية لتجهيز المساحات بشكل يليق بذوقك."
+              : "A premium framed print brand that helps you style your space with taste and quality.";
+          }
+          const footerLinksTitle = document.querySelector(".footer__links h4");
+          if (footerLinksTitle) footerLinksTitle.textContent = currentLanguage === "ar" ? "سوشيال البراند" : "Brand socials";
+          const footerOwnerTitle = document.querySelector(".footer__owner h4");
+          if (footerOwnerTitle) footerOwnerTitle.textContent = currentLanguage === "ar" ? "تصميم وتطوير" : "Design & development";
+          const footerOwnerText = document.querySelector(".footer__owner p");
+          if (footerOwnerText) {
+            footerOwnerText.textContent = currentLanguage === "ar"
+              ? "تم تصميم وتطوير هذا الموقع بالكامل بواسطة المالك. لو حابب تعمل موقع بنفس المستوى ابعتلنا."
+              : "This website was fully designed and developed by the owner. If you want a site at the same level, contact us.";
+          }
+        }
+
+        function setLanguage(nextLanguage) {
+          if (!SUPPORTED_LANGS.has(nextLanguage)) return;
+          currentLanguage = nextLanguage;
+          localStorage.setItem(LANG_KEY, nextLanguage);
+          applyStaticTranslations();
+          renderProducts();
+          renderCart();
+          renderCheckoutSummary(Number(document.getElementById("shipping-zone")?.value || 0));
+          const langToggle = document.getElementById("langToggle");
+          if (langToggle) langToggle.value = currentLanguage;
+        }
+
         function getSizeOption(sizeId) {
           return SIZE_OPTIONS.find((option) => option.id === sizeId) || SIZE_OPTIONS[0];
         }
 
         function getImageLabel(art, fallback) {
           if (!art) return fallback;
-          if (art.startsWith("data:image")) return `Custom upload - ${fallback}`;
+          if (art.startsWith("data:image")) return `${t("customUploadPrefix")} - ${fallback}`;
           return art.split("/").pop() || fallback;
         }
 
@@ -180,14 +754,12 @@
 
         function getSelectedCustomState() {
           const customSize = document.getElementById("customSize");
-          const customFinish = document.getElementById("customFinish");
           const customDescription = document.getElementById("customDescription");
           const customizerPreview = document.getElementById("customizerPreview");
           const size = customSize?.value || "30x40";
-          const finish = customFinish?.value || "Matte walnut";
-          const description = customDescription?.value?.trim() || "Uploaded artwork";
+          const description = customDescription?.value?.trim() || t("uploadedArtwork");
           const preview = customizerPreview?.src || "upload.jpg";
-          return { size, finish, description, preview, selectedSize: getSizeOption(size) };
+          return { size, description, preview, selectedSize: getSizeOption(size) };
         }
 
         function renderProducts() {
@@ -210,25 +782,26 @@
 
         function productCardHTML(item) {
           const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
+          const localizedTitle = localizeCatalogTitle(item.title);
           const helperText = item.id === "custom1"
-            ? "Upload your image above, then add this custom frame like any other product."
-            : "Premium framed print ready for your wall.";
+            ? t("productHelperCustom")
+            : t("productHelperNormal");
           return `
             <article class="product" data-id="${item.id}">
               <div class="product__art">
-                <img src="${item.art}" alt="${escapeHTML(item.title)}" />
+                <img src="${item.art}" alt="${escapeHTML(localizedTitle)}" />
               </div>
               <div class="product__body">
-                <h3 class="product__title">${escapeHTML(item.title)}</h3>
+                <h3 class="product__title">${escapeHTML(localizedTitle)}</h3>
                 <div class="product__subcopy">${escapeHTML(helperText)}</div>
                 <div class="product__opts">
                   <label>
-                    <span>Size</span>
+                    <span>${t("sizeLabel")}</span>
                     <select class="opt-select">${optionsHTML}</select>
                   </label>
                 </div>
                 <div class="product__price"><span class="price">${fmt(SIZE_OPTIONS[0].price)}</span></div>
-                <button class="btn btn--solid product__add" type="button">Add to cart</button>
+                <button class="btn btn--solid product__add" type="button">${t("addToCart")}</button>
               </div>
             </article>
           `;
@@ -255,8 +828,8 @@
                 state.cart.push({
                   uid: uid(),
                   type: "custom",
-                  title: `Custom frame · ${customState.description}`,
-                  option: `${customState.selectedSize.label} • ${customState.finish}`,
+                  title: `${t("customPrefix")} · ${customState.description}`,
+                  option: customState.selectedSize.label,
                   price: customState.selectedSize.price,
                   qty: 1,
                   art: customState.preview,
@@ -264,7 +837,7 @@
                   imageType: customState.preview.startsWith("data:image") ? "custom-upload" : "catalog"
                 });
                 saveCart();
-                toast("Custom frame added to cart");
+                toast(t("customAdded"));
                 return;
               }
 
@@ -281,7 +854,7 @@
                 imageType: "catalog"
               });
               saveCart();
-              toast(`Added to cart · ${product.title}`);
+              toast(t("addedToCart", { title: localizeCatalogTitle(product.title) }));
             });
           });
         }
@@ -294,16 +867,19 @@
           const count = state.cart.reduce((sum, item) => sum + item.qty, 0);
           const countEl = document.getElementById("cartCount");
           if (countEl) countEl.textContent = count;
+          const cartbar = document.getElementById("cartbar");
 
           const itemsRoot = document.getElementById("drawerItems");
           if (!itemsRoot) return;
 
           if (state.cart.length === 0) {
-            itemsRoot.innerHTML = '<div class="empty"><strong>Your cart is empty</strong>Pick a print or upload your own image to get started.</div>';
-            document.getElementById("cartbar").hidden = true;
+            itemsRoot.innerHTML = `<div class="empty"><strong>${t("cartEmpty")}</strong>${t("cartEmptyHint")}</div>`;
+            if (cartbar) cartbar.hidden = true;
+            document.body.classList.remove("has-cartbar");
           } else {
             itemsRoot.innerHTML = state.cart.map(cartItemHTML).join("");
-            document.getElementById("cartbar").hidden = false;
+            if (cartbar) cartbar.hidden = false;
+            document.body.classList.add("has-cartbar");
             bindCartItemEvents();
           }
 
@@ -320,8 +896,8 @@
           const cartbarMsg = document.getElementById("cartbarMsg");
           if (cartbarMsg) {
             cartbarMsg.textContent = total >= 600
-              ? "30% discount applied and free shipping unlocked"
-              : `30% discount applied. Add ${Math.max(0, 600 - total)} EGP more for free shipping`;
+              ? t("cartbarUnlocked")
+              : t("cartbarNeedMore", { amount: Math.max(0, 600 - total) });
           }
         }
 
@@ -333,9 +909,9 @@
             <div class="cart-item" data-uid="${item.uid}">
               <div class="cart-item__art">${artMarkup}</div>
               <div class="cart-item__body">
-                <div class="cart-item__title">${escapeHTML(item.title)}</div>
-                <div class="cart-item__sub">${escapeHTML(item.option)}</div>
-                <div class="cart-item__sub cart-item__sub--muted">${escapeHTML(item.imageLabel || item.title)}</div>
+                <div class="cart-item__title">${escapeHTML(localizeItemTitle(item.title))}</div>
+                <div class="cart-item__sub">${escapeHTML(localizeItemOption(item.option))}</div>
+                <div class="cart-item__sub cart-item__sub--muted">${escapeHTML(localizeItemOption(item.imageLabel || item.title))}</div>
                 <div class="cart-item__row">
                   <div class="qty">
                     <button type="button" data-act="dec">−</button>
@@ -344,7 +920,7 @@
                   </div>
                   <strong>${fmt(item.price * item.qty)}</strong>
                 </div>
-                <button class="cart-item__remove" type="button" data-act="rm">Remove</button>
+                <button class="cart-item__remove" type="button" data-act="rm">${t("remove")}</button>
               </div>
             </div>
           `;
@@ -427,7 +1003,7 @@
 
           const rows = state.cart.map((item) => `
             <div class="checkout-summary__row">
-              <span>${escapeHTML(item.title)} <small>× ${item.qty}</small><br /><small>${escapeHTML(item.imageLabel || item.title)}</small></span>
+              <span>${escapeHTML(localizeItemTitle(item.title))} <small>× ${item.qty}</small><br /><small>${escapeHTML(localizeItemOption(item.imageLabel || item.title))}</small></span>
               <span>${fmt(item.price * item.qty)}</span>
             </div>
           `).join("");
@@ -435,23 +1011,23 @@
           summary.innerHTML = `
             ${rows}
             <div class="checkout-summary__row">
-              <span>Subtotal</span>
+              <span>${t("summarySubtotal")}</span>
               <span>${fmt(subtotal)}</span>
             </div>
             <div class="checkout-summary__row checkout-summary__row--discount">
-              <span>Discount 30%</span>
+              <span>${t("summaryDiscount")}</span>
               <span>- ${fmt(discount)}</span>
             </div>
             <div class="checkout-summary__row">
-              <span>After discount</span>
+              <span>${t("summaryAfterDiscount")}</span>
               <span>${fmt(discountedSubtotal)}</span>
             </div>
             <div class="checkout-summary__row">
-              <span>Shipping</span>
+              <span>${t("summaryShipping")}</span>
               <span>${fmt(shippingCost)}</span>
             </div>
             <div class="checkout-summary__row checkout-summary__total">
-              <span>Total</span>
+              <span>${t("summaryTotal")}</span>
               <span>${fmt(total)}</span>
             </div>
           `;
@@ -459,7 +1035,7 @@
 
         function openCheckout() {
           if (state.cart.length === 0) {
-            toast("Your cart is empty");
+            toast(t("emptyCartToast"));
             return;
           }
           renderCheckoutSummary(Number(document.getElementById("shipping-zone")?.value || 0));
@@ -506,7 +1082,7 @@
           };
 
           if (!order.customer.name || !order.customer.phone || !order.customer.address) {
-            toast("Please fill in name, phone, and address");
+            toast(t("validationToast"));
             return;
           }
 
@@ -588,7 +1164,7 @@
         }
 
         function showSuccess(order) {
-          toast(`Order ${order.id} confirmed. Telegram has been notified.`);
+          toast(t("orderSuccess", { id: order.id }));
         }
 
         function bindEvents() {
@@ -620,6 +1196,11 @@
           });
           document.getElementById("sideMenuBackdrop")?.addEventListener("click", () => {
             document.getElementById("sideMenu")?.setAttribute("aria-hidden", "true");
+          });
+
+          document.getElementById("langToggle")?.addEventListener("change", (event) => {
+            const selected = event.target?.value;
+            if (typeof selected === "string") setLanguage(selected);
           });
 
           document.querySelectorAll(".collection-card, .side-menu__panel a").forEach((element) => {
@@ -673,8 +1254,8 @@
             state.cart.push({
               uid: uid(),
               type: "custom",
-              title: `Custom frame · ${customState.description}`,
-              option: `${customState.selectedSize.label} • ${customState.finish}`,
+              title: `${t("customPrefix")} · ${customState.description}`,
+              option: customState.selectedSize.label,
               price: customState.selectedSize.price,
               qty: 1,
               art: customState.preview,
@@ -682,7 +1263,7 @@
               imageType: customState.preview.startsWith("data:image") ? "custom-upload" : "catalog"
             });
             saveCart();
-            toast("Custom frame added to cart");
+            toast(t("customAdded"));
           });
 
           document.addEventListener("keydown", (event) => {
@@ -695,9 +1276,8 @@
         }
 
         function init() {
-          renderProducts();
-          renderCart();
           bindEvents();
+          setLanguage(currentLanguage);
           syncBodyLock();
         }
 
