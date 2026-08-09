@@ -934,7 +934,7 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .products__grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: 1fr !important;
   gap: 16px;
 }
 .random-showcase {
@@ -1392,7 +1392,7 @@ body.has-cartbar .whatsapp-float {
   }
   .collections__grid,
   .products__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr !important;
   }
   .benefits,
   .footer__inner {
@@ -1448,7 +1448,7 @@ body.has-cartbar .whatsapp-float {
     grid-template-columns: 1fr;
   }
   .products__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr !important;
   }
   .random-track {
     flex-wrap: nowrap;
