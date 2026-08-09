@@ -50,7 +50,21 @@
         "use strict";
 
         const CART_KEY = "opscura_cart_v1";
-        const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.2);
+        const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.1);
+        const FEATURED_STRIPS = [
+          {
+            rootId: "randomGridTop",
+            categories: ["sports", "cars", "movies", "quotes"],
+            direction: "rtl",
+            rowSize: 10
+          },
+          {
+            rootId: "randomGridBottom",
+            categories: ["gaming", "rap", "gym", "art", "quran", "she"],
+            direction: "ltr",
+            rowSize: 10
+          }
+        ];
         const SIZE_OPTIONS = [
           { id: "20x30", label: "20 × 30 cm", price: 220 },
           { id: "30x40", label: "30 × 40 cm", price: 270 },
@@ -116,7 +130,7 @@
             { id: "rap2", title: "Street Pulse", art: "rap2.jpg" },
             { id: "rap3", title: "Golden Bars", art: "rap3.jpg" },
             { id: "rap4", title: "Bassline Mood", art: "rap4.jpg" },
-            { id: "rap5", title: "Night Verse", art: "rap5.jpg" },
+            { id: "rap5", title: "Rap Custom Upload", art: "rap5.jpg" },
             { id: "rap6", title: "Dark Flow", art: "rap6.jpg" },
             { id: "rap7", title: "Mic Smoke", art: "rap7.jpg" },
             { id: "rap8", title: "Backstage Gold", art: "rap8.jpg" }
@@ -186,7 +200,7 @@
         const I18N = {
           en: {
             promoBar: "Free shipping over 600 EGP · Custom framing in 3–4 days",
-            promoBanner: "<strong>This week only:</strong> 20% off your framed-print subtotal before shipping.",
+            promoBanner: "<strong>Offer:</strong> 10% off when you buy 2 items.",
             navMenuAria: "Open menu",
             navCartAria: "Open cart",
             navLogoSub: "Custom framed art",
@@ -211,8 +225,8 @@
             heroDesc: "From football legends and car masterpieces to your own uploaded artwork, Opscura creates statement pieces you will love to display.",
             heroShop: "Shop the gallery",
             heroCustomize: "Customize your image",
-            featuredEyebrow: "Featured picks",
-            featuredTitle: "Swipe through trending frames.",
+            featuredEyebrow: "منتجات مميزة",
+            featuredTitle: "منتجات مميزة",
             collectionsEyebrow: "Collections",
             collectionsTitle: "Explore the shelves.",
             customEyebrow: "Customization",
@@ -251,7 +265,7 @@
             drawerTitle: "Your cart",
             drawerCloseAria: "Close cart",
             drawerSubtotal: "Subtotal",
-            drawerDiscount: "Discount 20%",
+            drawerDiscount: "10% off when you buy 2",
             drawerTotal: "Total after discount",
             checkoutNow: "Checkout now",
             checkoutTitle: "Checkout",
@@ -272,16 +286,21 @@
             whatsappAria: "WhatsApp",
             productHelperCustom: "Upload your image above, then add this custom frame like any other product.",
             productHelperNormal: "Premium framed print ready for your wall.",
+            rapUploadLabel: "Choose your image",
+            rapUploadHint: "This rap product lets the customer upload any image.",
+            rapUploadMissing: "Please choose an image first",
+            rapUploadAdded: "Your selected image frame was added to cart",
             addToCart: "Add to cart",
             customAdded: "Custom frame added to cart",
             addedToCart: "Added to cart · {title}",
             cartEmpty: "Your cart is empty",
             cartEmptyHint: "Pick a print or upload your own image to get started.",
-            cartbarUnlocked: "20% discount applied and free shipping unlocked",
-            cartbarNeedMore: "20% discount applied. Add {amount} EGP more for free shipping",
+            cartbarUnlocked: "10% discount applied and free shipping unlocked",
+            cartbarNeedMore: "10% discount applied. Add {amount} EGP more for free shipping",
+            cartbarNeedTwo: "10% off when you buy 2",
             remove: "Remove",
             summarySubtotal: "Subtotal",
-            summaryDiscount: "Discount 20%",
+            summaryDiscount: "10% off when you buy 2",
             summaryAfterDiscount: "After discount",
             summaryShipping: "Shipping",
             summaryTotal: "Total",
@@ -295,7 +314,7 @@
           },
           ar: {
             promoBar: "شحن مجاني للطلبات فوق 600 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
-            promoBanner: "<strong>الأسبوع ده بس:</strong> خصم 20% على إجمالي اللوحات قبل الشحن.",
+            promoBanner: "<strong>العرض:</strong> خصم 10% لو خدت 2.",
             navMenuAria: "فتح القائمة",
             navCartAria: "فتح السلة",
             navLogoSub: "لوحات مؤطرة مخصصة",
@@ -320,8 +339,8 @@
             heroDesc: "من أساطير الكورة وروائع السيارات لحد صورك الخاصة، أوبسكورا بتقدملك قطع مميزة تزين بيها مكانك.",
             heroShop: "تصفح المعرض",
             heroCustomize: "خصص صورتك",
-            featuredEyebrow: "اختيارات مميزة",
-            featuredTitle: "اسحب وشوف المنتجات الأكثر طلبًا.",
+            featuredEyebrow: "منتجات مميزة",
+            featuredTitle: "منتجات مميزة",
             collectionsEyebrow: "الأقسام",
             collectionsTitle: "اختار الستايل المناسب لك.",
             customEyebrow: "التخصيص",
@@ -360,7 +379,7 @@
             drawerTitle: "سلة مشترياتك",
             drawerCloseAria: "إغلاق السلة",
             drawerSubtotal: "الإجمالي",
-            drawerDiscount: "خصم 20%",
+            drawerDiscount: "خصم 10% لو خدت 2",
             drawerTotal: "الإجمالي بعد الخصم",
             checkoutNow: "إتمام الطلب",
             checkoutTitle: "الدفع",
@@ -381,16 +400,21 @@
             whatsappAria: "واتساب",
             productHelperCustom: "ارفع صورتك من فوق وبعدها أضف الإطار المخصص للسلة مثل أي منتج.",
             productHelperNormal: "لوحة مؤطرة بجودة عالية جاهزة لحائطك.",
+            rapUploadLabel: "اختار صورتك",
+            rapUploadHint: "المنتج ده في قسم الراب يسمح للعميل يرفع أي صورة عايزها.",
+            rapUploadMissing: "من فضلك اختار الصورة الأول",
+            rapUploadAdded: "تمت إضافة الصورة المختارة للسلة",
             addToCart: "أضف للسلة",
             customAdded: "تمت إضافة الإطار المخصص للسلة",
             addedToCart: "تمت الإضافة للسلة · {title}",
             cartEmpty: "السلة فارغة",
             cartEmptyHint: "اختار لوحة أو ارفع صورتك علشان تبدأ.",
-            cartbarUnlocked: "تم تطبيق خصم 20% وتفعيل الشحن المجاني",
-            cartbarNeedMore: "تم تطبيق خصم 20%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
+            cartbarUnlocked: "تم تطبيق خصم 10% وتفعيل الشحن المجاني",
+            cartbarNeedMore: "تم تطبيق خصم 10%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
+            cartbarNeedTwo: "خصم 10% لو خدت 2",
             remove: "حذف",
             summarySubtotal: "الإجمالي",
-            summaryDiscount: "خصم 20%",
+            summaryDiscount: "خصم 10% لو خدت 2",
             summaryAfterDiscount: "بعد الخصم",
             summaryShipping: "الشحن",
             summaryTotal: "الإجمالي النهائي",
@@ -437,6 +461,7 @@
           "Dark Flow": "فلو داكن",
           "Mic Smoke": "دخان المايك",
           "Backstage Gold": "ذهب الكواليس",
+          "Rap Custom Upload": "اختار صورتك للراب",
           "Stay Focused": "خليك مركز",
           "Mindset Frame": "إطار العقلية",
           "Rise Again": "قوم من جديد",
@@ -472,6 +497,7 @@
         const state = { cart: loadCart() };
         let toastTimer = null;
         let randomTracksTimer = null;
+        let randomTracksPauseUntil = 0;
 
         const $ = (sel, parent = document) => parent.querySelector(sel);
         const $$ = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
@@ -589,8 +615,8 @@
 
           setText("#collections .section-head .eyebrow", "collectionsEyebrow");
           setText("#collections .section-head h2", "collectionsTitle");
-          setText("#featured .section-head .eyebrow", "featuredEyebrow");
-          setText("#featured .section-head h2", "featuredTitle");
+          setText("#random-showcase .section-head .eyebrow", "featuredEyebrow");
+          setText("#random-showcase .section-head h2", "featuredTitle");
 
           setText('#collections .collection-card[data-section="sports"] h3', "sideSports");
           const sportsCardDesc = document.querySelector('#collections .collection-card[data-section="sports"] p');
@@ -855,12 +881,20 @@
           return state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
         }
 
-        function getDiscountValue(subtotal) {
-          return Math.round(subtotal * DISCOUNT_RATE);
+        function getCartItemsCount() {
+          return state.cart.reduce((sum, item) => sum + item.qty, 0);
         }
 
-        function getDiscountedSubtotal(subtotal) {
-          return Math.max(0, subtotal - getDiscountValue(subtotal));
+        function getActiveDiscountRate(itemCount = getCartItemsCount()) {
+          return itemCount >= 2 ? DISCOUNT_RATE : 0;
+        }
+
+        function getDiscountValue(subtotal, itemCount = getCartItemsCount()) {
+          return Math.round(subtotal * getActiveDiscountRate(itemCount));
+        }
+
+        function getDiscountedSubtotal(subtotal, itemCount = getCartItemsCount()) {
+          return Math.max(0, subtotal - getDiscountValue(subtotal, itemCount));
         }
 
         function getSelectedCustomState() {
@@ -889,21 +923,89 @@
         }
 
         function renderRandomShowcase() {
-          const rowRoots = [document.getElementById("randomGridTop"), document.getElementById("randomGridBottom")];
-          const catalogPool = Object.values(CATALOG)
-            .flat()
-            .filter((item) => item.id !== "custom1" && item.id !== "custom2");
-          const shuffled = [...catalogPool].sort(() => Math.random() - 0.5);
-          const rowSize = 10;
+          const stripRoots = [];
 
-          rowRoots.forEach((root, index) => {
+          FEATURED_STRIPS.forEach((strip) => {
+            const root = document.getElementById(strip.rootId);
             if (!root) return;
-            const items = shuffled.slice(index * rowSize, index * rowSize + rowSize);
+
+            const stripPool = strip.categories
+              .flatMap((category) => CATALOG[category] || [])
+              .filter((item) => item.id !== "custom1" && item.id !== "custom2");
+            const shuffled = [...stripPool].sort(() => Math.random() - 0.5);
+            const items = shuffled.slice(0, strip.rowSize || 10);
+
             root.innerHTML = items.map((item) => productCardHTML(item)).join("");
+            root.dataset.flow = strip.direction === "rtl" ? "rtl" : "ltr";
             bindProductEvents(root);
+            stripRoots.push(root);
           });
 
-          startRandomTracksMotion(rowRoots);
+          setupRandomTrackControls(stripRoots);
+          startRandomTracksMotion(stripRoots);
+        }
+
+        function setupRandomTrackControls(rowRoots) {
+          rowRoots.forEach((track) => {
+            if (!track || track.dataset.controlsBound === "1") return;
+
+            const row = track.closest(".random-row");
+            const prevBtn = row?.querySelector('.track-nav[data-dir="prev"]');
+            const nextBtn = row?.querySelector('.track-nav[data-dir="next"]');
+
+            const stepSize = () => Math.max(180, Math.round(track.clientWidth * 0.72));
+            const moveTrack = (direction) => {
+              track.scrollBy({ left: direction * stepSize(), behavior: "smooth" });
+              pauseRandomTracks(7000);
+            };
+
+            prevBtn?.addEventListener("click", () => moveTrack(-1));
+            nextBtn?.addEventListener("click", () => moveTrack(1));
+
+            let isPointerDown = false;
+            let pointerId = null;
+            let startX = 0;
+            let startScrollLeft = 0;
+
+            track.addEventListener("pointerdown", (event) => {
+              if (event.pointerType === "mouse" && event.button !== 0) return;
+              isPointerDown = true;
+              pointerId = event.pointerId;
+              startX = event.clientX;
+              startScrollLeft = track.scrollLeft;
+              track.classList.add("is-dragging");
+              track.setPointerCapture?.(pointerId);
+              pauseRandomTracks(7000);
+            });
+
+            track.addEventListener("pointermove", (event) => {
+              if (!isPointerDown) return;
+              const delta = event.clientX - startX;
+              track.scrollLeft = startScrollLeft - delta;
+            });
+
+            const endPointerDrag = () => {
+              if (!isPointerDown) return;
+              isPointerDown = false;
+              track.classList.remove("is-dragging");
+              if (pointerId !== null) {
+                track.releasePointerCapture?.(pointerId);
+              }
+              pointerId = null;
+            };
+
+            track.addEventListener("pointerup", endPointerDrag);
+            track.addEventListener("pointercancel", endPointerDrag);
+            track.addEventListener("mouseleave", endPointerDrag);
+            track.addEventListener("touchstart", () => pauseRandomTracks(7000), { passive: true });
+            track.addEventListener("wheel", () => pauseRandomTracks(5000), { passive: true });
+
+            track.dataset.controlsBound = "1";
+          });
+        }
+
+        function pauseRandomTracks(durationMs) {
+          randomTracksPauseUntil = Date.now() + durationMs;
         }
 
         function startRandomTracksMotion(rowRoots) {
@@ -915,11 +1017,13 @@
           const tracks = rowRoots.filter(Boolean);
           if (!tracks.length) return;
 
-          tracks.forEach((track, index) => {
-            track.dataset.dir = index % 2 === 0 ? "1" : "-1";
+          tracks.forEach((track) => {
+            track.dataset.dir = track.dataset.flow === "rtl" ? "-1" : "1";
           });
 
           randomTracksTimer = setInterval(() => {
+            if (Date.now() < randomTracksPauseUntil) return;
+
             tracks.forEach((track) => {
               const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
               if (maxScroll <= 0) return;
@@ -955,9 +1059,15 @@
         function productCardHTML(item) {
           const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
           const localizedTitle = localizeCatalogTitle(item.title);
-          const helperText = item.id.startsWith("custom")
-            ? t("productHelperCustom")
-            : t("productHelperNormal");
+          const isRapUpload = item.id === "rap5";
+          const helperText = isRapUpload
+            ? t("rapUploadHint")
+            : item.id.startsWith("custom")
+              ? t("productHelperCustom")
+              : t("productHelperNormal");
+          const uploadFieldHTML = isRapUpload
+            ? `<label class="product__upload"><span>${t("rapUploadLabel")}</span><input class="rap-upload-input" type="file" accept="image/*" /></label>`
+            : "";
           return `
             <article class="product" data-id="${item.id}">
               <div class="product__art">
@@ -966,6 +1076,7 @@
               <div class="product__body">
                 <h3 class="product__title">${escapeHTML(localizedTitle)}</h3>
                 <div class="product__subcopy">${escapeHTML(helperText)}</div>
+                ${uploadFieldHTML}
                 <div class="product__opts">
                   <label>
                     <span>${t("sizeLabel")}</span>
@@ -984,6 +1095,24 @@
             const select = $(".opt-select", card);
             const priceEl = $(".price", card);
             const addBtn = $(".product__add", card);
+            const rapUploadInput = $(".rap-upload-input", card);
+
+            rapUploadInput?.addEventListener("change", (event) => {
+              const file = event.target.files?.[0];
+              if (!file) return;
+
+              const reader = new FileReader();
+              reader.onload = () => {
+                const dataUrl = String(reader.result || "");
+                if (!dataUrl.startsWith("data:image")) return;
+
+                const preview = $(".product__art img", card);
+                if (preview) preview.src = dataUrl;
+                card.dataset.customImage = dataUrl;
+                card.dataset.customImageName = file.name || t("customUploadPrefix");
+              };
+              reader.readAsDataURL(file);
+            });
 
             select?.addEventListener("change", () => {
               const option = select.selectedOptions[0];
@@ -1010,6 +1139,31 @@
                 });
                 saveCart();
                 toast(t("customAdded"));
+                return;
+              }
+
+              if (product.id === "rap5") {
+                const uploadedImage = card.dataset.customImage;
+                if (!uploadedImage) {
+                  toast(t("rapUploadMissing"));
+                  return;
+                }
+
+                const selectedSize = getSizeOption(option.value);
+                const customTitle = `${t("customPrefix")} · ${localizeCatalogTitle(product.title)}`;
+                state.cart.push({
+                  uid: uid(),
+                  type: "custom",
+                  title: customTitle,
+                  option: `${selectedSize.label} · ${t("optionFramed")}`,
+                  price: selectedSize.price,
+                  qty: 1,
+                  art: uploadedImage,
+                  imageLabel: card.dataset.customImageName || t("customUploadPrefix"),
+                  imageType: "custom-upload"
+                });
+                saveCart();
+                toast(t("rapUploadAdded"));
                 return;
               }
 
@@ -1043,7 +1197,7 @@
         }
 
         function renderCart() {
-          const count = state.cart.reduce((sum, item) => sum + item.qty, 0);
+          const count = getCartItemsCount();
           const countEl = document.getElementById("cartCount");
           if (countEl) countEl.textContent = count;
           const cartbar = document.getElementById("cartbar");
@@ -1066,8 +1220,8 @@
           }
 
           const subtotal = getCartSubtotal();
-          const discount = getDiscountValue(subtotal);
-          const total = getDiscountedSubtotal(subtotal);
+          const discount = getDiscountValue(subtotal, count);
+          const total = getDiscountedSubtotal(subtotal, count);
           const subtotalEl = document.getElementById("drawerSubtotal");
           const discountEl = document.getElementById("drawerDiscount");
           const totalEl = document.getElementById("drawerTotal");
@@ -1077,9 +1231,13 @@
 
           const cartbarMsg = document.getElementById("cartbarMsg");
           if (cartbarMsg) {
-            cartbarMsg.textContent = total >= 600
-              ? t("cartbarUnlocked")
-              : t("cartbarNeedMore", { amount: Math.max(0, 600 - total) });
+            if (count < 2) {
+              cartbarMsg.textContent = t("cartbarNeedTwo");
+            } else {
+              cartbarMsg.textContent = total >= 600
+                ? t("cartbarUnlocked")
+                : t("cartbarNeedMore", { amount: Math.max(0, 600 - total) });
+            }
           }
 
           syncWhatsAppOffset();
@@ -1181,8 +1339,9 @@
           if (!summary) return;
 
           const subtotal = getCartSubtotal();
-          const discount = getDiscountValue(subtotal);
-          const discountedSubtotal = getDiscountedSubtotal(subtotal);
+          const itemCount = getCartItemsCount();
+          const discount = getDiscountValue(subtotal, itemCount);
+          const discountedSubtotal = getDiscountedSubtotal(subtotal, itemCount);
           const total = discountedSubtotal + shippingCost;
 
           const rows = state.cart.map((item) => `
@@ -1235,8 +1394,9 @@
           const formData = new FormData(event.currentTarget);
           const shippingCost = Number(document.getElementById("shipping-zone")?.value || 0);
           const subtotal = getCartSubtotal();
-          const discount = getDiscountValue(subtotal);
-          const discountedSubtotal = getDiscountedSubtotal(subtotal);
+          const itemCount = getCartItemsCount();
+          const discount = getDiscountValue(subtotal, itemCount);
+          const discountedSubtotal = getDiscountedSubtotal(subtotal, itemCount);
 
           const order = {
             id: `OP-${Date.now().toString().slice(-6)}`,

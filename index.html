@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Opscura â€” Custom Framed Prints</title>
+  <title>Opscura - Custom Framed Prints</title>
   <meta name="description" content="Opscura custom framed prints, wall art, motorsport posters, and premium home decor." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Italiana&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20260809-5" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23000000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Cpath stroke='none' d='M0 0h24v24H0z' fill='none'/%3E%3Cpath d='M7 8l-4 4l4 4'/%3E%3Cpath d='M17 8l4 4l4 4'/%3E%3Cpath d='M14 4l-4 16'/%3E%3C/svg%3E" />
 </head>
 <body>
@@ -47,7 +47,7 @@
     <div class="op-caption">THE VEIL IS LIFTING</div>
   </div>
 
-  <div class="promo-bar">Free shipping over 600 EGP Â· Custom framing in 3â€“4 days</div>
+  <div class="promo-bar">Free shipping over 800 EGP · Custom framing in 3-4 days</div>
   <div class="promo-banner" id="promoBanner">
     <div>
       <strong>This week only:</strong> 20% off your framed-print subtotal before shipping.
@@ -257,9 +257,9 @@
             <label class="field">
               <span>Size</span>
               <select id="customSize">
-                <option value="20x30">20 Ã— 30 cm</option>
-                <option value="30x40" selected>30 Ã— 40 cm</option>
-                <option value="40x50">40 Ã— 50 cm</option>
+                <option value="20x30">20 × 30 cm</option>
+                <option value="30x40" selected>30 × 40 cm</option>
+                <option value="40x50">40 × 50 cm</option>
               </select>
             </label>
           </div>
@@ -271,19 +271,25 @@
 
     <section class="random-showcase" id="random-showcase">
       <div class="section-head">
-        <p class="eyebrow">Random picks</p>
-        <h2>Two small left-to-right rows of random products.</h2>
+        <p class="eyebrow">منتجات مميزة</p>
+        <h2>منتجات مميزة</h2>
       </div>
-      <div class="random-showcase__row-label">Row 1</div>
-      <div class="random-track random-track--top" id="randomGridTop" aria-label="Random products row one"></div>
-      <div class="random-showcase__row-label">Row 2</div>
-      <div class="random-track random-track--alt" id="randomGridBottom" aria-label="Random products row two"></div>
+      <div class="random-row" data-track-row="top">
+        <button class="track-nav track-nav--prev" type="button" data-target="randomGridTop" data-dir="prev" aria-label="تحريك لليسار">&#8249;</button>
+        <div class="random-track random-track--top" id="randomGridTop" aria-label="Random products row one"></div>
+        <button class="track-nav track-nav--next" type="button" data-target="randomGridTop" data-dir="next" aria-label="تحريك لليمين">&#8250;</button>
+      </div>
+      <div class="random-row" data-track-row="bottom">
+        <button class="track-nav track-nav--prev" type="button" data-target="randomGridBottom" data-dir="prev" aria-label="تحريك لليسار">&#8249;</button>
+        <div class="random-track random-track--alt" id="randomGridBottom" aria-label="Random products row two"></div>
+        <button class="track-nav track-nav--next" type="button" data-target="randomGridBottom" data-dir="next" aria-label="تحريك لليمين">&#8250;</button>
+      </div>
     </section>
 
     <section class="benefits">
       <article>
         <h3>Fast delivery</h3>
-        <p>2â€“4 working days across Egypt.</p>
+        <p>2-4 working days across Egypt.</p>
       </article>
       <article>
         <h3>Free replacement</h3>
@@ -300,17 +306,17 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <h3>Opscura</h3>
-        <p>Ø¨Ø±Ø§Ù†Ø¯ Ù„ÙˆØ­Ø§Øª ÙˆØ¥Ø·Ø§Ø±Ø§Øª Ù…Ø·Ø¨ÙˆØ¹Ø© Ø¨Ø¬ÙˆØ¯Ø© Ø¹Ø§Ù„ÙŠØ© Ù„ØªØ¬Ù‡ÙŠØ² Ø§Ù„Ù…Ø³Ø§Ø­Ø§Øª Ø¨Ø´ÙƒÙ„ ÙŠÙ„ÙŠÙ‚ Ø¨Ø°ÙˆÙ‚Ùƒ.</p>
+        <p>براند لوحات وإطارات مطبوعة بجودة عالية لتجهيز المساحات بشكل يليق بذوقك.</p>
       </div>
       <div class="footer__links">
-        <h4>Ø³ÙˆØ´ÙŠØ§Ù„ Ø§Ù„Ø¨Ø±Ø§Ù†Ø¯</h4>
+        <h4>سوشيال البراند</h4>
         <a href="https://www.instagram.com/opscura.store?igsh=MWRlOHFneG91Y3ZzdA==" target="_blank" rel="noreferrer">Instagram</a>
         <a href="https://www.tiktok.com/@opscura.store" target="_blank" rel="noreferrer">TikTok</a>
         <a href="https://wa.me/201505833756" target="_blank" rel="noreferrer">WhatsApp </a>
       </div>
       <div class="footer__owner">
-        <h4>ØªØµÙ…ÙŠÙ… ÙˆØªØ·ÙˆÙŠØ±</h4>
-        <p>ØªÙ… ØªØµÙ…ÙŠÙ… Ùˆ ØªØ·ÙˆÙŠØ± Ù‡Ø°Ø§ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø¨Ø§Ù„ÙƒØ§Ù…Ù„ Ø¨ÙˆØ§Ø³Ø·Ù‡ Ø§Ù„Ù…Ø§Ù„Ùƒ. Ù„Ùˆ Ø­Ø§Ø¨Ø¨ ØªØ¹Ù…Ù„ Ù…ÙˆÙ‚Ø¹ Ø¨Ù†ÙØ³ Ø§Ù„Ù…Ø³ØªÙˆÙ‰ Ø§Ø¨Ø¹ØªÙ„Ù†Ø§.</p>
+        <h4>تصميم وتطوير</h4>
+        <p>تم تصميم و تطوير هذا الموقع بالكامل بواسطة المالك. لو حابب تعمل موقع بنفس المستوى ابعتلنا.</p>
         <a href="https://www.instagram.com/mazin_ma7moudd?igsh=MWRlOHFneG91Y3ZzdA==" target="_blank" rel="noreferrer">Instagram: mazin_ma7moudd</a>
         <a href="https://wa.me/201505833756" target="_blank" rel="noreferrer">WhatsApp: 01505833756</a>
       </div>
@@ -318,7 +324,7 @@
   </footer>
 
   <div class="cartbar" id="cartbar" hidden>
-    <span class="cartbar__star">â˜…</span>
+    <span class="cartbar__star">★</span>
     <span class="cartbar__msg" id="cartbarMsg">Add items to unlock free shipping</span>
     <button class="cartbar__btn" id="cartbarOpen">View cart</button>
   </div>
@@ -377,34 +383,34 @@
             <label for="shipping-zone" class="field-label">Governorate</label>
             <select id="shipping-zone" name="shippingZone" required>
               <option value="" selected disabled>Choose your governorate</option>
-              <option value="116">Ø§Ù„Ù‚Ø§Ù‡Ø±Ø© (116 EGP)</option>
-              <option value="116">Ø§Ù„Ø¬ÙŠØ²Ø© (116 EGP)</option>
-              <option value="122">Ø§Ù„Ø¥Ø³ÙƒÙ†Ø¯Ø±ÙŠØ© (122 EGP)</option>
-              <option value="122">Ø§Ù„Ø¨Ø­ÙŠØ±Ø© (122 EGP)</option>
-              <option value="132">Ø§Ù„Ø¯Ù‚Ù‡Ù„ÙŠØ© (132 EGP)</option>
-              <option value="132">Ø§Ù„Ù‚Ù„ÙŠÙˆØ¨ÙŠØ© (132 EGP)</option>
-              <option value="132">Ø§Ù„ØºØ±Ø¨ÙŠØ© (132 EGP)</option>
-              <option value="132">ÙƒÙØ± Ø§Ù„Ø´ÙŠØ® (132 EGP)</option>
-              <option value="132">Ø§Ù„Ø´Ø±Ù‚ÙŠØ© (132 EGP)</option>
-              <option value="132">Ø§Ù„Ù…Ù†ÙˆÙÙŠØ© (132 EGP)</option>
-              <option value="132">Ø¯Ù…ÙŠØ§Ø· (132 EGP)</option>
-              <option value="132">Ø§Ù„Ø¥Ø³Ù…Ø§Ø¹ÙŠÙ„ÙŠØ© (132 EGP)</option>
-              <option value="132">Ø¨ÙˆØ±Ø³Ø¹ÙŠØ¯ (132 EGP)</option>
-              <option value="132">Ø§Ù„Ø³ÙˆÙŠØ³ (132 EGP)</option>
-              <option value="148">Ø§Ù„ÙÙŠÙˆÙ… (148 EGP)</option>
-              <option value="148">Ø¨Ù†ÙŠ Ø³ÙˆÙŠÙ (148 EGP)</option>
-              <option value="148">Ø§Ù„Ù…Ù†ÙŠØ§ (148 EGP)</option>
-              <option value="148">Ø³ÙˆÙ‡Ø§Ø¬ (148 EGP)</option>
-              <option value="148">Ø£Ø³ÙŠÙˆØ· (148 EGP)</option>
-              <option value="166">Ù‚Ù†Ø§ (166 EGP)</option>
-              <option value="166">Ø§Ù„Ø£Ù‚ØµØ± (166 EGP)</option>
-              <option value="166">Ø£Ø³ÙˆØ§Ù† (166 EGP)</option>
-              <option value="166">Ø§Ù„Ø¨Ø­Ø± Ø§Ù„Ø£Ø­Ù…Ø± (166 EGP)</option>
-              <option value="166">Ù…Ø·Ø±ÙˆØ­ (166 EGP)</option>
-              <option value="170">Ø§Ù„Ø³Ø§Ø­Ù„ Ø§Ù„Ø´Ù…Ø§Ù„ÙŠ (170 EGP)</option>
-              <option value="189">Ø´Ù…Ø§Ù„ Ø³ÙŠÙ†Ø§Ø¡ (189 EGP)</option>
-              <option value="189">Ø¬Ù†ÙˆØ¨ Ø³ÙŠÙ†Ø§Ø¡ (189 EGP)</option>
-              <option value="189">Ø§Ù„ÙˆØ§Ø¯ÙŠ Ø§Ù„Ø¬Ø¯ÙŠØ¯ (189 EGP)</option>
+              <option value="116">القاهرة (116 EGP)</option>
+              <option value="116">الجيزة (116 EGP)</option>
+              <option value="122">الإسكندرية (122 EGP)</option>
+              <option value="122">البحيرة (122 EGP)</option>
+              <option value="132">الدقهلية (132 EGP)</option>
+              <option value="132">القليوبية (132 EGP)</option>
+              <option value="132">الغربية (132 EGP)</option>
+              <option value="132">كفر الشيخ (132 EGP)</option>
+              <option value="132">الشرقية (132 EGP)</option>
+              <option value="132">المنوفية (132 EGP)</option>
+              <option value="132">دمياط (132 EGP)</option>
+              <option value="132">الإسماعيلية (132 EGP)</option>
+              <option value="132">بورسعيد (132 EGP)</option>
+              <option value="132">السويس (132 EGP)</option>
+              <option value="148">الفيوم (148 EGP)</option>
+              <option value="148">بني سويف (148 EGP)</option>
+              <option value="148">المنيا (148 EGP)</option>
+              <option value="148">سوهاج (148 EGP)</option>
+              <option value="148">أسيوط (148 EGP)</option>
+              <option value="166">قنا (166 EGP)</option>
+              <option value="166">الأقصر (166 EGP)</option>
+              <option value="166">أسوان (166 EGP)</option>
+              <option value="166">البحر الأحمر (166 EGP)</option>
+              <option value="166">مطروح (166 EGP)</option>
+              <option value="170">الساحل الشمالي (170 EGP)</option>
+              <option value="189">شمال سيناء (189 EGP)</option>
+              <option value="189">جنوب سيناء (189 EGP)</option>
+              <option value="189">الوادي الجديد (189 EGP)</option>
             </select>
           </div>
           <label class="full">
@@ -430,7 +436,7 @@
     <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15l-1.2 4.4L6.7 20A10 10 0 1 0 12 2zm5.45 14.2c-.23.65-1.34 1.24-1.85 1.3-.47.06-1.07.08-1.73-.13-.4-.13-.92-.3-1.58-.58-2.78-1.2-4.59-4.16-4.73-4.35-.14-.2-1.13-1.5-1.13-2.85 0-1.35.71-2 1-2.28.3-.28.65-.35.86-.35h.62c.2 0 .47-.08.74.57.28.66.94 2.28 1.02 2.45.08.17.14.37.03.58-.11.2-.17.33-.34.5-.17.17-.36.39-.51.52-.17.17-.35.35-.15.68.2.33.9 1.48 1.93 2.4 1.33 1.18 2.45 1.54 2.8 1.72.35.18.56.15.77-.09.21-.24.88-1.02 1.12-1.37.24-.35.48-.29.8-.17.33.12 2.05.96 2.4 1.14.35.18.58.27.66.42.09.15.09.84-.14 1.5z"/></svg>
   </a>
 
-  <script src="config.js"></script>
-  <script src="script.js"></script>
+  <script src="config.js?v=20260809-7"></script>
+  <script src="script.js?v=20260809-7"></script>
 </body>
 </html>

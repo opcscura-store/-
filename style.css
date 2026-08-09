@@ -934,7 +934,7 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .products__grid {
   display: grid;
-  grid-template-columns: 1fr !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 .random-showcase {
@@ -953,6 +953,41 @@ html[dir="rtl"] .checkout-summary__row {
   direction: ltr;
   padding: 4px 0 8px;
   scroll-behavior: smooth;
+}
+.random-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.random-row:last-child {
+  margin-bottom: 0;
+}
+.random-row .random-track {
+  flex: 1;
+  touch-action: pan-x;
+  cursor: grab;
+}
+.random-row .random-track.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+.track-nav {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: rgba(15, 19, 24, 0.92);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 38px;
+}
+.track-nav:hover {
+  background: rgba(25, 32, 40, 0.98);
 }
 .random-track::-webkit-scrollbar {
   display: none;
@@ -1022,6 +1057,18 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .product__price { font-weight: 700; }
 .product__opts select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line-strong); }
+.product__upload {
+  display: grid;
+  gap: 6px;
+}
+.product__upload input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  color: var(--ink);
+}
 .custom-section-note {
   padding: 18px 20px;
   border-radius: 18px;
@@ -1392,7 +1439,7 @@ body.has-cartbar .whatsapp-float {
   }
   .collections__grid,
   .products__grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .benefits,
   .footer__inner {
@@ -1449,6 +1496,15 @@ body.has-cartbar .whatsapp-float {
   }
   .products__grid {
     grid-template-columns: 1fr !important;
+  }
+  .random-row {
+    gap: 6px;
+  }
+  .track-nav {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+    font-size: 22px;
   }
   .random-track {
     flex-wrap: nowrap;
