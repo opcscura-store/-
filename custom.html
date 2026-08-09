@@ -1,0 +1,207 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Opscura â€” Custom Art Frames</title>
+  <meta name="description" content="Opscura custom framed prints, wall art, motorsport posters, and premium home decor." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Italiana&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Prata&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="promo-bar">Free shipping over 600 EGP Â· Custom framing in 3â€“4 days</div>
+  <div class="promo-banner" id="promoBanner"><div><strong>This week only:</strong> 20% off your framed-print subtotal before shipping.</div></div>
+
+  <header class="nav">
+    <div class="nav__left">
+      <button class="nav__menu" id="navMenu" aria-label="Open menu"><span></span><span></span><span></span></button>
+      <select class="nav__lang" id="langToggle" aria-label="Language selector">
+        <option value="en" selected>EN</option>
+        <option value="ar">AR</option>
+      </select>
+    </div>
+    <a class="nav__logo" href="index.html#top" aria-label="Opscura home">
+      <span class="button nav__logo-mark">Opscura</span>
+      <span class="nav__logo-sub">Custom framed art</span>
+    </a>
+    <button class="nav__cart" id="navCart" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+      <span class="nav__cart-count" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <div class="side-menu__backdrop" id="sideMenuBackdrop"></div>
+    <nav class="side-menu__panel" aria-label="Primary navigation">
+      <div class="side-menu__header">
+        <div><p class="eyebrow">Opscura</p><h3>Collections</h3></div>
+        <button class="iconbtn" id="sideMenuClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <a href="index.html#collections">All collections</a>
+      <a href="sports.html" data-section="sports">Sports</a>
+      <a href="cars.html" data-section="cars">Cars</a>
+      <a href="gaming.html" data-section="gaming">Gaming</a>
+      <a href="rap.html" data-section="rap">Rap scene</a>
+      <a href="quotes.html" data-section="quotes">Quotes</a>
+      <a href="movies.html" data-section="movies">Movies & series</a>
+      <a href="gym.html" data-section="gym">Gym</a>
+      <a href="art.html" data-section="art">Art</a>
+      <a href="quran.html" data-section="quran">Quran</a>
+      <a href="she.html" data-section="she">She</a>
+      <a href="#footer" data-section="contact">Contact & socials</a>
+    </nav>
+  </aside>
+
+  <main id="top">
+    <section class="customizer" id="customizer">
+      <div class="section-head">
+        <p class="eyebrow">Customization</p>
+        <h2>Upload your image and build it like a normal product.</h2>
+      </div>
+      <div class="customizer__card">
+        <div class="customizer__copy">
+          <h3>Upload image, choose size, see the price instantly.</h3>
+          <p>The custom frame now follows the same flow as the normal products. Upload the image, pick your size, then add it to the cart.</p>
+          <ul>
+            <li>Upload a personal photo or artwork.</li>
+            <li>Select the exact frame size.</li>
+          </ul>
+        </div>
+        <div class="customizer__form">
+          <div class="customizer__preview customizer__preview--upload">
+            <img id="customizerPreview" src="upload.jpg" alt="Preview of custom upload" data-mode="placeholder" />
+            <div class="customizer__preview-copy">
+              <strong>Choose your image</strong>
+              <span>Upload album art, portrait, car shot, or any photo you want framed.</span>
+            </div>
+          </div>
+          <label class="field">
+            <span>Upload your image</span>
+            <input type="file" id="customImageInput" accept="image/*" />
+          </label>
+          <label class="field">
+            <span>Tell us what you want framed</span>
+            <textarea id="customDescription" rows="3" placeholder="Example: My favorite car photo, black frame, 40x50 cm"></textarea>
+          </label>
+          <div class="customizer__row">
+            <label class="field">
+              <span>Size</span>
+              <select id="customSize">
+                <option value="20x30">20 Ã— 30 cm</option>
+                <option value="30x40" selected>30 Ã— 40 cm</option>
+                <option value="40x50">40 Ã— 50 cm</option>
+              </select>
+            </label>
+          </div>
+          <div class="customizer__price"><span id="customizerPriceLabel">Starts at</span> <strong id="customizerPrice">270 EGP</strong></div>
+          <button class="btn btn--solid btn--block" id="addCustomBtn" type="button">Add custom frame to cart</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="products" id="section-custom">
+      <div class="section-head">
+        <p class="eyebrow">Custom collection</p>
+        <h2>Two different ready-to-customize products, swipe left to right.</h2>
+      </div>
+      <div class="products__grid products__grid--horizontal" id="customGrid"></div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <h3>Opscura</h3>
+        <p>Ø¨Ø±Ø§Ù†Ø¯ Ù„ÙˆØ­Ø§Øª ÙˆØ¥Ø·Ø§Ø±Ø§Øª Ù…Ø·Ø¨ÙˆØ¹Ø© Ø¨Ø¬ÙˆØ¯Ø© Ø¹Ø§Ù„ÙŠØ© Ù„ØªØ¬Ù‡ÙŠØ² Ø§Ù„Ù…Ø³Ø§Ø­Ø§Øª Ø¨Ø´ÙƒÙ„ ÙŠÙ„ÙŠÙ‚ Ø¨Ø°ÙˆÙ‚Ùƒ.</p>
+      </div>
+      <div class="footer__links">
+        <h4>Ø³ÙˆØ´ÙŠØ§Ù„ Ø§Ù„Ø¨Ø±Ø§Ù†Ø¯</h4>
+        <a href="https://www.instagram.com/mazin_ma7moudd?igsh=MWRlOHFneG91Y3ZzdA==" target="_blank" rel="noreferrer">Instagram Ø§Ù„Ø¨Ø±Ø§Ù†Ø¯</a>
+        <a href="https://www.tiktok.com/" target="_blank" rel="noreferrer">TikTok Ø§Ù„Ø¨Ø±Ø§Ù†Ø¯</a>
+        <a href="https://wa.me/201505833756" target="_blank" rel="noreferrer">WhatsApp Ø§Ù„Ø¨Ø±Ø§Ù†Ø¯</a>
+      </div>
+      <div class="footer__owner">
+        <h4>ØªØµÙ…ÙŠÙ… ÙˆØªØ·ÙˆÙŠØ±</h4>
+        <p>ØªÙ… ØªØµÙ…ÙŠÙ… Ùˆ ØªØ·ÙˆÙŠØ± Ù‡Ø°Ø§ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø¨Ø§Ù„ÙƒØ§Ù…Ù„ Ø¨ÙˆØ§Ø³Ø·Ù‡ Ø§Ù„Ù…Ø§Ù„Ùƒ. Ù„Ùˆ Ø­Ø§Ø¨Ø¨ ØªØ¹Ù…Ù„ Ù…ÙˆÙ‚Ø¹ Ø¨Ù†ÙØ³ Ø§Ù„Ù…Ø³ØªÙˆÙ‰ Ø§Ø¨Ø¹ØªÙ„Ù†Ø§.</p>
+        <a href="https://www.instagram.com/mazin_ma7moudd?igsh=MWRlOHFneG91Y3ZzdA==" target="_blank" rel="noreferrer">Instagram: mazin_ma7moudd</a>
+        <a href="https://wa.me/201505833756" target="_blank" rel="noreferrer">WhatsApp: 01505833756</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cartbar" id="cartbar" hidden>
+    <span class="cartbar__star">â˜…</span>
+    <span class="cartbar__msg" id="cartbarMsg">Add items to unlock free shipping</span>
+    <button class="cartbar__btn" id="cartbarOpen">View cart</button>
+  </div>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer__panel" role="dialog" aria-label="Shopping cart">
+      <header class="drawer__head">
+        <h3>Your cart</h3>
+        <button class="iconbtn" id="drawerClose" aria-label="Close cart">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+      <div class="drawer__items" id="drawerItems"></div>
+      <footer class="drawer__foot">
+        <div class="drawer__row"><span>Subtotal</span><strong id="drawerSubtotal">0 EGP</strong></div>
+        <div class="drawer__row drawer__row--discount"><span>Discount 20%</span><strong id="drawerDiscount">- 0 EGP</strong></div>
+        <div class="drawer__row"><span>Total after discount</span><strong id="drawerTotal">0 EGP</strong></div>
+        <button class="btn btn--solid btn--block" id="checkoutBtn" type="button">Checkout now</button>
+      </footer>
+    </div>
+    <div class="drawer__scrim" id="drawerScrim"></div>
+  </aside>
+
+  <aside class="modal" id="checkoutModal" aria-hidden="true">
+    <div class="modal__panel" role="dialog" aria-label="Checkout">
+      <header class="modal__head">
+        <h3>Checkout</h3>
+        <button class="iconbtn" id="checkoutClose" aria-label="Close checkout">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+      <form class="modal__body" id="checkoutForm">
+        <div class="form-grid">
+          <label><span>Full name *</span><input required name="name" placeholder="Your name" /></label>
+          <label><span>Phone *</span><input required name="phone" placeholder="01xxxxxxxxx" inputmode="tel" /></label>
+          <label class="full"><span>Email (optional)</span><input type="email" name="email" placeholder="you@example.com" /></label>
+          <div class="full">
+            <label for="shipping-zone" class="field-label">Governorate</label>
+            <select id="shipping-zone" name="shippingZone" required>
+              <option value="" selected disabled>Choose your governorate</option>
+              <option value="116">Ø§Ù„Ù‚Ø§Ù‡Ø±Ø© (116 EGP)</option>
+              <option value="116">Ø§Ù„Ø¬ÙŠØ²Ø© (116 EGP)</option>
+              <option value="122">Ø§Ù„Ø¥Ø³ÙƒÙ†Ø¯Ø±ÙŠØ© (122 EGP)</option>
+              <option value="132">Ø§Ù„Ø¯Ù‚Ù‡Ù„ÙŠØ© (132 EGP)</option>
+              <option value="148">Ø§Ù„ÙÙŠÙˆÙ… (148 EGP)</option>
+              <option value="166">Ù‚Ù†Ø§ (166 EGP)</option>
+            </select>
+          </div>
+          <label class="full"><span>Delivery address *</span><input required name="address" placeholder="Street, building, area, city" /></label>
+          <label class="full"><span>Notes</span><textarea name="notes" rows="3" placeholder="Anything we should know?"></textarea></label>
+        </div>
+        <div class="checkout-summary" id="checkoutSummary"></div>
+        <button type="submit" class="btn btn--solid btn--block">Confirm order</button>
+        <p class="checkout-fine">By confirming, you agree to be contacted on the phone number above. We will notify your order to the Opscura team.</p>
+      </form>
+    </div>
+    <div class="drawer__scrim" id="checkoutScrim"></div>
+  </aside>
+
+  <div class="toast" id="toast" hidden></div>
+  <a class="whatsapp-float" id="whatsappFloatBtn" href="https://wa.me/201505833756" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.66 15l-1.2 4.4L6.7 20A10 10 0 1 0 12 2zm5.45 14.2c-.23.65-1.34 1.24-1.85 1.3-.47.06-1.07.08-1.73-.13-.4-.13-.92-.3-1.58-.58-2.78-1.2-4.59-4.16-4.73-4.35-.14-.2-1.13-1.5-1.13-2.85 0-1.35.71-2 1-2.28.3-.28.65-.35.86-.35h.62c.2 0 .47-.08.74.57.28.66.94 2.28 1.02 2.45.08.17.14.37.03.58-.11.2-.17.33-.34.5-.17.17-.36.39-.51.52-.17.17-.35.35-.15.68.2.33.9 1.48 1.93 2.4 1.33 1.18 2.45 1.54 2.8 1.72.35.18.56.15.77-.09.21-.24.88-1.02 1.12-1.37.24-.35.48-.29.8-.17.33.12 2.05.96 2.4 1.14.35.18.58.27.66.42.09.15.09.84-.14 1.5z"/></svg>
+  </a>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+

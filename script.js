@@ -12,9 +12,9 @@
   const CUSTOMERS_KEY = "opscura_customers_v1";
   const OFFERS_KEY = "opscura_offers_sent_v1";
   const SIZE_OPTIONS = [
-    { id: "20x30", label: "20 × 30 cm", price: 260 },
-    { id: "30x40", label: "30 × 40 cm", price: 340 },
-    { id: "40x50", label: "40 × 50 cm", price: 480 }
+    { id: "20x30", label: "20 × 30 cm", price: 220 },
+    { id: "30x40", label: "30 × 40 cm", price: 270 },
+    { id: "40x50", label: "40 × 50 cm", price: 330 }
   ];
 
   function getSizeOption(sizeId) {
@@ -50,33 +50,56 @@
         "use strict";
 
         const CART_KEY = "opscura_cart_v1";
-        const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.3);
+        const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.2);
         const SIZE_OPTIONS = [
-          { id: "20x30", label: "20 × 30 cm", price: 260 },
-          { id: "30x40", label: "30 × 40 cm", price: 340 },
-          { id: "40x50", label: "40 × 50 cm", price: 480 }
+          { id: "20x30", label: "20 × 30 cm", price: 220 },
+          { id: "30x40", label: "30 × 40 cm", price: 270 },
+          { id: "40x50", label: "40 × 50 cm", price: 330 }
         ];
 
         const CATALOG = {
           sports: [
             { id: "sp1", title: "CR7 Legacy", art: "sport.jpg" },
             { id: "sp2", title: "Gallery Heat", art: "sport1.jpg" },
-            { id: "sp3", title: "Messi Moment", art: "sport6.jpg" },
+            { id: "sp3", title: "Icon Shot", art: "sport3.jpg" },
             { id: "sp4", title: "Salah Energy", art: "sport4.jpg" },
-            { id: "sp5", title: "Champion Spirit", art: "sport13.jpg" },
-            { id: "sp6", title: "Stadium Night", art: "sport10.jpg" },
-            { id: "sp7", title: "Matchday Aura", art: "sport21.jpg" },
-            { id: "sp8", title: "Victory Frame", art: "sport27.jpg" }
+            { id: "sp5", title: "Classic Action", art: "sport5.jpg" },
+            { id: "sp6", title: "Messi Moment", art: "sport6.jpg" },
+            { id: "sp7", title: "Team Spirit", art: "sport7.jpg" },
+            { id: "sp8", title: "Game Day", art: "sport8.jpg" },
+            { id: "sp9", title: "Victory Wave", art: "sport9.jpg" },
+            { id: "sp10", title: "Stadium Night", art: "sport10.jpg" },
+            { id: "sp11", title: "Focus Mode", art: "sport11.jpg" },
+            { id: "sp12", title: "Final Whistle", art: "sport12.jpg" },
+            { id: "sp13", title: "Champion Spirit", art: "sport13.jpg" },
+            { id: "sp14", title: "Goal Rush", art: "sport14.jpg" },
+            { id: "sp15", title: "Match Build", art: "sport15.jpg" },
+            { id: "sp16", title: "Arena Heat", art: "sport20.jpg" },
+            { id: "sp17", title: "Matchday Aura", art: "sport21.jpg" },
+            { id: "sp18", title: "Playmaker", art: "sport23.jpg" },
+            { id: "sp19", title: "Crowd Noise", art: "sport25.jpg" },
+            { id: "sp20", title: "Winner's Line", art: "sport26.jpg" },
+            { id: "sp21", title: "Victory Frame", art: "sport27.jpg" },
+            { id: "sp22", title: "Clutch Moment", art: "sport28.jpg" },
+            { id: "sp23", title: "Night Kick", art: "sport29.jpg" },
+            { id: "sp24", title: "Legacy Shot", art: "sport113.jpg" },
+            { id: "sp25", title: "Training Pulse", art: "spoprt18.jpg" },
+            { id: "sp26", title: "Quick Strike", art: "sort19.jpg" }
           ],
           cars: [
             { id: "car1", title: "Turbo Night", art: "car1.jpg" },
-            { id: "car2", title: "Porsche 911", art: "car4.jpg" },
-            { id: "car3", title: "Ferrari Icons", art: "car5.jpg" },
-            { id: "car4", title: "GT3 RS", art: "car3.jpg" },
-            { id: "car5", title: "Mustang Fire", art: "car2.jpg" },
-            { id: "car6", title: "Speedline", art: "car7.jpg" },
-            { id: "car7", title: "Track Spec", art: "car9.jpg" },
-            { id: "car8", title: "Midnight Engine", art: "car12.jpg" }
+            { id: "car2", title: "Porsche 911", art: "car2.jpg" },
+            { id: "car3", title: "Ferrari Icons", art: "car3.jpg" },
+            { id: "car4", title: "GT3 RS", art: "car4.jpg" },
+            { id: "car5", title: "Mustang Fire", art: "car5.jpg" },
+            { id: "car6", title: "Speedline", art: "car6.jpg" },
+            { id: "car7", title: "Track Spec", art: "car7.jpg" },
+            { id: "car8", title: "Midnight Engine", art: "car8.jpg" },
+            { id: "car9", title: "Street Track", art: "car9.jpg" },
+            { id: "car10", title: "Night Drift", art: "car10.jpg" },
+            { id: "car11", title: "Power Line", art: "car11.jpg" },
+            { id: "car12", title: "Supercar Mood", art: "car12.jpg" },
+            { id: "car13", title: "Final Lap", art: "car13.jpg" }
           ],
           gaming: [
             { id: "gm1", title: "Arcade Legends", art: "game1.jpg" },
@@ -123,22 +146,47 @@
             { id: "gym6", title: "Power Reps", art: "gym6.jpg" },
             { id: "gym7", title: "Muscle Signal", art: "gym7.jpg" }
           ],
+          art: [
+            { id: "art1", title: "فن 1", art: "art 1.jpg" },
+            { id: "art2", title: "فن 2", art: "art 2.jpg" },
+            { id: "art3", title: "فن 3", art: "art 3.jpg" },
+            { id: "art4", title: "فن 4", art: "art 4.jpg" },
+            { id: "art5", title: "فن 5", art: "art 5.jpg" }
+          ],
+          quran: [
+            { id: "q1", title: "القرآن 1", art: "quran.jpg" },
+            { id: "q2", title: "القرآن 2", art: "quran 1.jpg" },
+            { id: "q3", title: "القرآن 3", art: "quran2.jpg" },
+            { id: "q4", title: "القرآن 4", art: "quran3.jpg" },
+            { id: "q5", title: "القرآن 5", art: "quran4.jpg" },
+            { id: "q6", title: "القرآن 6", art: "quran5.jpg" },
+            { id: "q7", title: "القرآن 7", art: "quran7.jpg" }
+          ],
+          she: [
+            { id: "she1", title: "هي 1", art: "she.jpg" },
+            { id: "she2", title: "هي 2", art: "she 1.jpg" },
+            { id: "she3", title: "هي 3", art: "she2.jpg" },
+            { id: "she4", title: "هي 4", art: "she3.jpg" },
+            { id: "she5", title: "هي 5", art: "she4.jpg" },
+            { id: "she6", title: "هي 6", art: "she5.jpg" },
+            { id: "she7", title: "هي 7", art: "she6.jpg" },
+            { id: "she8", title: "هي 8", art: "she7.jpg" }
+          ],
           custom: [
-            { id: "custom1", title: "Upload image", art: "upload.jpg" }
+            { id: "custom1", title: "Custom Portrait Frame", art: "upload.jpg" },
+            { id: "custom2", title: "Album Cover Frame", art: "mov6.jpg" }
           ]
         };
 
         const LANG_KEY = "opscura_lang_v1";
         const SUPPORTED_LANGS = new Set(["en", "ar"]);
-        let currentLanguage = (() => {
-          const saved = (localStorage.getItem(LANG_KEY) || "en").toLowerCase();
-          return SUPPORTED_LANGS.has(saved) ? saved : "en";
-        })();
+        let currentLanguage = "ar";
+        localStorage.setItem(LANG_KEY, currentLanguage);
 
         const I18N = {
           en: {
             promoBar: "Free shipping over 600 EGP · Custom framing in 3–4 days",
-            promoBanner: "<strong>This week only:</strong> 30% off your framed-print subtotal before shipping.",
+            promoBanner: "<strong>This week only:</strong> 20% off your framed-print subtotal before shipping.",
             navMenuAria: "Open menu",
             navCartAria: "Open cart",
             navLogoSub: "Custom framed art",
@@ -152,6 +200,9 @@
             sideQuotes: "Quotes",
             sideMovies: "Movies & series",
             sideGym: "Gym",
+            sideArt: "Art",
+            sideQuran: "Quran",
+            sideShe: "She",
             sideCustom: "Custom art frames",
             sideContact: "Contact & socials",
             heroMystery: "Obscura veil",
@@ -160,14 +211,16 @@
             heroDesc: "From football legends and car masterpieces to your own uploaded artwork, Opscura creates statement pieces you will love to display.",
             heroShop: "Shop the gallery",
             heroCustomize: "Customize your image",
+            featuredEyebrow: "Featured picks",
+            featuredTitle: "Swipe through trending frames.",
             collectionsEyebrow: "Collections",
             collectionsTitle: "Explore the shelves.",
             customEyebrow: "Customization",
             customTitle: "Upload your image and build it like a normal product.",
             customHeading: "Upload image, choose size, see the price instantly.",
-            customDesc: "The custom frame now follows the same flow as the normal products. Upload the image, pick your size and finish, then add it to the cart.",
+            customDesc: "The custom frame now follows the same flow as the normal products. Upload the image, pick your size, then add it to the cart.",
             customPoint1: "Upload a personal photo or artwork.",
-            customPoint2: "Select the exact frame size and finish.",
+            customPoint2: "Select the exact frame size.",
             customChooseImage: "Choose your image",
             customChooseImageSub: "Upload album art, portrait, car shot, or any photo you want framed.",
             customUploadLabel: "Upload your image",
@@ -184,6 +237,9 @@
             quotesH2: "Clean, motivational message art for your spaces.",
             moviesH2: "Cinematic posters and iconic scenes, framed beautifully.",
             gymH2: "Strength, discipline and energy in every print.",
+            artH2: "Bold art prints with a clean gallery feel.",
+            quranH2: "Faith-inspired Arabic verses designed as calming wall art.",
+            sheH2: "Elegant feminine portraits with premium editorial mood.",
             benefitsFastTitle: "Fast delivery",
             benefitsFastDesc: "2–4 working days across Egypt.",
             benefitsReplaceTitle: "Free replacement",
@@ -195,7 +251,7 @@
             drawerTitle: "Your cart",
             drawerCloseAria: "Close cart",
             drawerSubtotal: "Subtotal",
-            drawerDiscount: "Discount 30%",
+            drawerDiscount: "Discount 20%",
             drawerTotal: "Total after discount",
             checkoutNow: "Checkout now",
             checkoutTitle: "Checkout",
@@ -221,11 +277,11 @@
             addedToCart: "Added to cart · {title}",
             cartEmpty: "Your cart is empty",
             cartEmptyHint: "Pick a print or upload your own image to get started.",
-            cartbarUnlocked: "30% discount applied and free shipping unlocked",
-            cartbarNeedMore: "30% discount applied. Add {amount} EGP more for free shipping",
+            cartbarUnlocked: "20% discount applied and free shipping unlocked",
+            cartbarNeedMore: "20% discount applied. Add {amount} EGP more for free shipping",
             remove: "Remove",
             summarySubtotal: "Subtotal",
-            summaryDiscount: "Discount 30%",
+            summaryDiscount: "Discount 20%",
             summaryAfterDiscount: "After discount",
             summaryShipping: "Shipping",
             summaryTotal: "Total",
@@ -239,7 +295,7 @@
           },
           ar: {
             promoBar: "شحن مجاني للطلبات فوق 600 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
-            promoBanner: "<strong>الأسبوع ده بس:</strong> خصم 30% على إجمالي اللوحات قبل الشحن.",
+            promoBanner: "<strong>الأسبوع ده بس:</strong> خصم 20% على إجمالي اللوحات قبل الشحن.",
             navMenuAria: "فتح القائمة",
             navCartAria: "فتح السلة",
             navLogoSub: "لوحات مؤطرة مخصصة",
@@ -253,6 +309,9 @@
             sideQuotes: "اقتباسات",
             sideMovies: "أفلام ومسلسلات",
             sideGym: "جيم",
+            sideArt: "فن",
+            sideQuran: "قرآن",
+            sideShe: "هي",
             sideCustom: "إطارات مخصصة",
             sideContact: "تواصل وسوشيال",
             heroMystery: "لمسة أوبسكورا",
@@ -261,14 +320,16 @@
             heroDesc: "من أساطير الكورة وروائع السيارات لحد صورك الخاصة، أوبسكورا بتقدملك قطع مميزة تزين بيها مكانك.",
             heroShop: "تصفح المعرض",
             heroCustomize: "خصص صورتك",
+            featuredEyebrow: "اختيارات مميزة",
+            featuredTitle: "اسحب وشوف المنتجات الأكثر طلبًا.",
             collectionsEyebrow: "الأقسام",
             collectionsTitle: "اختار الستايل المناسب لك.",
             customEyebrow: "التخصيص",
             customTitle: "ارفع صورتك واطلبها بنفس طريقة أي منتج.",
             customHeading: "ارفع الصورة، اختار المقاس، وشوف السعر فورًا.",
-            customDesc: "الإطار المخصص بقى بنفس خطوات المنتجات العادية: ارفع الصورة، اختار المقاس والتشطيب، وبعدها أضفه للسلة.",
+            customDesc: "الإطار المخصص بقى بنفس خطوات المنتجات العادية: ارفع الصورة، اختار المقاس، وبعدها أضفه للسلة.",
             customPoint1: "ارفع صورة شخصية أو أي تصميم تحبه.",
-            customPoint2: "حدد المقاس والتشطيب المناسبين بدقة.",
+            customPoint2: "حدد المقاس المناسب بدقة.",
             customChooseImage: "اختار صورتك",
             customChooseImageSub: "ارفع غلاف ألبوم، بورتريه، صورة عربية، أو أي صورة تحبها.",
             customUploadLabel: "ارفع صورتك",
@@ -285,6 +346,9 @@
             quotesH2: "اقتباسات ملهمة بتصميم نظيف ولمسة راقية.",
             moviesH2: "بوسترات سينمائية ومشاهد أيقونية بإطار مميز.",
             gymH2: "قوة وانضباط وطاقة في كل تصميم.",
+            artH2: "لوحات فن بطابع جاليري نظيف وفاخر.",
+            quranH2: "آيات وإلهام إيماني بتصميم هادئ للمساحات.",
+            sheH2: "بورتريهات أنثوية أنيقة بطابع فني فاخر.",
             benefitsFastTitle: "توصيل سريع",
             benefitsFastDesc: "من 2 إلى 4 أيام عمل داخل مصر.",
             benefitsReplaceTitle: "استبدال مجاني",
@@ -296,7 +360,7 @@
             drawerTitle: "سلة مشترياتك",
             drawerCloseAria: "إغلاق السلة",
             drawerSubtotal: "الإجمالي",
-            drawerDiscount: "خصم 30%",
+            drawerDiscount: "خصم 20%",
             drawerTotal: "الإجمالي بعد الخصم",
             checkoutNow: "إتمام الطلب",
             checkoutTitle: "الدفع",
@@ -322,11 +386,11 @@
             addedToCart: "تمت الإضافة للسلة · {title}",
             cartEmpty: "السلة فارغة",
             cartEmptyHint: "اختار لوحة أو ارفع صورتك علشان تبدأ.",
-            cartbarUnlocked: "تم تطبيق خصم 30% وتفعيل الشحن المجاني",
-            cartbarNeedMore: "تم تطبيق خصم 30%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
+            cartbarUnlocked: "تم تطبيق خصم 20% وتفعيل الشحن المجاني",
+            cartbarNeedMore: "تم تطبيق خصم 20%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
             remove: "حذف",
             summarySubtotal: "الإجمالي",
-            summaryDiscount: "خصم 30%",
+            summaryDiscount: "خصم 20%",
             summaryAfterDiscount: "بعد الخصم",
             summaryShipping: "الشحن",
             summaryTotal: "الإجمالي النهائي",
@@ -392,6 +456,14 @@
           "Lift Mode": "وضع الرفع",
           "Power Reps": "تكرارات القوة",
           "Muscle Signal": "إشارة العضلة",
+          "Velvet Portrait": "بورتريه مخملي",
+          "Golden Muse": "إلهام ذهبي",
+          "Soft Light": "إضاءة ناعمة",
+          "City Grace": "أناقة المدينة",
+          "Sabr": "صبر",
+          "Baraka": "بركة",
+          "Tawakkul": "توكل",
+          "Al Noor": "النور",
           "Upload image": "ارفع صورة"
         };
 
@@ -399,6 +471,7 @@
 
         const state = { cart: loadCart() };
         let toastTimer = null;
+        let randomTracksTimer = null;
 
         const $ = (sel, parent = document) => parent.querySelector(sel);
         const $$ = (sel, parent = document) => Array.from(parent.querySelectorAll(sel));
@@ -492,7 +565,8 @@
 
           setText(".side-menu__header h3", "sideCollections");
           setAttr("#sideMenuClose", "aria-label", "sideCloseAria");
-          setText('.side-menu__panel a[href="#collections"]', "sideAllCollections");
+          const allCollectionsLink = document.querySelector('.side-menu__panel a[href="#collections"], .side-menu__panel a[href="index.html#collections"]');
+          if (allCollectionsLink) allCollectionsLink.textContent = t("sideAllCollections");
           setText('.side-menu__panel a[data-section="sports"]', "sideSports");
           setText('.side-menu__panel a[data-section="cars"]', "sideCars");
           setText('.side-menu__panel a[data-section="gaming"]', "sideGaming");
@@ -500,6 +574,9 @@
           setText('.side-menu__panel a[data-section="quotes"]', "sideQuotes");
           setText('.side-menu__panel a[data-section="movies"]', "sideMovies");
           setText('.side-menu__panel a[data-section="gym"]', "sideGym");
+          setText('.side-menu__panel a[data-section="art"]', "sideArt");
+          setText('.side-menu__panel a[data-section="quran"]', "sideQuran");
+          setText('.side-menu__panel a[data-section="she"]', "sideShe");
           setText('.side-menu__panel a[data-section="custom"]', "sideCustom");
           setText('.side-menu__panel a[data-section="contact"]', "sideContact");
 
@@ -512,6 +589,8 @@
 
           setText("#collections .section-head .eyebrow", "collectionsEyebrow");
           setText("#collections .section-head h2", "collectionsTitle");
+          setText("#featured .section-head .eyebrow", "featuredEyebrow");
+          setText("#featured .section-head h2", "featuredTitle");
 
           setText('#collections .collection-card[data-section="sports"] h3', "sideSports");
           const sportsCardDesc = document.querySelector('#collections .collection-card[data-section="sports"] p');
@@ -562,12 +641,33 @@
               ? "ارفع أي صورة واحنا نجهزها بإطار احترافي."
               : "Upload any image and we will frame it for you.";
           }
+          const artCardDesc = document.querySelector('#collections .collection-card[data-section="art"] p');
+          if (artCardDesc) {
+            artCardDesc.textContent = currentLanguage === "ar"
+              ? "لوحات فن بطابع جاليري نظيف وفاخر."
+              : "Bold art prints with a clean gallery feel.";
+          }
+          const quranCardDesc = document.querySelector('#collections .collection-card[data-section="quran"] p');
+          if (quranCardDesc) {
+            quranCardDesc.textContent = currentLanguage === "ar"
+              ? "آيات وإلهام إيماني بتصميم هادئ للمساحات."
+              : "Faith-inspired Arabic verses designed as calming wall art.";
+          }
+          const sheCardDesc = document.querySelector('#collections .collection-card[data-section="she"] p');
+          if (sheCardDesc) {
+            sheCardDesc.textContent = currentLanguage === "ar"
+              ? "بورتريهات أنثوية أنيقة بطابع فني فاخر."
+              : "Elegant feminine portraits with premium editorial mood.";
+          }
           setText('#collections .collection-card[data-section="cars"] h3', "sideCars");
           setText('#collections .collection-card[data-section="gaming"] h3', "sideGaming");
           setText('#collections .collection-card[data-section="rap"] h3', "sideRap");
           setText('#collections .collection-card[data-section="quotes"] h3', "sideQuotes");
           setText('#collections .collection-card[data-section="movies"] h3', "sideMovies");
           setText('#collections .collection-card[data-section="gym"] h3', "sideGym");
+          setText('#collections .collection-card[data-section="art"] h3', "sideArt");
+          setText('#collections .collection-card[data-section="quran"] h3', "sideQuran");
+          setText('#collections .collection-card[data-section="she"] h3', "sideShe");
           setText('#collections .collection-card[data-section="custom"] h3', "sideCustom");
 
           const sidePanel = document.querySelector(".side-menu__panel");
@@ -595,6 +695,11 @@
             quotes: ["مجموعة الاقتباسات", "Quotes collection"],
             movies: ["مجموعة الأفلام والمسلسلات", "Movies and series collection"],
             gym: ["مجموعة الجيم", "Gym collection"],
+            "she-art": ["مجموعة هي فن", "She is art collection"],
+            "quran-quotes": ["مجموعة اقتباسات قرآنية", "Quran quotes collection"],
+            art: ["مجموعة الفن", "Art collection"],
+            quran: ["مجموعة القرآن", "Quran collection"],
+            she: ["مجموعة هي", "She collection"],
             custom: ["مجموعة الإطارات المخصصة", "Custom art collection"]
           };
           Object.entries(collectionAlts).forEach(([section, [arAlt, enAlt]]) => {
@@ -637,6 +742,12 @@
           setText("#section-movies .section-head h2", "moviesH2");
           setText("#section-gym .section-head .eyebrow", "sideGym");
           setText("#section-gym .section-head h2", "gymH2");
+          setText("#section-art .section-head .eyebrow", "sideArt");
+          setText("#section-art .section-head h2", "artH2");
+          setText("#section-quran .section-head .eyebrow", "sideQuran");
+          setText("#section-quran .section-head h2", "quranH2");
+          setText("#section-she .section-head .eyebrow", "sideShe");
+          setText("#section-she .section-head h2", "sheH2");
 
           const benefits = document.querySelectorAll(".benefits article");
           if (benefits[0]) {
@@ -770,7 +881,68 @@
           renderSection("quotesGrid", CATALOG.quotes);
           renderSection("moviesGrid", CATALOG.movies);
           renderSection("gymGrid", CATALOG.gym);
+          renderSection("artGrid", CATALOG.art);
+          renderSection("quranGrid", CATALOG.quran);
+          renderSection("sheGrid", CATALOG.she);
           renderSection("customGrid", CATALOG.custom);
+          renderRandomShowcase();
+        }
+
+        function renderRandomShowcase() {
+          const rowRoots = [document.getElementById("randomGridTop"), document.getElementById("randomGridBottom")];
+          const catalogPool = Object.values(CATALOG)
+            .flat()
+            .filter((item) => item.id !== "custom1" && item.id !== "custom2");
+          const shuffled = [...catalogPool].sort(() => Math.random() - 0.5);
+          const rowSize = 10;
+
+          rowRoots.forEach((root, index) => {
+            if (!root) return;
+            const items = shuffled.slice(index * rowSize, index * rowSize + rowSize);
+            root.innerHTML = items.map((item) => productCardHTML(item)).join("");
+            bindProductEvents(root);
+          });
+
+          startRandomTracksMotion(rowRoots);
+        }
+
+        function startRandomTracksMotion(rowRoots) {
+          if (randomTracksTimer) {
+            clearInterval(randomTracksTimer);
+            randomTracksTimer = null;
+          }
+
+          const tracks = rowRoots.filter(Boolean);
+          if (!tracks.length) return;
+
+          tracks.forEach((track, index) => {
+            track.dataset.dir = index % 2 === 0 ? "1" : "-1";
+          });
+
+          randomTracksTimer = setInterval(() => {
+            tracks.forEach((track) => {
+              const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+              if (maxScroll <= 0) return;
+
+              let dir = Number(track.dataset.dir || "1");
+              const speed = 0.9;
+              const next = track.scrollLeft + (dir * speed);
+
+              if (next >= maxScroll) {
+                track.scrollLeft = maxScroll;
+                track.dataset.dir = "-1";
+                return;
+              }
+
+              if (next <= 0) {
+                track.scrollLeft = 0;
+                track.dataset.dir = "1";
+                return;
+              }
+
+              track.scrollLeft = next;
+            });
+          }, 30);
         }
 
         function renderSection(rootId, items) {
@@ -783,7 +955,7 @@
         function productCardHTML(item) {
           const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
           const localizedTitle = localizeCatalogTitle(item.title);
-          const helperText = item.id === "custom1"
+          const helperText = item.id.startsWith("custom")
             ? t("productHelperCustom")
             : t("productHelperNormal");
           return `
@@ -1219,6 +1391,13 @@
 
           document.querySelectorAll(".collection-card, .side-menu__panel a").forEach((element) => {
             element.addEventListener("click", () => {
+              if (element.tagName === "A") {
+                const href = element.getAttribute("href") || "";
+                if (!href.startsWith("#")) {
+                  document.getElementById("sideMenu")?.setAttribute("aria-hidden", "true");
+                  return;
+                }
+              }
               const section = element.dataset.section;
               if (!section) return;
               const targetMap = {
@@ -1229,7 +1408,8 @@
                 rap: "section-rap",
                 quotes: "section-quotes",
                 movies: "section-movies",
-                gym: "section-gym"
+                gym: "section-gym",
+                contact: "footer"
               };
               const targetId = targetMap[section] || "collections";
               document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
