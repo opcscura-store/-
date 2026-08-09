@@ -66,9 +66,9 @@
           }
         ];
         const SIZE_OPTIONS = [
-          { id: "20x30", label: "20 × 30 cm", price: 220 },
-          { id: "30x40", label: "30 × 40 cm", price: 270 },
-          { id: "40x50", label: "40 × 50 cm", price: 330 }
+          { id: "20x30", label: "20 × 30 cm", price: 220, was: 270 },
+          { id: "30x40", label: "30 × 40 cm", price: 270, was: 340 },
+          { id: "40x50", label: "40 × 50 cm", price: 330, was: 430 }
         ];
 
         const CATALOG = {
@@ -983,30 +983,38 @@
             nextBtn?.addEventListener("click", () => moveTrack(1));
 
             let isPointerDown = false;
+            let isDragging = false;
             let pointerId = null;
             let startX = 0;
             let startScrollLeft = 0;
+            const DRAG_THRESHOLD = 6;
 
             track.addEventListener("pointerdown", (event) => {
               if (event.pointerType === "mouse" && event.button !== 0) return;
               isPointerDown = true;
+              isDragging = false;
               pointerId = event.pointerId;
               startX = event.clientX;
               startScrollLeft = track.scrollLeft;
-              track.classList.add("is-dragging");
-              track.setPointerCapture?.(pointerId);
               pauseRandomTracks(7000);
             });
 
             track.addEventListener("pointermove", (event) => {
               if (!isPointerDown) return;
               const delta = event.clientX - startX;
+              if (!isDragging) {
+                if (Math.abs(delta) < DRAG_THRESHOLD) return;
+                isDragging = true;
+                track.classList.add("is-dragging");
+                track.setPointerCapture?.(pointerId);
+              }
               track.scrollLeft = startScrollLeft - delta;
             });
 
             const endPointerDrag = () => {
               if (!isPointerDown) return;
               isPointerDown = false;
+              isDragging = false;
               track.classList.remove("is-dragging");
               if (pointerId !== null) {
                 track.releasePointerCapture?.(pointerId);
@@ -1077,7 +1085,7 @@
         }
 
         function productCardHTML(item) {
-          const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
+          const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" data-was="${opt.was}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
           const localizedTitle = localizeCatalogTitle(item.title);
           const isRapUpload = item.id === "rap5";
           const helperText = isRapUpload
@@ -1088,10 +1096,12 @@
           const uploadFieldHTML = isRapUpload
             ? `<label class="product__upload"><span>${t("rapUploadLabel")}</span><input class="rap-upload-input" type="file" accept="image/*" /></label>`
             : "";
+          const artSrc = item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("../")
+            ? item.art : `../${item.art}`;
           return `
             <article class="product" data-id="${item.id}">
               <div class="product__art">
-                <img src="${item.art}" alt="${escapeHTML(localizedTitle)}" />
+                <img src="${artSrc}" alt="${escapeHTML(localizedTitle)}" />
               </div>
               <div class="product__body">
                 <h3 class="product__title">${escapeHTML(localizedTitle)}</h3>
@@ -1103,7 +1113,7 @@
                     <select class="opt-select">${optionsHTML}</select>
                   </label>
                 </div>
-                <div class="product__price"><span class="price">${fmt(SIZE_OPTIONS[0].price)}</span></div>
+                <div class="product__price"><s class="price-was">${fmt(SIZE_OPTIONS[0].was)}</s><span class="price">${fmt(SIZE_OPTIONS[0].price)}</span></div>
                 <button class="btn btn--solid product__add" type="button">${t("addToCart")}</button>
               </div>
             </article>
@@ -1137,6 +1147,8 @@
             select?.addEventListener("change", () => {
               const option = select.selectedOptions[0];
               priceEl.textContent = fmt(Number(option.dataset.price));
+              const wasEl = $(".price-was", card);
+              if (wasEl) wasEl.textContent = fmt(Number(option.dataset.was));
             });
 
             addBtn?.addEventListener("click", () => {
@@ -1263,7 +1275,7 @@
 
         function cartItemHTML(item) {
           const artMarkup = item.art
-            ? `<div class="cart-item__artframe"><img src="${item.art}" alt="${escapeHTML(item.title)}" /></div>`
+            ? `<div class="cart-item__artframe"><img src="${item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("../") ? item.art : `../${item.art}`}" alt="${escapeHTML(item.title)}" /></div>`
             : '<div class="cart-item__artframe">🖼</div>';
           return `
             <div class="cart-item" data-uid="${item.uid}">

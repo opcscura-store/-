@@ -1044,7 +1044,8 @@ html[dir="rtl"] .checkout-summary__row {
   margin: 0;
   min-height: 44px;
 }
-.product__price { font-weight: 700; }
+.product__price { font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.price-was { font-size: 13px; font-weight: 400; color: var(--muted); text-decoration: line-through; }
 .product__opts select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line-strong); }
 .product__upload {
   display: grid;
