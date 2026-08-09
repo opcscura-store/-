@@ -194,8 +194,7 @@
 
         const LANG_KEY = "opscura_lang_v1";
         const SUPPORTED_LANGS = new Set(["en", "ar"]);
-        let currentLanguage = "ar";
-        localStorage.setItem(LANG_KEY, currentLanguage);
+        let currentLanguage = "en";
 
         const I18N = {
           en: {
@@ -225,8 +224,8 @@
             heroDesc: "From football legends and car masterpieces to your own uploaded artwork, Opscura creates statement pieces you will love to display.",
             heroShop: "Shop the gallery",
             heroCustomize: "Customize your image",
-            featuredEyebrow: "منتجات مميزة",
-            featuredTitle: "منتجات مميزة",
+            featuredEyebrow: "Featured",
+            featuredTitle: "Featured products",
             collectionsEyebrow: "Collections",
             collectionsTitle: "Explore the shelves.",
             customEyebrow: "Customization",
@@ -492,7 +491,29 @@
           "Upload image": "ارفع صورة"
         };
 
-        const TITLE_EN = Object.fromEntries(Object.entries(TITLE_AR).map(([en, ar]) => [ar, en]));
+        const TITLE_EN = {
+          ...Object.fromEntries(Object.entries(TITLE_AR).map(([en, ar]) => [ar, en])),
+          "فن 1": "Art 1",
+          "فن 2": "Art 2",
+          "فن 3": "Art 3",
+          "فن 4": "Art 4",
+          "فن 5": "Art 5",
+          "القرآن 1": "Quran 1",
+          "القرآن 2": "Quran 2",
+          "القرآن 3": "Quran 3",
+          "القرآن 4": "Quran 4",
+          "القرآن 5": "Quran 5",
+          "القرآن 6": "Quran 6",
+          "القرآن 7": "Quran 7",
+          "هي 1": "She 1",
+          "هي 2": "She 2",
+          "هي 3": "She 3",
+          "هي 4": "She 4",
+          "هي 5": "She 5",
+          "هي 6": "She 6",
+          "هي 7": "She 7",
+          "هي 8": "She 8"
+        };
 
         const state = { cart: loadCart() };
         let toastTimer = null;
@@ -942,7 +963,6 @@
           });
 
           setupRandomTrackControls(stripRoots);
-          startRandomTracksMotion(stripRoots);
         }
 
         function setupRandomTrackControls(rowRoots) {
@@ -1209,12 +1229,10 @@
           if (state.cart.length === 0) {
             itemsRoot.innerHTML = `<div class="empty"><strong>${t("cartEmpty")}</strong>${t("cartEmptyHint")}</div>`;
             if (cartbar) cartbar.hidden = true;
-            if (whatsappFloatBtn) whatsappFloatBtn.hidden = false;
             document.body.classList.remove("has-cartbar");
           } else {
             itemsRoot.innerHTML = state.cart.map(cartItemHTML).join("");
             if (cartbar) cartbar.hidden = false;
-            if (whatsappFloatBtn) whatsappFloatBtn.hidden = true;
             document.body.classList.add("has-cartbar");
             bindCartItemEvents();
           }
@@ -1631,7 +1649,9 @@
 
         function init() {
           bindEvents();
-          setLanguage(currentLanguage);
+          currentLanguage = "en";
+          localStorage.removeItem(LANG_KEY);
+          setLanguage("en");
           syncBodyLock();
         }
 

@@ -957,7 +957,7 @@ html[dir="rtl"] .checkout-summary__row {
 .random-row {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0;
   margin-bottom: 8px;
 }
 .random-row:last-child {
@@ -965,29 +965,17 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .random-row .random-track {
   flex: 1;
-  touch-action: pan-x;
+  touch-action: pan-y;
   cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
 .random-row .random-track.is-dragging {
   cursor: grabbing;
   user-select: none;
 }
 .track-nav {
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: rgba(15, 19, 24, 0.92);
-  color: var(--paper);
-  display: grid;
-  place-items: center;
-  font-size: 26px;
-  line-height: 1;
-  cursor: pointer;
-  flex: 0 0 38px;
-}
-.track-nav:hover {
-  background: rgba(25, 32, 40, 0.98);
+  display: none;
 }
 .random-track::-webkit-scrollbar {
   display: none;
@@ -998,6 +986,7 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .random-track .product {
   flex: 0 0 180px;
+  scroll-snap-align: start;
 }
 .random-track--top .product {
   flex: 0 0 160px;
@@ -1188,19 +1177,9 @@ html[dir="rtl"] .checkout-summary__row {
   display: grid;
   place-items: center;
   box-shadow: 0 16px 26px rgba(37, 211, 102, 0.35);
-  z-index: 140;
+  z-index: 220;
   animation: pulseSignal 2.8s ease-out infinite;
   transition: bottom 180ms ease, transform 160ms ease;
-}
-body.has-cartbar .whatsapp-float {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px);
-}
-.cartbar:not([hidden]) ~ .whatsapp-float {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(12px);
 }
 .whatsapp-float:hover {
   transform: translateY(-1px);
@@ -1498,20 +1477,17 @@ body.has-cartbar .whatsapp-float {
     grid-template-columns: 1fr !important;
   }
   .random-row {
-    gap: 6px;
+    position: relative;
   }
-  .track-nav {
-    width: 34px;
-    height: 34px;
-    flex-basis: 34px;
-    font-size: 22px;
+  .random-row .random-track {
+    width: 100%;
+  }
+  .random-track .product {
+    flex: 0 0 82vw;
   }
   .random-track {
     flex-wrap: nowrap;
     overflow-x: auto;
-  }
-  .random-track .product {
-    flex: 0 0 62vw;
   }
   .nav { padding: 12px 14px; }
   .nav__logo-mark { font-size: 24px; }
