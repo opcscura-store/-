@@ -1042,8 +1042,9 @@
               .filter((item) => item.id !== "custom1" && item.id !== "custom2" && item.id !== "rap5");
             const shuffled = [...stripPool].sort(() => Math.random() - 0.5);
             const items = shuffled.slice(0, strip.rowSize || 10);
+            const marqueeItems = [...items, ...items];
 
-            root.innerHTML = items.map((item) => productCardHTML(item, { compact: true })).join("");
+            root.innerHTML = marqueeItems.map((item) => productCardHTML(item, { compact: true })).join("");
             root.dataset.flow = strip.direction === "rtl" ? "rtl" : "ltr";
             bindProductEvents(root);
             stripRoots.push(root);
@@ -1097,56 +1098,40 @@
             clearInterval(randomTracksTimer);
             randomTracksTimer = null;
           }
-          if (randomTracksFrame) {
-            cancelAnimationFrame(randomTracksFrame);
-            randomTracksFrame = null;
-          }
 
           const tracks = rowRoots.filter(Boolean);
           if (!tracks.length) return;
 
-          const disableAutoMotion = window.matchMedia("(max-width: 1024px)").matches || window.matchMedia("(pointer: coarse)").matches;
-          if (disableAutoMotion) return;
-
           tracks.forEach((track) => {
             track.dataset.dir = track.dataset.flow === "rtl" ? "-1" : "1";
+            track.scrollLeft = 0;
           });
 
-          let lastTick = performance.now();
-          const pixelsPerSecond = 26;
+          randomTracksTimer = setInterval(() => {
+            if (Date.now() < randomTracksPauseUntil) return;
 
-          const animate = (now) => {
-            const dt = Math.max(0, (now - lastTick) / 1000);
-            lastTick = now;
+            tracks.forEach((track) => {
+              const halfWidth = track.scrollWidth / 2;
+              if (halfWidth <= track.clientWidth) return;
 
-            if (Date.now() >= randomTracksPauseUntil) {
-              tracks.forEach((track) => {
-                const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-                if (maxScroll <= 0) return;
+              let dir = Number(track.dataset.dir || "1");
+              const speed = 0.8;
+              const next = track.scrollLeft + (dir * speed);
 
-                let dir = Number(track.dataset.dir || "1");
-                const next = track.scrollLeft + (dir * pixelsPerSecond * dt);
+              if (dir > 0 && next >= halfWidth) {
+                track.scrollLeft = next - halfWidth;
+                return;
+              }
 
-                if (next >= maxScroll) {
-                  track.scrollLeft = maxScroll;
-                  track.dataset.dir = "-1";
-                  return;
-                }
+              if (dir < 0 && next <= 0) {
+                track.scrollLeft = halfWidth + next;
+                return;
+              }
 
-                if (next <= 0) {
-                  track.scrollLeft = 0;
-                  track.dataset.dir = "1";
-                  return;
-                }
-
-                track.scrollLeft = next;
-              });
-            }
-
-            randomTracksFrame = requestAnimationFrame(animate);
-          };
-
-          randomTracksFrame = requestAnimationFrame(animate);
+              track.scrollLeft = next;
+            });
+          }, 30);
+        }
         }
 
         function renderSection(rootId, items) {
