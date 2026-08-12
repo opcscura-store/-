@@ -1086,7 +1086,7 @@
             let startX = 0;
             let startY = 0;
             let startScrollLeft = 0;
-            const DRAG_THRESHOLD = 8;
+            const DRAG_THRESHOLD = 6;
 
             track.addEventListener("pointerdown", (event) => {
               if (event.pointerType === "mouse" && event.button !== 0) return;
