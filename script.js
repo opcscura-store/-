@@ -1042,7 +1042,7 @@
               .filter((item) => item.id !== "custom1" && item.id !== "custom2" && item.id !== "rap5");
             const shuffled = [...stripPool].sort(() => Math.random() - 0.5);
             const items = shuffled.slice(0, strip.rowSize || 10);
-            const marqueeItems = [...items, ...items];
+            const marqueeItems = [...items, ...items, ...items];
 
             root.innerHTML = marqueeItems.map((item) => productCardHTML(item, { compact: true })).join("");
             root.dataset.flow = strip.direction === "rtl" ? "rtl" : "ltr";
@@ -1091,12 +1091,16 @@
         }
 
         function wrapRandomTrackScroll(track, scrollLeft) {
-          const halfWidth = track.scrollWidth / 2;
-          if (halfWidth <= track.clientWidth) return 0;
+          const segmentWidth = track.scrollWidth / 3;
+          if (segmentWidth <= track.clientWidth) return 0;
 
           let wrapped = scrollLeft;
-          while (wrapped < 0) wrapped += halfWidth;
-          while (wrapped >= halfWidth) wrapped -= halfWidth;
+          const min = segmentWidth * 0.5;
+          const max = segmentWidth * 1.5;
+
+          if (wrapped < min) wrapped += segmentWidth;
+          if (wrapped > max) wrapped -= segmentWidth;
+
           return wrapped;
         }
 
@@ -1108,6 +1112,7 @@
           let startY = 0;
           let startScroll = 0;
           let dragging = false;
+          let moved = false;
 
           const onPointerMove = (event) => {
             if (pointerId === null || event.pointerId !== pointerId) return;
@@ -1119,6 +1124,7 @@
             }
             if (!dragging) return;
 
+            moved = true;
             const nextScroll = startScroll - dx;
             track.scrollLeft = wrapRandomTrackScroll(track, nextScroll);
             track.classList.add("is-dragging");
@@ -1137,6 +1143,7 @@
             pointerId = null;
             dragging = false;
             track.classList.remove("is-dragging");
+            if (moved) track.dataset.justDraggedAt = String(Date.now());
           };
 
           track.addEventListener("pointerdown", (event) => {
@@ -1147,6 +1154,7 @@
             startY = event.clientY;
             startScroll = track.scrollLeft;
             dragging = false;
+            moved = false;
             track.setPointerCapture(pointerId);
             pauseRandomTracks(7000);
           });
@@ -1155,6 +1163,14 @@
           track.addEventListener("pointerup", endDrag);
           track.addEventListener("pointercancel", endDrag);
           track.addEventListener("lostpointercapture", endDrag);
+          track.addEventListener("dragstart", (event) => event.preventDefault());
+          track.addEventListener("click", (event) => {
+            const draggedAt = Number(track.dataset.justDraggedAt || "0");
+            if (draggedAt && Date.now() - draggedAt < 300) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+          }, true);
 
           track.dataset.dragBound = "1";
         }
@@ -1178,7 +1194,7 @@
 
           tracks.forEach((track) => {
             track.dataset.dir = track.dataset.flow === "rtl" ? "-1" : "1";
-            track.scrollLeft = 0;
+            track.scrollLeft = track.scrollWidth / 3;
           });
 
           let lastTime = performance.now();
@@ -1190,8 +1206,8 @@
 
             if (Date.now() >= randomTracksPauseUntil) {
               tracks.forEach((track) => {
-                const halfWidth = track.scrollWidth / 2;
-                if (halfWidth <= track.clientWidth) return;
+                const segmentWidth = track.scrollWidth / 3;
+                if (segmentWidth <= track.clientWidth) return;
 
                 const dir = Number(track.dataset.dir || "1");
                 const next = track.scrollLeft + (dir * speedPxPerSecond * deltaSeconds);

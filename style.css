@@ -989,7 +989,7 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .random-row .random-track {
   flex: 1;
-  touch-action: pan-x pan-y pinch-zoom;
+  touch-action: pan-y pinch-zoom;
   cursor: grab;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
@@ -1003,7 +1003,7 @@ html[dir="rtl"] .checkout-summary__row {
 }
 @media (hover: none) and (pointer: coarse) {
   .random-row .random-track {
-    touch-action: pan-x pan-y pinch-zoom;
+    touch-action: pan-y pinch-zoom;
   }
 }
 .track-nav {
@@ -1744,4 +1744,69 @@ html[dir="rtl"] .checkout-summary__row {
 
 .drawer__items {
   touch-action: pan-y;
+}
+
+/* Final responsive featured-strip behavior (laptop/tablet/phone) */
+.random-showcase .random-row {
+  gap: 10px;
+}
+
+.random-showcase .track-nav {
+  display: none !important;
+}
+
+.random-showcase .random-track {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y pinch-zoom !important;
+  scroll-snap-type: none !important;
+  scrollbar-width: none;
+  cursor: default !important;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.random-showcase .random-track.is-dragging {
+  cursor: default !important;
+}
+
+.random-showcase .random-track::-webkit-scrollbar {
+  display: none;
+}
+
+.random-showcase .random-track .product,
+.random-showcase .random-track--top .product {
+  flex: 0 0 210px;
+  min-width: 210px;
+  scroll-snap-align: none;
+}
+
+@media (max-width: 1024px) {
+  .random-showcase .track-nav {
+    display: none !important;
+  }
+
+  .random-showcase .random-track .product,
+  .random-showcase .random-track--top .product {
+    flex: 0 0 32vw;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .random-showcase .random-row {
+    gap: 0;
+  }
+
+  .random-showcase .random-track {
+    padding-inline: 2px;
+  }
+
+  .random-showcase .random-track .product,
+  .random-showcase .random-track--top .product {
+    flex: 0 0 72vw;
+    min-width: 72vw;
+  }
 }
