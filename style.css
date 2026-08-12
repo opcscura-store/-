@@ -669,23 +669,40 @@ html[dir="rtl"] .checkout-summary__row {
   background: #000 !important;
   color: #fff !important;
 }
+
+#addCustomBtn {
+  color: #111 !important;
+}
+
+#addCustomBtn:hover,
+#addCustomBtn:focus-visible {
+  color: #000 !important;
+}
 .hero__showcase {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 18px;
-  border-radius: 28px;
-  background: linear-gradient(160deg, rgba(20, 25, 31, 0.72), rgba(15, 19, 24, 0.84));
-  border: 1px solid rgba(17, 17, 17, 0.08);
+  gap: 14px;
+  padding: 26px;
+  border-radius: 32px;
+  background: linear-gradient(125deg, rgba(142, 134, 79, 0.92), rgba(46, 84, 62, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: var(--shadow);
   backdrop-filter: blur(3px);
 }
 .hero__showcase img {
-  height: 210px;
+  height: 250px;
   object-fit: cover;
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  border: 2px solid rgba(255,255,255,0.72);
+  border-radius: 28px;
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.28);
+  border: 4px solid rgba(235, 238, 240, 0.92);
+  border-top-width: 7px;
+  border-bottom-width: 7px;
+}
+
+/* Keep hero phones strip on olive/green panel (do not inherit dark card override) */
+.hero__showcase.glow-frame {
+  background: linear-gradient(125deg, rgba(142, 134, 79, 0.92), rgba(46, 84, 62, 0.92)) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
 
 .glow-frame {
@@ -861,7 +878,7 @@ html[dir="rtl"] .checkout-summary__row {
   place-items: center;
   background:
     linear-gradient(145deg, rgba(17,17,17,0.08), rgba(255,255,255,0.08)),
-    url('farmess.jpg') center/cover;
+    url('../farmess.jpg') center/cover;
 }
 .customizer__preview img {
   width: 100%;
@@ -953,32 +970,64 @@ html[dir="rtl"] .checkout-summary__row {
   direction: ltr;
   padding: 4px 0 8px;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.38) rgba(255, 255, 255, 0.12);
 }
 .random-row {
   display: flex;
   align-items: center;
-  gap: 0;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 .random-row:last-child {
   margin-bottom: 0;
 }
 .random-row .random-track {
   flex: 1;
-  touch-action: pan-y;
+  touch-action: pan-x pinch-zoom;
   cursor: grab;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+  overscroll-behavior-x: contain;
 }
 .random-row .random-track.is-dragging {
   cursor: grabbing;
   user-select: none;
 }
 .track-nav {
-  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background: rgba(17, 17, 17, 0.68);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+.track-nav:hover {
+  transform: translateY(-1px);
+  background: rgba(17, 17, 17, 0.84);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 .random-track::-webkit-scrollbar {
-  display: none;
+  height: 10px;
+}
+.random-track::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+.random-track::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 999px;
+}
+.random-track::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.56);
 }
 .random-track--top {
   gap: 10px;
@@ -987,6 +1036,41 @@ html[dir="rtl"] .checkout-summary__row {
 .random-track .product {
   flex: 0 0 180px;
   scroll-snap-align: start;
+  animation: none;
+}
+.random-track .product--strip {
+  border-radius: 20px;
+}
+.random-track .product--strip .product__art {
+  aspect-ratio: 4 / 5;
+  padding: 0;
+  background: #eef1f4;
+}
+.random-track .product--strip .product__art img {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: 0;
+  box-shadow: none;
+}
+.random-track .product--strip .product__body--strip {
+  padding: 12px;
+  gap: 8px;
+}
+.random-track .product--strip .product__title {
+  font-size: 20px;
+  line-height: 1.15;
+}
+.random-track .product--strip .product__subcopy {
+  min-height: 0;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.random-track .product--strip .product__price {
+  margin-top: 2px;
 }
 .random-track--top .product {
   flex: 0 0 160px;
@@ -1020,7 +1104,7 @@ html[dir="rtl"] .checkout-summary__row {
   aspect-ratio: 1 / 1;
   background:
     linear-gradient(145deg, rgba(17,17,17,0.05), rgba(255,255,255,0.15)),
-    url('farmess.jpg') center/cover;
+    url('../farmess.jpg') center/cover;
   display: grid;
   place-items: center;
   padding: 12px;
@@ -1254,7 +1338,7 @@ html[dir="rtl"] .checkout-summary__row {
   flex-shrink: 0;
   border-radius: 12px;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(17,17,17,0.16), rgba(17,17,17,0.04)), url('farmess.jpg') center/cover;
+  background: linear-gradient(135deg, rgba(17,17,17,0.16), rgba(17,17,17,0.04)), url('../farmess.jpg') center/cover;
   display: grid;
   place-items: center;
   border: 1px solid rgba(17,17,17,0.08);
@@ -1318,6 +1402,106 @@ html[dir="rtl"] .checkout-summary__row {
 .form-grid input,
 .form-grid select,
 .form-grid textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 12px; }
+
+/* Keep checkout selects readable on Windows native dropdowns */
+.form-grid select,
+#shipping-zone {
+  background: #ffffff !important;
+  color: #121212 !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+.form-grid select option,
+#shipping-zone option {
+  background: #ffffff;
+  color: #121212;
+}
+
+#shipping-zone option[value=""] {
+  color: #5b5b5b;
+}
+
+/* Checkout action must stay high-contrast */
+#checkoutForm button[type="submit"].btn--solid {
+  background: #111111 !important;
+  color: #ffffff !important;
+  border: 1px solid #111111;
+}
+
+/* Any light/white panel should use dark text for readability */
+.field input,
+.field select,
+.field textarea,
+.form-grid input,
+.form-grid select,
+.form-grid textarea,
+.product__opts select {
+  color: var(--ink);
+}
+
+.form-grid input::placeholder,
+.form-grid textarea::placeholder,
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--muted);
+}
+
+/* Keep text readable on dark surfaces across the storefront */
+.hero__copy,
+.hero__showcase,
+.collection-card,
+.customizer__card,
+.product,
+.benefits article,
+.drawer__panel,
+.drawer__head,
+.drawer__row,
+.drawer__items,
+.cart-item,
+.cart-item__title,
+.cart-item__row,
+.cart-item__sub,
+.modal__panel,
+.modal__head,
+.modal__body,
+.form-grid label,
+.field,
+.checkout-summary,
+.checkout-summary__row,
+.checkout-summary__total {
+  color: var(--ink);
+}
+
+/* Secondary copy on dark areas */
+.hero p,
+.collection-card p,
+.customizer__copy p,
+.customizer__copy li,
+.product__subcopy,
+.benefits p,
+.checkout-fine {
+  color: var(--muted);
+}
+
+.cart-item__sub {
+  color: rgba(243, 239, 230, 0.9);
+}
+
+.cart-item__sub--muted {
+  color: rgba(243, 239, 230, 0.72);
+}
+
+/* Product size selector sits on dark cards, keep it light for readability */
+.product .product__opts select {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+.product .product__opts select option {
+  background: #1a1f26;
+  color: #ffffff;
+}
 .checkout-summary { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
 .checkout-summary__row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; }
 .checkout-summary__row--discount { color: #2d6648; }
@@ -1425,6 +1609,31 @@ html[dir="rtl"] .checkout-summary__row {
   .footer__inner {
     grid-template-columns: 1fr;
   }
+  .random-row {
+    gap: 8px;
+  }
+  .random-track .product {
+    flex: 0 0 46vw;
+    min-width: 220px;
+  }
+  .random-track .product--strip .product__title {
+    font-size: 19px;
+  }
+  .track-nav {
+    display: none;
+  }
+  .random-track {
+    scroll-behavior: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+  }
+  .random-track::-webkit-scrollbar {
+    display: none;
+  }
+  .product,
+  .collection-card {
+    animation: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1484,7 +1693,19 @@ html[dir="rtl"] .checkout-summary__row {
     width: 100%;
   }
   .random-track .product {
-    flex: 0 0 82vw;
+    flex: 0 0 80vw;
+    min-width: 0;
+  }
+  .random-track .product--strip .product__body--strip {
+    padding: 11px;
+  }
+  .random-track .product--strip .product__title {
+    font-size: 18px;
+  }
+  .track-nav {
+    width: 34px;
+    height: 34px;
+    font-size: 22px;
   }
   .random-track {
     flex-wrap: nowrap;

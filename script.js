@@ -73,47 +73,47 @@
 
         const CATALOG = {
           sports: [
-            { id: "sp1", title: "CR7 Legacy", art: "sport.jpg" },
-            { id: "sp2", title: "Gallery Heat", art: "sport1.jpg" },
-            { id: "sp3", title: "Icon Shot", art: "sport3.jpg" },
-            { id: "sp4", title: "Salah Energy", art: "sport4.jpg" },
-            { id: "sp5", title: "Classic Action", art: "sport5.jpg" },
-            { id: "sp6", title: "Messi Moment", art: "sport6.jpg" },
-            { id: "sp7", title: "Team Spirit", art: "sport7.jpg" },
-            { id: "sp8", title: "Game Day", art: "sport8.jpg" },
-            { id: "sp9", title: "Victory Wave", art: "sport9.jpg" },
-            { id: "sp10", title: "Stadium Night", art: "sport10.jpg" },
-            { id: "sp11", title: "Focus Mode", art: "sport11.jpg" },
-            { id: "sp12", title: "Final Whistle", art: "sport12.jpg" },
-            { id: "sp13", title: "Champion Spirit", art: "sport13.jpg" },
-            { id: "sp14", title: "Goal Rush", art: "sport14.jpg" },
-            { id: "sp15", title: "Match Build", art: "sport15.jpg" },
-            { id: "sp16", title: "Arena Heat", art: "sport20.jpg" },
-            { id: "sp17", title: "Matchday Aura", art: "sport21.jpg" },
-            { id: "sp18", title: "Playmaker", art: "sport23.jpg" },
-            { id: "sp19", title: "Crowd Noise", art: "sport25.jpg" },
-            { id: "sp20", title: "Winner's Line", art: "sport26.jpg" },
-            { id: "sp21", title: "Victory Frame", art: "sport27.jpg" },
-            { id: "sp22", title: "Clutch Moment", art: "sport28.jpg" },
-            { id: "sp23", title: "Night Kick", art: "sport29.jpg" },
-            { id: "sp24", title: "Legacy Shot", art: "sport113.jpg" },
-            { id: "sp25", title: "Training Pulse", art: "spoprt18.jpg" },
-            { id: "sp26", title: "Quick Strike", art: "sort19.jpg" }
+            { id: "sp1", title: "Hossam Hassan", art: "sport.jpg" },
+            { id: "sp2", title: "Shobier", art: "sport1.jpg" },
+            { id: "sp3", title: "Neymar", art: "sport3.jpg" },
+            { id: "sp4", title: "Salah", art: "sport4.jpg" },
+            { id: "sp5", title: "Emam Ashour", art: "sport5.jpg" },
+            { id: "sp6", title: "Messi", art: "sport6.jpg" },
+            { id: "sp7", title: "cr7", art: "sport7.jpg" },
+            { id: "sp8", title: "lamen yamal", art: "sport8.jpg" },
+            { id: "sp9", title: "Mbappe", art: "sport9.jpg" },
+            { id: "sp10", title: "ronaldo", art: "sport10.jpg" },
+            { id: "sp11", title: "messi", art: "sport11.jpg" },
+            { id: "sp12", title: "king mo salah", art: "sport12.jpg" },
+            { id: "sp13", title: "lionel messi", art: "sport13.jpg" },
+            { id: "sp14", title: "zeko", art: "sport14.jpg" },
+            { id: "sp15", title: "marmoush", art: "sport15.jpg" },
+            { id: "sp16", title: "messi", art: "sport20.jpg" },
+            { id: "sp17", title: "jose mourinho", art: "sport21.jpg" },
+            { id: "sp18", title: "neymar", art: "sport23.jpg" },
+            { id: "sp19", title: "salah", art: "sport25.jpg" },
+            { id: "sp20", title: "cr7", art: "sport26.jpg" },
+            { id: "sp21", title: "messi", art: "sport27.jpg" },
+            { id: "sp22", title: "cr7", art: "sport28.jpg" },
+            { id: "sp23", title: "cristiano ronaldo", art: "sport29.jpg" },
+            { id: "sp24", title: "emam ashour", art: "sport113.jpg" },
+            { id: "sp25", title: "naymar", art: "spoprt18.jpg" },
+            { id: "sp26", title: "ali maaloul", art: "sort19.jpg" }
           ],
           cars: [
-            { id: "car1", title: "Turbo Night", art: "car1.jpg" },
-            { id: "car2", title: "Porsche 911", art: "car2.jpg" },
-            { id: "car3", title: "Ferrari Icons", art: "car3.jpg" },
-            { id: "car4", title: "GT3 RS", art: "car4.jpg" },
-            { id: "car5", title: "Mustang Fire", art: "car5.jpg" },
-            { id: "car6", title: "Speedline", art: "car6.jpg" },
-            { id: "car7", title: "Track Spec", art: "car7.jpg" },
-            { id: "car8", title: "Midnight Engine", art: "car8.jpg" },
-            { id: "car9", title: "Street Track", art: "car9.jpg" },
-            { id: "car10", title: "Night Drift", art: "car10.jpg" },
-            { id: "car11", title: "Power Line", art: "car11.jpg" },
-            { id: "car12", title: "Supercar Mood", art: "car12.jpg" },
-            { id: "car13", title: "Final Lap", art: "car13.jpg" }
+            { id: "car1", title: " GT3-Rs", art: "car1.jpg" },
+            { id: "car2", title: "Mustang", art: "car2.jpg" },
+            { id: "car3", title: "porsche", art: "car3.jpg" },
+            { id: "car4", title: "Porsche 911", art: "car4.jpg" },
+            { id: "car5", title: "Ferrari", art: "car5.jpg" },
+            { id: "car6", title: "Lamborghini Huracan", art: "car6.jpg" },
+            { id: "car7", title: "McLaren 720S", art: "car7.jpg" },
+            { id: "car8", title: "Mercedes amg gt", art: "car8.jpg" },
+            { id: "car9", title: "bmw", art: "car9.jpg" },
+            { id: "car10", title: "bmw", art: "car10.jpg" },
+            { id: "car11", title: "bmw m3", art: "car11.jpg" },
+            { id: "car12", title: "Bugatti Chiron", art: "car12.jpg" },
+            { id: "car13", title: "bmw", art: "car13.jpg" }
           ],
           gaming: [
             { id: "gm1", title: "Arcade Legends", art: "game1.jpg" },
@@ -168,13 +168,13 @@
             { id: "art5", title: "فن 5", art: "art 5.jpg" }
           ],
           quran: [
-            { id: "q1", title: "القرآن 1", art: "quran.jpg" },
-            { id: "q2", title: "القرآن 2", art: "quran 1.jpg" },
-            { id: "q3", title: "القرآن 3", art: "quran2.jpg" },
-            { id: "q4", title: "القرآن 4", art: "quran3.jpg" },
-            { id: "q5", title: "القرآن 5", art: "quran4.jpg" },
-            { id: "q6", title: "القرآن 6", art: "quran5.jpg" },
-            { id: "q7", title: "القرآن 7", art: "quran7.jpg" }
+            { id: "quran1", title: "القرآن 1", art: "quran.jpg" },
+            { id: "quran2", title: "القرآن 2", art: "quran 1.jpg" },
+            { id: "quran3", title: "القرآن 3", art: "quran2.jpg" },
+            { id: "quran4", title: "القرآن 4", art: "quran3.jpg" },
+            { id: "quran5", title: "القرآن 5", art: "quran4.jpg" },
+            { id: "quran6", title: "القرآن 6", art: "quran5.jpg" },
+            { id: "quran7", title: "القرآن 7", art: "quran7.jpg" }
           ],
           she: [
             { id: "she1", title: "هي 1", art: "she.jpg" },
@@ -305,6 +305,7 @@
             summaryTotal: "Total",
             emptyCartToast: "Your cart is empty",
             validationToast: "Please fill in name, phone, and address",
+            phoneValidationToast: "Please enter a valid full Egyptian mobile number",
             orderSuccess: "Order {id} confirmed. Telegram has been notified.",
             optionFramed: "Framed",
             customPrefix: "Custom frame",
@@ -419,6 +420,7 @@
             summaryTotal: "الإجمالي النهائي",
             emptyCartToast: "السلة فارغة",
             validationToast: "من فضلك اكتب الاسم ورقم الموبايل والعنوان",
+            phoneValidationToast: "من فضلك اكتب رقم موبايل مصري صحيح وكامل",
             orderSuccess: "تم تأكيد الطلب {id}. تم إخطار تيليجرام.",
             optionFramed: "بإطار",
             customPrefix: "إطار مخصص",
@@ -484,6 +486,66 @@
           "Golden Muse": "إلهام ذهبي",
           "Soft Light": "إضاءة ناعمة",
           "City Grace": "أناقة المدينة",
+          "Hossam Hassan": "حسام حسن",
+          "Shobier": "شوبير",
+          "Neymar": "نيمار",
+          "Salah": "صلاح",
+          "cr7": "كريستيانو رونالدو",
+          "lamen yamal": "لامين يامال",
+          "Ronaldo": "رونالدو",
+          "ronaldo": "رونالدو",
+          "Messi": "ميسي",
+          "messi": "ميسي",
+          "king mo salah": "الملك محمد صلاح",
+          "lionel messi": "ليونيل ميسي",
+          "zeko": "زيكو",
+          "Benzema": "بنزيما",
+          "Mbappe": "مبابي",
+          "Haaland": "هالاند",
+          "Modric": "مودريتش",
+          "De Bruyne": "دي بروين",
+          "Lewandowski": "ليفاندوفسكي",
+          "Bellingham": "بيلينجهام",
+          "Mane": "ماني",
+          "Kane": "كين",
+          "Griezmann": "جريزمان",
+          "Pedri": "بيدري",
+          "Bruno Fernandes": "برونو فيرنانديز",
+          "Marmoush": "مرموش",
+          "marmoush": "مرموش",
+          "Hakimi": "حكيمي",
+          "Rodri": "رودري",
+          "Davies": "ديفيز",
+          "Yamal": "يامال",
+          "Bounou": "بونو",
+          "Zizo": "زيكو",
+          "Emam Ashour": "إمام عاشور",
+          "emam ashour": "إمام عاشور",
+          "jose mourinho": "جوزيه مورينيو",
+          "neymar": "نيمار",
+          "salah": "صلاح",
+          "cristiano ronaldo": "كريستيانو رونالدو",
+          "naymar": "نيمار",
+          "ali maaloul": "علي معلول",
+          " GT3-Rs": "جي تي 3 آر إس",
+          "Mustang": "موستانج",
+          "porsche": "بورشه",
+          "Ferrari": "فيراري",
+          "Mercedes amg gt": "مرسيدس AMG GT",
+          "bmw": "بي إم دبليو",
+          "bmw m3": "بي إم دبليو M3",
+          "Nissan GT-R": "نيسان جي تي آر",
+          "Ferrari SF90": "فيراري SF90",
+          "Porsche GT3 RS": "بورشه GT3 RS",
+          "Ford Mustang": "فورد موستانج",
+          "Lamborghini Huracan": "لامبورجيني هوراكان",
+          "McLaren 720S": "ماكلارين 720S",
+          "BMW M4": "بي إم دبليو M4",
+          "Mercedes AMG GT": "مرسيدس AMG GT",
+          "Audi R8": "أودي R8",
+          "Chevrolet Camaro": "شيفروليه كامارو",
+          "Bugatti Chiron": "بوجاتي شيرون",
+          "Koenigsegg Jesko": "كوينيجسيج يسكو",
           "Sabr": "صبر",
           "Baraka": "بركة",
           "Tawakkul": "توكل",
@@ -518,6 +580,7 @@
         const state = { cart: loadCart() };
         let toastTimer = null;
         let randomTracksTimer = null;
+        let randomTracksFrame = null;
         let randomTracksPauseUntil = 0;
 
         const $ = (sel, parent = document) => parent.querySelector(sel);
@@ -885,6 +948,17 @@
           return art.split("/").pop() || fallback;
         }
 
+        function resolveArtPathForFetch(art) {
+          if (!art) return "";
+          if (art.startsWith("data:") || art.startsWith("blob:") || art.startsWith("http://") || art.startsWith("https://") || art.startsWith("file://")) {
+            return art;
+          }
+          if (art.startsWith("../") || art.startsWith("./") || art.startsWith("/")) {
+            return art;
+          }
+          return window.location.pathname.includes("/files/") ? `../${art}` : art;
+        }
+
         function loadCart() {
           try {
             return JSON.parse(localStorage.getItem(CART_KEY) || "[]");
@@ -916,6 +990,19 @@
 
         function getDiscountedSubtotal(subtotal, itemCount = getCartItemsCount()) {
           return Math.max(0, subtotal - getDiscountValue(subtotal, itemCount));
+        }
+
+        function normalizeEgyptianPhone(phone) {
+          const raw = String(phone || "").trim();
+          if (!raw) return null;
+
+          let value = raw.replace(/[\s\-()]/g, "");
+          if (value.startsWith("+2")) value = value.slice(2);
+          else if (value.startsWith("002")) value = value.slice(3);
+          else if (value.startsWith("2") && value.length === 12) value = value.slice(1);
+
+          if (!/^01[0125]\d{8}$/.test(value)) return null;
+          return value;
         }
 
         function getSelectedCustomState() {
@@ -952,20 +1039,23 @@
 
             const stripPool = strip.categories
               .flatMap((category) => CATALOG[category] || [])
-              .filter((item) => item.id !== "custom1" && item.id !== "custom2");
+              .filter((item) => item.id !== "custom1" && item.id !== "custom2" && item.id !== "rap5");
             const shuffled = [...stripPool].sort(() => Math.random() - 0.5);
             const items = shuffled.slice(0, strip.rowSize || 10);
 
-            root.innerHTML = items.map((item) => productCardHTML(item)).join("");
+            root.innerHTML = items.map((item) => productCardHTML(item, { compact: true })).join("");
             root.dataset.flow = strip.direction === "rtl" ? "rtl" : "ltr";
             bindProductEvents(root);
             stripRoots.push(root);
           });
 
           setupRandomTrackControls(stripRoots);
+          startRandomTracksMotion(stripRoots);
         }
 
         function setupRandomTrackControls(rowRoots) {
+          const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
+
           rowRoots.forEach((track) => {
             if (!track || track.dataset.controlsBound === "1") return;
 
@@ -973,7 +1063,15 @@
             const prevBtn = row?.querySelector('.track-nav[data-dir="prev"]');
             const nextBtn = row?.querySelector('.track-nav[data-dir="next"]');
 
-            const stepSize = () => Math.max(180, Math.round(track.clientWidth * 0.72));
+            const stepSize = () => {
+              const firstCard = track.querySelector(".product");
+              const styles = getComputedStyle(track);
+              const gap = Number.parseFloat(styles.gap || styles.columnGap || "12") || 12;
+              if (firstCard) {
+                return Math.max(160, Math.round(firstCard.getBoundingClientRect().width + gap));
+              }
+              return Math.max(180, Math.round(track.clientWidth * 0.72));
+            };
             const moveTrack = (direction) => {
               track.scrollBy({ left: direction * stepSize(), behavior: "smooth" });
               pauseRandomTracks(7000);
@@ -989,42 +1087,45 @@
             let startScrollLeft = 0;
             const DRAG_THRESHOLD = 6;
 
-            track.addEventListener("pointerdown", (event) => {
-              if (event.pointerType === "mouse" && event.button !== 0) return;
-              isPointerDown = true;
-              isDragging = false;
-              pointerId = event.pointerId;
-              startX = event.clientX;
-              startScrollLeft = track.scrollLeft;
-              pauseRandomTracks(7000);
-            });
+            if (!isCoarsePointer) {
+              track.addEventListener("pointerdown", (event) => {
+                if (event.pointerType === "mouse" && event.button !== 0) return;
+                isPointerDown = true;
+                isDragging = false;
+                pointerId = event.pointerId;
+                startX = event.clientX;
+                startScrollLeft = track.scrollLeft;
+                pauseRandomTracks(7000);
+              });
 
-            track.addEventListener("pointermove", (event) => {
-              if (!isPointerDown) return;
-              const delta = event.clientX - startX;
-              if (!isDragging) {
-                if (Math.abs(delta) < DRAG_THRESHOLD) return;
-                isDragging = true;
-                track.classList.add("is-dragging");
-                track.setPointerCapture?.(pointerId);
-              }
-              track.scrollLeft = startScrollLeft - delta;
-            });
+              track.addEventListener("pointermove", (event) => {
+                if (!isPointerDown) return;
+                const delta = event.clientX - startX;
+                if (!isDragging) {
+                  if (Math.abs(delta) < DRAG_THRESHOLD) return;
+                  isDragging = true;
+                  track.classList.add("is-dragging");
+                  track.setPointerCapture?.(pointerId);
+                }
+                track.scrollLeft = startScrollLeft - delta;
+              });
 
-            const endPointerDrag = () => {
-              if (!isPointerDown) return;
-              isPointerDown = false;
-              isDragging = false;
-              track.classList.remove("is-dragging");
-              if (pointerId !== null) {
-                track.releasePointerCapture?.(pointerId);
-              }
-              pointerId = null;
-            };
+              const endPointerDrag = () => {
+                if (!isPointerDown) return;
+                isPointerDown = false;
+                isDragging = false;
+                track.classList.remove("is-dragging");
+                if (pointerId !== null) {
+                  track.releasePointerCapture?.(pointerId);
+                }
+                pointerId = null;
+              };
 
-            track.addEventListener("pointerup", endPointerDrag);
-            track.addEventListener("pointercancel", endPointerDrag);
-            track.addEventListener("mouseleave", endPointerDrag);
+              track.addEventListener("pointerup", endPointerDrag);
+              track.addEventListener("pointercancel", endPointerDrag);
+              track.addEventListener("mouseleave", endPointerDrag);
+            }
+
             track.addEventListener("touchstart", () => pauseRandomTracks(7000), { passive: true });
             track.addEventListener("wheel", () => pauseRandomTracks(5000), { passive: true });
 
@@ -1041,40 +1142,56 @@
             clearInterval(randomTracksTimer);
             randomTracksTimer = null;
           }
+          if (randomTracksFrame) {
+            cancelAnimationFrame(randomTracksFrame);
+            randomTracksFrame = null;
+          }
 
           const tracks = rowRoots.filter(Boolean);
           if (!tracks.length) return;
+
+          const disableAutoMotion = window.matchMedia("(max-width: 1024px)").matches || window.matchMedia("(pointer: coarse)").matches;
+          if (disableAutoMotion) return;
 
           tracks.forEach((track) => {
             track.dataset.dir = track.dataset.flow === "rtl" ? "-1" : "1";
           });
 
-          randomTracksTimer = setInterval(() => {
-            if (Date.now() < randomTracksPauseUntil) return;
+          let lastTick = performance.now();
+          const pixelsPerSecond = 26;
 
-            tracks.forEach((track) => {
-              const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-              if (maxScroll <= 0) return;
+          const animate = (now) => {
+            const dt = Math.max(0, (now - lastTick) / 1000);
+            lastTick = now;
 
-              let dir = Number(track.dataset.dir || "1");
-              const speed = 0.9;
-              const next = track.scrollLeft + (dir * speed);
+            if (Date.now() >= randomTracksPauseUntil) {
+              tracks.forEach((track) => {
+                const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+                if (maxScroll <= 0) return;
 
-              if (next >= maxScroll) {
-                track.scrollLeft = maxScroll;
-                track.dataset.dir = "-1";
-                return;
-              }
+                let dir = Number(track.dataset.dir || "1");
+                const next = track.scrollLeft + (dir * pixelsPerSecond * dt);
 
-              if (next <= 0) {
-                track.scrollLeft = 0;
-                track.dataset.dir = "1";
-                return;
-              }
+                if (next >= maxScroll) {
+                  track.scrollLeft = maxScroll;
+                  track.dataset.dir = "-1";
+                  return;
+                }
 
-              track.scrollLeft = next;
-            });
-          }, 30);
+                if (next <= 0) {
+                  track.scrollLeft = 0;
+                  track.dataset.dir = "1";
+                  return;
+                }
+
+                track.scrollLeft = next;
+              });
+            }
+
+            randomTracksFrame = requestAnimationFrame(animate);
+          };
+
+          randomTracksFrame = requestAnimationFrame(animate);
         }
 
         function renderSection(rootId, items) {
@@ -1084,10 +1201,11 @@
           bindProductEvents(root);
         }
 
-        function productCardHTML(item) {
+        function productCardHTML(item, opts = {}) {
+          const compact = opts.compact === true;
           const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" data-was="${opt.was}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
           const localizedTitle = localizeCatalogTitle(item.title);
-          const isRapUpload = item.id === "rap5";
+          const isRapUpload = !compact && item.id === "rap5";
           const helperText = isRapUpload
             ? t("rapUploadHint")
             : item.id.startsWith("custom")
@@ -1096,14 +1214,16 @@
           const uploadFieldHTML = isRapUpload
             ? `<label class="product__upload"><span>${t("rapUploadLabel")}</span><input class="rap-upload-input" type="file" accept="image/*" /></label>`
             : "";
-          const artSrc = item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("../")
+          const artSrc = item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("file://") || item.art.startsWith("../")
             ? item.art : `../${item.art}`;
+          const cardClass = compact ? "product product--strip" : "product";
+          const compactClass = compact ? " product__body--strip" : "";
           return `
-            <article class="product" data-id="${item.id}">
+            <article class="${cardClass}" data-id="${item.id}">
               <div class="product__art">
                 <img src="${artSrc}" alt="${escapeHTML(localizedTitle)}" />
               </div>
-              <div class="product__body">
+              <div class="product__body${compactClass}">
                 <h3 class="product__title">${escapeHTML(localizedTitle)}</h3>
                 <div class="product__subcopy">${escapeHTML(helperText)}</div>
                 ${uploadFieldHTML}
@@ -1275,7 +1395,7 @@
 
         function cartItemHTML(item) {
           const artMarkup = item.art
-            ? `<div class="cart-item__artframe"><img src="${item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("../") ? item.art : `../${item.art}`}" alt="${escapeHTML(item.title)}" /></div>`
+            ? `<div class="cart-item__artframe"><img src="${item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("file://") || item.art.startsWith("../") ? item.art : `../${item.art}`}" alt="${escapeHTML(item.title)}" /></div>`
             : '<div class="cart-item__artframe">🖼</div>';
           return `
             <div class="cart-item" data-uid="${item.uid}">
@@ -1283,7 +1403,6 @@
               <div class="cart-item__body">
                 <div class="cart-item__title">${escapeHTML(localizeItemTitle(item.title))}</div>
                 <div class="cart-item__sub">${escapeHTML(localizeItemOption(item.option))}</div>
-                <div class="cart-item__sub cart-item__sub--muted">${escapeHTML(localizeItemOption(item.imageLabel || item.title))}</div>
                 <div class="cart-item__row">
                   <div class="qty">
                     <button type="button" data-act="dec">−</button>
@@ -1376,7 +1495,7 @@
 
           const rows = state.cart.map((item) => `
             <div class="checkout-summary__row">
-              <span>${escapeHTML(localizeItemTitle(item.title))} <small>× ${item.qty}</small><br /><small>${escapeHTML(localizeItemOption(item.imageLabel || item.title))}</small></span>
+              <span>${escapeHTML(localizeItemTitle(item.title))} <small>× ${item.qty}</small></span>
               <span>${fmt(item.price * item.qty)}</span>
             </div>
           `).join("");
@@ -1460,6 +1579,13 @@
             return;
           }
 
+          const normalizedPhone = normalizeEgyptianPhone(order.customer.phone);
+          if (!normalizedPhone) {
+            toast(t("phoneValidationToast"));
+            return;
+          }
+          order.customer.phone = normalizedPhone;
+
           localStorage.setItem("opscura_last_order", JSON.stringify(order));
           Promise.allSettled([sendOrderToBackend(order)]).finally(() => finalizeOrder(order));
         }
@@ -1503,7 +1629,7 @@
           if (!item.art) return;
 
           try {
-            const photoResponse = await fetch(item.art);
+            const photoResponse = await fetch(resolveArtPathForFetch(item.art));
             if (!photoResponse.ok) throw new Error("Photo load failed");
             const photoBlob = await photoResponse.blob();
             const formData = new FormData();
