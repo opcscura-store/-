@@ -1,68 +1,21 @@
-/* ===========================================================
-   Wasted — Test page logic
-   - 4 case products, 4 frame products
-   - Renders into the Frames section and the Cases section
-   - Cart (localStorage), checkout, Telegram bot notification
-   =========================================================== */
-
 (() => {
   "use strict";
 
-  const CART_KEY = "opscura_cart_v1";
-  const CUSTOMERS_KEY = "opscura_customers_v1";
-  const OFFERS_KEY = "opscura_offers_sent_v1";
-  const SIZE_OPTIONS = [
-    { id: "20x30", label: "20 × 30 cm", price: 220 },
-    { id: "30x40", label: "30 × 40 cm", price: 270 },
-    { id: "40x50", label: "40 × 50 cm", price: 330 }
-  ];
-
-  function getSizeOption(sizeId) {
-    return SIZE_OPTIONS.find((option) => option.id === sizeId) || SIZE_OPTIONS[0];
-  }
-
-  const CATALOG = {
-    sports: [
-      { id: "sp1", title: "CR7 Legacy", art: "sport.jpg" },
-      { id: "sp2", title: "Messi Moment", art: "sport6.jpg" },
-      { id: "sp3", title: "Salah Energy", art: "sport4.jpg" },
-      { id: "sp4", title: "Champion Spirit", art: "sport13.jpg" }
-    ],
-    cars: [
-      { id: "car1", title: "Porsche 911", art: "car4.jpg" },
-      { id: "car2", title: "Ferrari Icons", art: "car5.jpg" },
-      { id: "car3", title: "GT3 RS", art: "car3.jpg" },
-      { id: "car4", title: "Mustang Fire", art: "car2.jpg" }
-    ],
-    gaming: [
-      { id: "gm1", title: "Arcade Legends", art: "game1.jpg" },
-      { id: "gm2", title: "Neon Pulse", art: "game2.jpg" },
-      { id: "gm3", title: "Console Glow", art: "game3.jpg" },
-      { id: "gm4", title: "Game Night", art: "game4.jpg" }
-    ],
-    rap: [
-      { id: "rap1", title: "Rap Energy", art: "rap1.jpg" }
-    ]
-  };
-})();
-
-      (() => {
-        "use strict";
-
         const CART_KEY = "opscura_cart_v1";
         const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.1);
+        const FREE_SHIPPING_THRESHOLD = 800;
         const FEATURED_STRIPS = [
           {
             rootId: "randomGridTop",
             categories: ["sports", "cars", "movies", "quotes"],
-            direction: "rtl",
-            rowSize: 10
+            direction: "ltr",
+            rowSize: 12
           },
           {
             rootId: "randomGridBottom",
             categories: ["gaming", "rap", "gym", "art", "quran", "she"],
             direction: "ltr",
-            rowSize: 10
+            rowSize: 12
           }
         ];
         const SIZE_OPTIONS = [
@@ -79,41 +32,41 @@
             { id: "sp4", title: "Salah", art: "sport4.jpg" },
             { id: "sp5", title: "Emam Ashour", art: "sport5.jpg" },
             { id: "sp6", title: "Messi", art: "sport6.jpg" },
-            { id: "sp7", title: "cr7", art: "sport7.jpg" },
-            { id: "sp8", title: "lamen yamal", art: "sport8.jpg" },
-            { id: "sp9", title: "Mbappe", art: "sport9.jpg" },
-            { id: "sp10", title: "ronaldo", art: "sport10.jpg" },
-            { id: "sp11", title: "messi", art: "sport11.jpg" },
-            { id: "sp12", title: "king mo salah", art: "sport12.jpg" },
-            { id: "sp13", title: "lionel messi", art: "sport13.jpg" },
-            { id: "sp14", title: "zeko", art: "sport14.jpg" },
-            { id: "sp15", title: "marmoush", art: "sport15.jpg" },
-            { id: "sp16", title: "messi", art: "sport20.jpg" },
-            { id: "sp17", title: "jose mourinho", art: "sport21.jpg" },
-            { id: "sp18", title: "neymar", art: "sport23.jpg" },
-            { id: "sp19", title: "salah", art: "sport25.jpg" },
-            { id: "sp20", title: "cr7", art: "sport26.jpg" },
-            { id: "sp21", title: "messi", art: "sport27.jpg" },
-            { id: "sp22", title: "cr7", art: "sport28.jpg" },
-            { id: "sp23", title: "cristiano ronaldo", art: "sport29.jpg" },
-            { id: "sp24", title: "emam ashour", art: "sport113.jpg" },
-            { id: "sp25", title: "naymar", art: "spoprt18.jpg" },
-            { id: "sp26", title: "ali maaloul", art: "sort19.jpg" }
+            { id: "sp7", title: "Benzema", art: "sport7.jpg" },
+            { id: "sp8", title: "Mbappe", art: "sport8.jpg" },
+            { id: "sp9", title: "Haaland", art: "sport9.jpg" },
+            { id: "sp10", title: "Modric", art: "sport10.jpg" },
+            { id: "sp11", title: "De Bruyne", art: "sport11.jpg" },
+            { id: "sp12", title: "Lewandowski", art: "sport12.jpg" },
+            { id: "sp13", title: "Bellingham", art: "sport13.jpg" },
+            { id: "sp14", title: "Mane", art: "sport14.jpg" },
+            { id: "sp15", title: "Kane", art: "sport15.jpg" },
+            { id: "sp16", title: "Griezmann", art: "sport20.jpg" },
+            { id: "sp17", title: "Pedri", art: "sport21.jpg" },
+            { id: "sp18", title: "Bruno Fernandes", art: "sport23.jpg" },
+            { id: "sp19", title: "Marmoush", art: "sport25.jpg" },
+            { id: "sp20", title: "Hakimi", art: "sport26.jpg" },
+            { id: "sp21", title: "Rodri", art: "sport27.jpg" },
+            { id: "sp22", title: "Davies", art: "sport28.jpg" },
+            { id: "sp23", title: "Yamal", art: "sport29.jpg" },
+            { id: "sp24", title: "Bounou", art: "sport113.jpg" },
+            { id: "sp25", title: "Zizo", art: "spoprt18.jpg" },
+            { id: "sp26", title: "Ronaldo", art: "sort19.jpg" }
           ],
           cars: [
-            { id: "car1", title: " GT3-Rs", art: "car1.jpg" },
-            { id: "car2", title: "Mustang", art: "car2.jpg" },
-            { id: "car3", title: "porsche", art: "car3.jpg" },
-            { id: "car4", title: "Porsche 911", art: "car4.jpg" },
-            { id: "car5", title: "Ferrari", art: "car5.jpg" },
+            { id: "car1", title: "Nissan GT-R", art: "car1.jpg" },
+            { id: "car2", title: "Porsche 911", art: "car2.jpg" },
+            { id: "car3", title: "Ferrari SF90", art: "car3.jpg" },
+            { id: "car4", title: "Porsche GT3 RS", art: "car4.jpg" },
+            { id: "car5", title: "Ford Mustang", art: "car5.jpg" },
             { id: "car6", title: "Lamborghini Huracan", art: "car6.jpg" },
             { id: "car7", title: "McLaren 720S", art: "car7.jpg" },
-            { id: "car8", title: "Mercedes amg gt", art: "car8.jpg" },
-            { id: "car9", title: "bmw", art: "car9.jpg" },
-            { id: "car10", title: "bmw", art: "car10.jpg" },
-            { id: "car11", title: "bmw m3", art: "car11.jpg" },
+            { id: "car8", title: "BMW M4", art: "car8.jpg" },
+            { id: "car9", title: "Mercedes AMG GT", art: "car9.jpg" },
+            { id: "car10", title: "Audi R8", art: "car10.jpg" },
+            { id: "car11", title: "Chevrolet Camaro", art: "car11.jpg" },
             { id: "car12", title: "Bugatti Chiron", art: "car12.jpg" },
-            { id: "car13", title: "bmw", art: "car13.jpg" }
+            { id: "car13", title: "Koenigsegg Jesko", art: "car13.jpg" }
           ],
           gaming: [
             { id: "gm1", title: "Arcade Legends", art: "game1.jpg" },
@@ -198,7 +151,7 @@
 
         const I18N = {
           en: {
-            promoBar: "Free shipping over 600 EGP · Custom framing in 3–4 days",
+            promoBar: "Free shipping over 800 EGP · Custom framing in 3–4 days",
             promoBanner: "<strong>Offer:</strong> 10% off when you buy 2 items.",
             navMenuAria: "Open menu",
             navCartAria: "Open cart",
@@ -313,7 +266,7 @@
             customUploadPrefix: "Custom upload"
           },
           ar: {
-            promoBar: "شحن مجاني للطلبات فوق 600 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
+            promoBar: "شحن مجاني للطلبات فوق 800 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
             promoBanner: "<strong>العرض:</strong> خصم 10% لو خدت 2.",
             navMenuAria: "فتح القائمة",
             navCartAria: "فتح السلة",
@@ -490,15 +443,8 @@
           "Shobier": "شوبير",
           "Neymar": "نيمار",
           "Salah": "صلاح",
-          "cr7": "كريستيانو رونالدو",
-          "lamen yamal": "لامين يامال",
           "Ronaldo": "رونالدو",
-          "ronaldo": "رونالدو",
           "Messi": "ميسي",
-          "messi": "ميسي",
-          "king mo salah": "الملك محمد صلاح",
-          "lionel messi": "ليونيل ميسي",
-          "zeko": "زيكو",
           "Benzema": "بنزيما",
           "Mbappe": "مبابي",
           "Haaland": "هالاند",
@@ -512,28 +458,13 @@
           "Pedri": "بيدري",
           "Bruno Fernandes": "برونو فيرنانديز",
           "Marmoush": "مرموش",
-          "marmoush": "مرموش",
           "Hakimi": "حكيمي",
           "Rodri": "رودري",
           "Davies": "ديفيز",
           "Yamal": "يامال",
           "Bounou": "بونو",
-          "Zizo": "زيكو",
+          "Zizo": "زيزو",
           "Emam Ashour": "إمام عاشور",
-          "emam ashour": "إمام عاشور",
-          "jose mourinho": "جوزيه مورينيو",
-          "neymar": "نيمار",
-          "salah": "صلاح",
-          "cristiano ronaldo": "كريستيانو رونالدو",
-          "naymar": "نيمار",
-          "ali maaloul": "علي معلول",
-          " GT3-Rs": "جي تي 3 آر إس",
-          "Mustang": "موستانج",
-          "porsche": "بورشه",
-          "Ferrari": "فيراري",
-          "Mercedes amg gt": "مرسيدس AMG GT",
-          "bmw": "بي إم دبليو",
-          "bmw m3": "بي إم دبليو M3",
           "Nissan GT-R": "نيسان جي تي آر",
           "Ferrari SF90": "فيراري SF90",
           "Porsche GT3 RS": "بورشه GT3 RS",
@@ -580,7 +511,6 @@
         const state = { cart: loadCart() };
         let toastTimer = null;
         let randomTracksTimer = null;
-        let randomTracksFrame = null;
         let randomTracksPauseUntil = 0;
 
         const $ = (sel, parent = document) => parent.querySelector(sel);
@@ -929,7 +859,6 @@
         function setLanguage(nextLanguage) {
           if (!SUPPORTED_LANGS.has(nextLanguage)) return;
           currentLanguage = nextLanguage;
-          localStorage.setItem(LANG_KEY, nextLanguage);
           applyStaticTranslations();
           renderProducts();
           renderCart();
@@ -950,7 +879,7 @@
 
         function resolveArtPathForFetch(art) {
           if (!art) return "";
-          if (art.startsWith("data:") || art.startsWith("blob:") || art.startsWith("http://") || art.startsWith("https://") || art.startsWith("file://")) {
+          if (art.startsWith("data:") || art.startsWith("blob:") || art.startsWith("http://") || art.startsWith("https://")) {
             return art;
           }
           if (art.startsWith("../") || art.startsWith("./") || art.startsWith("/")) {
@@ -1039,23 +968,20 @@
 
             const stripPool = strip.categories
               .flatMap((category) => CATALOG[category] || [])
-              .filter((item) => item.id !== "custom1" && item.id !== "custom2" && item.id !== "rap5");
+              .filter((item) => item.id !== "custom1" && item.id !== "custom2");
             const shuffled = [...stripPool].sort(() => Math.random() - 0.5);
             const items = shuffled.slice(0, strip.rowSize || 10);
 
-            root.innerHTML = items.map((item) => productCardHTML(item, { compact: true })).join("");
+            root.innerHTML = items.map((item) => productCardHTML(item)).join("");
             root.dataset.flow = strip.direction === "rtl" ? "rtl" : "ltr";
             bindProductEvents(root);
             stripRoots.push(root);
           });
 
           setupRandomTrackControls(stripRoots);
-          startRandomTracksMotion(stripRoots);
         }
 
         function setupRandomTrackControls(rowRoots) {
-          const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-
           rowRoots.forEach((track) => {
             if (!track || track.dataset.controlsBound === "1") return;
 
@@ -1063,15 +989,7 @@
             const prevBtn = row?.querySelector('.track-nav[data-dir="prev"]');
             const nextBtn = row?.querySelector('.track-nav[data-dir="next"]');
 
-            const stepSize = () => {
-              const firstCard = track.querySelector(".product");
-              const styles = getComputedStyle(track);
-              const gap = Number.parseFloat(styles.gap || styles.columnGap || "12") || 12;
-              if (firstCard) {
-                return Math.max(160, Math.round(firstCard.getBoundingClientRect().width + gap));
-              }
-              return Math.max(180, Math.round(track.clientWidth * 0.72));
-            };
+            const stepSize = () => Math.max(180, Math.round(track.clientWidth * 0.72));
             const moveTrack = (direction) => {
               track.scrollBy({ left: direction * stepSize(), behavior: "smooth" });
               pauseRandomTracks(7000);
@@ -1185,56 +1103,40 @@
             clearInterval(randomTracksTimer);
             randomTracksTimer = null;
           }
-          if (randomTracksFrame) {
-            cancelAnimationFrame(randomTracksFrame);
-            randomTracksFrame = null;
-          }
 
           const tracks = rowRoots.filter(Boolean);
           if (!tracks.length) return;
-
-          const disableAutoMotion = window.matchMedia("(max-width: 1024px)").matches || window.matchMedia("(pointer: coarse)").matches;
-          if (disableAutoMotion) return;
 
           tracks.forEach((track) => {
             track.dataset.dir = track.dataset.flow === "rtl" ? "-1" : "1";
           });
 
-          let lastTick = performance.now();
-          const pixelsPerSecond = 26;
+          randomTracksTimer = setInterval(() => {
+            if (Date.now() < randomTracksPauseUntil) return;
 
-          const animate = (now) => {
-            const dt = Math.max(0, (now - lastTick) / 1000);
-            lastTick = now;
+            tracks.forEach((track) => {
+              const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
+              if (maxScroll <= 0) return;
 
-            if (Date.now() >= randomTracksPauseUntil) {
-              tracks.forEach((track) => {
-                const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth);
-                if (maxScroll <= 0) return;
+              let dir = Number(track.dataset.dir || "1");
+              const speed = 0.9;
+              const next = track.scrollLeft + (dir * speed);
 
-                let dir = Number(track.dataset.dir || "1");
-                const next = track.scrollLeft + (dir * pixelsPerSecond * dt);
+              if (next >= maxScroll) {
+                track.scrollLeft = maxScroll;
+                track.dataset.dir = "-1";
+                return;
+              }
 
-                if (next >= maxScroll) {
-                  track.scrollLeft = maxScroll;
-                  track.dataset.dir = "-1";
-                  return;
-                }
+              if (next <= 0) {
+                track.scrollLeft = 0;
+                track.dataset.dir = "1";
+                return;
+              }
 
-                if (next <= 0) {
-                  track.scrollLeft = 0;
-                  track.dataset.dir = "1";
-                  return;
-                }
-
-                track.scrollLeft = next;
-              });
-            }
-
-            randomTracksFrame = requestAnimationFrame(animate);
-          };
-
-          randomTracksFrame = requestAnimationFrame(animate);
+              track.scrollLeft = next;
+            });
+          }, 30);
         }
 
         function renderSection(rootId, items) {
@@ -1244,11 +1146,10 @@
           bindProductEvents(root);
         }
 
-        function productCardHTML(item, opts = {}) {
-          const compact = opts.compact === true;
+        function productCardHTML(item) {
           const optionsHTML = SIZE_OPTIONS.map((opt, index) => `<option value="${opt.id}" data-price="${opt.price}" data-was="${opt.was}" ${index === 0 ? "selected" : ""}>${opt.label} · ${opt.price} EGP</option>`).join("");
           const localizedTitle = localizeCatalogTitle(item.title);
-          const isRapUpload = !compact && item.id === "rap5";
+          const isRapUpload = item.id === "rap5";
           const helperText = isRapUpload
             ? t("rapUploadHint")
             : item.id.startsWith("custom")
@@ -1257,16 +1158,12 @@
           const uploadFieldHTML = isRapUpload
             ? `<label class="product__upload"><span>${t("rapUploadLabel")}</span><input class="rap-upload-input" type="file" accept="image/*" /></label>`
             : "";
-          const artSrc = item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("file://") || item.art.startsWith("../")
-            ? item.art : `../${item.art}`;
-          const cardClass = compact ? "product product--strip" : "product";
-          const compactClass = compact ? " product__body--strip" : "";
           return `
-            <article class="${cardClass}" data-id="${item.id}">
+            <article class="product" data-id="${item.id}">
               <div class="product__art">
-                <img src="${artSrc}" alt="${escapeHTML(localizedTitle)}" />
+                <img src="${item.art}" alt="${escapeHTML(localizedTitle)}" />
               </div>
-              <div class="product__body${compactClass}">
+              <div class="product__body">
                 <h3 class="product__title">${escapeHTML(localizedTitle)}</h3>
                 <div class="product__subcopy">${escapeHTML(helperText)}</div>
                 ${uploadFieldHTML}
@@ -1427,9 +1324,9 @@
             if (count < 2) {
               cartbarMsg.textContent = t("cartbarNeedTwo");
             } else {
-              cartbarMsg.textContent = total >= 600
+              cartbarMsg.textContent = total >= FREE_SHIPPING_THRESHOLD
                 ? t("cartbarUnlocked")
-                : t("cartbarNeedMore", { amount: Math.max(0, 600 - total) });
+                : t("cartbarNeedMore", { amount: Math.max(0, FREE_SHIPPING_THRESHOLD - total) });
             }
           }
 
@@ -1438,7 +1335,7 @@
 
         function cartItemHTML(item) {
           const artMarkup = item.art
-            ? `<div class="cart-item__artframe"><img src="${item.art.startsWith("data:") || item.art.startsWith("http") || item.art.startsWith("file://") || item.art.startsWith("../") ? item.art : `../${item.art}`}" alt="${escapeHTML(item.title)}" /></div>`
+            ? `<div class="cart-item__artframe"><img src="${item.art}" alt="${escapeHTML(item.title)}" /></div>`
             : '<div class="cart-item__artframe">🖼</div>';
           return `
             <div class="cart-item" data-uid="${item.uid}">
