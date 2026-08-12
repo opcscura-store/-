@@ -1738,10 +1738,10 @@ html[dir="rtl"] .checkout-summary__row {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* السماح بالسكرول الأفقي داخل الشرائط والـ carousels فقط */
+/* السماح بالتمرير العمودي في الصفحة مع الاحتفاظ بالسحب الأفقي داخل الشرائط */
 .random-track,
 .featured-track {
-  touch-action: pan-x pinch-zoom;
+  touch-action: pan-y pinch-zoom;
 }
 
 .drawer__items {
