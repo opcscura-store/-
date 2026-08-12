@@ -1082,6 +1082,8 @@
             track.addEventListener("pointerdown", () => pauseRandomTracks(7000));
             track.addEventListener("touchstart", () => pauseRandomTracks(7000), { passive: true });
             track.addEventListener("wheel", () => pauseRandomTracks(5000), { passive: true });
+            track.addEventListener("mouseenter", () => pauseRandomTracks(120000));
+            track.addEventListener("mouseleave", () => pauseRandomTracks(500));
             bindRandomTrackDrag(track);
 
             track.dataset.controlsBound = "1";
@@ -1138,7 +1140,7 @@
           };
 
           track.addEventListener("pointerdown", (event) => {
-            if (event.pointerType === "mouse" && event.button !== 0) return;
+            if (event.pointerType !== "mouse" || event.button !== 0) return;
 
             pointerId = event.pointerId;
             startX = event.clientX;
@@ -1166,6 +1168,10 @@
             clearInterval(randomTracksTimer);
             randomTracksTimer = null;
           }
+          if (randomTracksFrame) {
+            cancelAnimationFrame(randomTracksFrame);
+            randomTracksFrame = null;
+          }
 
           const tracks = rowRoots.filter(Boolean);
           if (!tracks.length) return;
@@ -1175,30 +1181,28 @@
             track.scrollLeft = 0;
           });
 
-          randomTracksTimer = setInterval(() => {
-            if (Date.now() < randomTracksPauseUntil) return;
+          let lastTime = performance.now();
+          const speedPxPerSecond = 30;
 
-            tracks.forEach((track) => {
-              const halfWidth = track.scrollWidth / 2;
-              if (halfWidth <= track.clientWidth) return;
+          const tick = (now) => {
+            const deltaSeconds = Math.min(0.05, Math.max(0, (now - lastTime) / 1000));
+            lastTime = now;
 
-              let dir = Number(track.dataset.dir || "1");
-              const speed = 0.8;
-              const next = track.scrollLeft + (dir * speed);
+            if (Date.now() >= randomTracksPauseUntil) {
+              tracks.forEach((track) => {
+                const halfWidth = track.scrollWidth / 2;
+                if (halfWidth <= track.clientWidth) return;
 
-              if (dir > 0 && next >= halfWidth) {
+                const dir = Number(track.dataset.dir || "1");
+                const next = track.scrollLeft + (dir * speedPxPerSecond * deltaSeconds);
                 track.scrollLeft = wrapRandomTrackScroll(track, next);
-                return;
-              }
+              });
+            }
 
-              if (dir < 0 && next <= 0) {
-                track.scrollLeft = wrapRandomTrackScroll(track, next);
-                return;
-              }
+            randomTracksFrame = requestAnimationFrame(tick);
+          };
 
-              track.scrollLeft = next;
-            });
-          }, 30);
+          randomTracksFrame = requestAnimationFrame(tick);
         }
 
         function renderSection(rootId, items) {
