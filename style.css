@@ -176,7 +176,11 @@ svg.op-aperture {
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-y;
+}
 body {
   position: relative;
   margin: 0;
@@ -185,6 +189,7 @@ body {
   background: linear-gradient(180deg, #12161b 0%, var(--bg) 100%);
   line-height: 1.5;
   overflow-x: hidden;
+  touch-action: pan-y;
 }
 body::before,
 body::after {
@@ -984,7 +989,7 @@ html[dir="rtl"] .checkout-summary__row {
 }
 .random-row .random-track {
   flex: 1;
-  touch-action: pan-x pinch-zoom;
+  touch-action: pan-y pinch-zoom;
   cursor: grab;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
@@ -994,6 +999,12 @@ html[dir="rtl"] .checkout-summary__row {
 .random-row .random-track.is-dragging {
   cursor: grabbing;
   user-select: none;
+  -webkit-user-select: none;
+}
+@media (hover: none) and (pointer: coarse) {
+  .random-row .random-track {
+    touch-action: pan-y pinch-zoom;
+  }
 }
 .track-nav {
   width: 38px;
@@ -1723,19 +1734,6 @@ html[dir="rtl"] .checkout-summary__row {
   .whatsapp-float {
     bottom: calc(86px + env(safe-area-inset-bottom)) !important;
   }
-}
-
-/* منع سحب الصفحة من سرقة التحكم */
-.control-pad,
-.controls,
-.control-pad button,
-.controls button,
-#upBtn,
-#downBtn {
-  touch-action: none;
-  -webkit-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* السماح بالتمرير العمودي في الصفحة مع الاحتفاظ بالسحب الأفقي داخل الشرائط */
