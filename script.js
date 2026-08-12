@@ -1055,8 +1055,6 @@
         }
 
         function setupRandomTrackControls(rowRoots) {
-          const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-
           rowRoots.forEach((track) => {
             if (!track || track.dataset.controlsBound === "1") return;
 
@@ -1084,9 +1082,79 @@
             track.addEventListener("pointerdown", () => pauseRandomTracks(7000));
             track.addEventListener("touchstart", () => pauseRandomTracks(7000), { passive: true });
             track.addEventListener("wheel", () => pauseRandomTracks(5000), { passive: true });
+            bindRandomTrackDrag(track);
 
             track.dataset.controlsBound = "1";
           });
+        }
+
+        function wrapRandomTrackScroll(track, scrollLeft) {
+          const halfWidth = track.scrollWidth / 2;
+          if (halfWidth <= track.clientWidth) return 0;
+
+          let wrapped = scrollLeft;
+          while (wrapped < 0) wrapped += halfWidth;
+          while (wrapped >= halfWidth) wrapped -= halfWidth;
+          return wrapped;
+        }
+
+        function bindRandomTrackDrag(track) {
+          if (!track || track.dataset.dragBound === "1") return;
+
+          let pointerId = null;
+          let startX = 0;
+          let startY = 0;
+          let startScroll = 0;
+          let dragging = false;
+
+          const onPointerMove = (event) => {
+            if (pointerId === null || event.pointerId !== pointerId) return;
+
+            const dx = event.clientX - startX;
+            const dy = event.clientY - startY;
+            if (!dragging && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+              dragging = Math.abs(dx) >= Math.abs(dy);
+            }
+            if (!dragging) return;
+
+            const nextScroll = startScroll - dx;
+            track.scrollLeft = wrapRandomTrackScroll(track, nextScroll);
+            track.classList.add("is-dragging");
+            pauseRandomTracks(7000);
+          };
+
+          const endDrag = (event) => {
+            if (pointerId === null || (event && event.pointerId !== pointerId)) return;
+
+            try {
+              track.releasePointerCapture(pointerId);
+            } catch {
+              // Ignore release errors when capture is already lost.
+            }
+
+            pointerId = null;
+            dragging = false;
+            track.classList.remove("is-dragging");
+          };
+
+          track.addEventListener("pointerdown", (event) => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+
+            pointerId = event.pointerId;
+            startX = event.clientX;
+            startY = event.clientY;
+            startScroll = track.scrollLeft;
+            dragging = false;
+            track.setPointerCapture(pointerId);
+            pauseRandomTracks(7000);
+          });
+
+          track.addEventListener("pointermove", onPointerMove);
+          track.addEventListener("pointerup", endDrag);
+          track.addEventListener("pointercancel", endDrag);
+          track.addEventListener("lostpointercapture", endDrag);
+
+          track.dataset.dragBound = "1";
         }
 
         function pauseRandomTracks(durationMs) {
@@ -1119,19 +1187,18 @@
               const next = track.scrollLeft + (dir * speed);
 
               if (dir > 0 && next >= halfWidth) {
-                track.scrollLeft = next - halfWidth;
+                track.scrollLeft = wrapRandomTrackScroll(track, next);
                 return;
               }
 
               if (dir < 0 && next <= 0) {
-                track.scrollLeft = halfWidth + next;
+                track.scrollLeft = wrapRandomTrackScroll(track, next);
                 return;
               }
 
               track.scrollLeft = next;
             });
           }, 30);
-        }
         }
 
         function renderSection(rootId, items) {
