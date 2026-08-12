@@ -1716,4 +1716,34 @@ html[dir="rtl"] .checkout-summary__row {
   .hero h1 { font-size: 40px; }
   .btn { width: 100%; }
 }
+/* ...existing code... */
 
+/* رفع زر واتساب على الموبايل */
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: calc(86px + env(safe-area-inset-bottom)) !important;
+  }
+}
+
+/* منع سحب الصفحة من سرقة التحكم */
+.control-pad,
+.controls,
+.control-pad button,
+.controls button,
+#upBtn,
+#downBtn {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* السماح بالسكرول الأفقي داخل الشرائط والـ carousels فقط */
+.random-track,
+.featured-track {
+  touch-action: pan-x pinch-zoom;
+}
+
+.drawer__items {
+  touch-action: pan-y;
+}
