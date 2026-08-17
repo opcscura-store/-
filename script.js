@@ -51,6 +51,7 @@
 
         const CART_KEY = "opscura_cart_v1";
         const DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.promoRate ?? 0.1);
+        const BUNDLE_DISCOUNT_RATE = Number(window.OPSCURA_CONFIG?.bundlePromoRate ?? 0.15);
         const FEATURED_STRIPS = [
           {
             rootId: "randomGridTop",
@@ -198,8 +199,8 @@
 
         const I18N = {
           en: {
-            promoBar: "Free shipping over 600 EGP · Custom framing in 3–4 days",
-            promoBanner: "<strong>Offer:</strong> 10% off when you buy 2 items.",
+            promoBar: "Free shipping over 800 EGP · Custom framing in 3–4 days",
+            promoBanner: "<strong>Offer:</strong> 10% off everything. Buy 2 and get 15% off all products.",
             navMenuAria: "Open menu",
             navCartAria: "Open cart",
             navLogoSub: "Custom framed art",
@@ -264,7 +265,7 @@
             drawerTitle: "Your cart",
             drawerCloseAria: "Close cart",
             drawerSubtotal: "Subtotal",
-            drawerDiscount: "10% off when you buy 2",
+            drawerDiscount: "10% off everything · 15% off when you buy 2",
             drawerTotal: "Total after discount",
             checkoutNow: "Checkout now",
             checkoutTitle: "Checkout",
@@ -294,12 +295,12 @@
             addedToCart: "Added to cart · {title}",
             cartEmpty: "Your cart is empty",
             cartEmptyHint: "Pick a print or upload your own image to get started.",
-            cartbarUnlocked: "10% discount applied and free shipping unlocked",
-            cartbarNeedMore: "10% discount applied. Add {amount} EGP more for free shipping",
-            cartbarNeedTwo: "10% off when you buy 2",
+            cartbarUnlocked: "15% discount applied and free shipping unlocked",
+            cartbarNeedMore: "15% discount applied. Add {amount} EGP more for free shipping",
+            cartbarNeedTwo: "10% off everything · buy 2 for 15% off",
             remove: "Remove",
             summarySubtotal: "Subtotal",
-            summaryDiscount: "10% off when you buy 2",
+            summaryDiscount: "10% off everything · 15% off when you buy 2",
             summaryAfterDiscount: "After discount",
             summaryShipping: "Shipping",
             summaryTotal: "Total",
@@ -313,8 +314,8 @@
             customUploadPrefix: "Custom upload"
           },
           ar: {
-            promoBar: "شحن مجاني للطلبات فوق 600 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
-            promoBanner: "<strong>العرض:</strong> خصم 10% لو خدت 2.",
+            promoBar: "شحن مجاني للطلبات فوق 800 جنيه · تجهيز الإطار المخصص خلال 3-4 أيام",
+            promoBanner: "<strong>العرض:</strong> خصم 10% على الكل. لو خدت 2، خصم 15% على كل المنتجات.",
             navMenuAria: "فتح القائمة",
             navCartAria: "فتح السلة",
             navLogoSub: "لوحات مؤطرة مخصصة",
@@ -379,7 +380,7 @@
             drawerTitle: "سلة مشترياتك",
             drawerCloseAria: "إغلاق السلة",
             drawerSubtotal: "الإجمالي",
-            drawerDiscount: "خصم 10% لو خدت 2",
+            drawerDiscount: "خصم 10% على الكل · خصم 15% لو خدت 2",
             drawerTotal: "الإجمالي بعد الخصم",
             checkoutNow: "إتمام الطلب",
             checkoutTitle: "الدفع",
@@ -409,12 +410,12 @@
             addedToCart: "تمت الإضافة للسلة · {title}",
             cartEmpty: "السلة فارغة",
             cartEmptyHint: "اختار لوحة أو ارفع صورتك علشان تبدأ.",
-            cartbarUnlocked: "تم تطبيق خصم 10% وتفعيل الشحن المجاني",
-            cartbarNeedMore: "تم تطبيق خصم 10%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
-            cartbarNeedTwo: "خصم 10% لو خدت 2",
+            cartbarUnlocked: "تم تطبيق خصم 15% وتفعيل الشحن المجاني",
+            cartbarNeedMore: "تم تطبيق خصم 15%. أضف {amount} جنيه إضافي للحصول على الشحن المجاني",
+            cartbarNeedTwo: "خصم 10% على الكل · لو خدت 2 هتطلع 15%",
             remove: "حذف",
             summarySubtotal: "الإجمالي",
-            summaryDiscount: "خصم 10% لو خدت 2",
+            summaryDiscount: "خصم 10% على الكل · خصم 15% لو خدت 2",
             summaryAfterDiscount: "بعد الخصم",
             summaryShipping: "الشحن",
             summaryTotal: "الإجمالي النهائي",
@@ -981,7 +982,7 @@
         }
 
         function getActiveDiscountRate(itemCount = getCartItemsCount()) {
-          return itemCount >= 2 ? DISCOUNT_RATE : 0;
+          return itemCount >= 2 ? BUNDLE_DISCOUNT_RATE : DISCOUNT_RATE;
         }
 
         function getDiscountValue(subtotal, itemCount = getCartItemsCount()) {
@@ -1148,6 +1149,7 @@
 
           track.addEventListener("pointerdown", (event) => {
             if (event.pointerType !== "mouse" || event.button !== 0) return;
+            if (event.target.closest("button, select, input, textarea, label, .product__add, .opt-select, .rap-upload-input")) return;
 
             pointerId = event.pointerId;
             startX = event.clientX;
